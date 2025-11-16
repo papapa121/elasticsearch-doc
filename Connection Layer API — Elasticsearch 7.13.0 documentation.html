@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html -->
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en" style="" data-readthedocs-tool="sphinx" data-readthedocs-tool-theme="readthedocs"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Connection Layer API — Elasticsearch 7.13.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="./Connection Layer API — Elasticsearch 7.13.0 documentation_files/modernizr.min.js.download"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'./',
+              VERSION:'7.13.0',
+              LANGUAGE:'en',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="./Connection Layer API — Elasticsearch 7.13.0 documentation_files/jquery.js.download"></script>
+        <script type="text/javascript" src="./Connection Layer API — Elasticsearch 7.13.0 documentation_files/underscore.js.download"></script>
+        <script type="text/javascript" src="./Connection Layer API — Elasticsearch 7.13.0 documentation_files/doctools.js.download"></script>
+        
+    
+    <script type="text/javascript" src="./Connection Layer API — Elasticsearch 7.13.0 documentation_files/theme.js.download"></script>
+
+    
+
+  
+  <style type="text/css">:root, :host {
+  --fa-font-solid: normal 900 1em/1 "Font Awesome 7 Free";
+  --fa-font-regular: normal 400 1em/1 "Font Awesome 7 Free";
+  --fa-font-light: normal 300 1em/1 "Font Awesome 7 Pro";
+  --fa-font-thin: normal 100 1em/1 "Font Awesome 7 Pro";
+  --fa-font-duotone: normal 900 1em/1 "Font Awesome 7 Duotone";
+  --fa-font-duotone-regular: normal 400 1em/1 "Font Awesome 7 Duotone";
+  --fa-font-duotone-light: normal 300 1em/1 "Font Awesome 7 Duotone";
+  --fa-font-duotone-thin: normal 100 1em/1 "Font Awesome 7 Duotone";
+  --fa-font-brands: normal 400 1em/1 "Font Awesome 7 Brands";
+  --fa-font-sharp-solid: normal 900 1em/1 "Font Awesome 7 Sharp";
+  --fa-font-sharp-regular: normal 400 1em/1 "Font Awesome 7 Sharp";
+  --fa-font-sharp-light: normal 300 1em/1 "Font Awesome 7 Sharp";
+  --fa-font-sharp-thin: normal 100 1em/1 "Font Awesome 7 Sharp";
+  --fa-font-sharp-duotone-solid: normal 900 1em/1 "Font Awesome 7 Sharp Duotone";
+  --fa-font-sharp-duotone-regular: normal 400 1em/1 "Font Awesome 7 Sharp Duotone";
+  --fa-font-sharp-duotone-light: normal 300 1em/1 "Font Awesome 7 Sharp Duotone";
+  --fa-font-sharp-duotone-thin: normal 100 1em/1 "Font Awesome 7 Sharp Duotone";
+  --fa-font-slab-regular: normal 400 1em/1 "Font Awesome 7 Slab";
+  --fa-font-slab-press-regular: normal 400 1em/1 "Font Awesome 7 Slab Press";
+  --fa-font-whiteboard-semibold: normal 600 1em/1 "Font Awesome 7 Whiteboard";
+  --fa-font-thumbprint-light: normal 300 1em/1 "Font Awesome 7 Thumbprint";
+  --fa-font-notdog-solid: normal 900 1em/1 "Font Awesome 7 Notdog";
+  --fa-font-notdog-duo-solid: normal 900 1em/1 "Font Awesome 7 Notdog Duo";
+  --fa-font-etch-solid: normal 900 1em/1 "Font Awesome 7 Etch";
+  --fa-font-jelly-regular: normal 400 1em/1 "Font Awesome 7 Jelly";
+  --fa-font-jelly-fill-regular: normal 400 1em/1 "Font Awesome 7 Jelly Fill";
+  --fa-font-jelly-duo-regular: normal 400 1em/1 "Font Awesome 7 Jelly Duo";
+  --fa-font-chisel-regular: normal 400 1em/1 "Font Awesome 7 Chisel";
+}
+
+.svg-inline--fa {
+  box-sizing: content-box;
+  display: var(--fa-display, inline-block);
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+  width: var(--fa-width, 1.25em);
+}
+.svg-inline--fa.fa-2xs {
+  vertical-align: 0.1em;
+}
+.svg-inline--fa.fa-xs {
+  vertical-align: 0em;
+}
+.svg-inline--fa.fa-sm {
+  vertical-align: -0.0714285714em;
+}
+.svg-inline--fa.fa-lg {
+  vertical-align: -0.2em;
+}
+.svg-inline--fa.fa-xl {
+  vertical-align: -0.25em;
+}
+.svg-inline--fa.fa-2xl {
+  vertical-align: -0.3125em;
+}
+.svg-inline--fa.fa-pull-left,
+.svg-inline--fa .fa-pull-start {
+  float: inline-start;
+  margin-inline-end: var(--fa-pull-margin, 0.3em);
+}
+.svg-inline--fa.fa-pull-right,
+.svg-inline--fa .fa-pull-end {
+  float: inline-end;
+  margin-inline-start: var(--fa-pull-margin, 0.3em);
+}
+.svg-inline--fa.fa-li {
+  width: var(--fa-li-width, 2em);
+  inset-inline-start: calc(-1 * var(--fa-li-width, 2em));
+  inset-block-start: 0.25em; /* syncing vertical alignment with Web Font rendering */
+}
+
+.fa-layers-counter, .fa-layers-text {
+  display: inline-block;
+  position: absolute;
+  text-align: center;
+}
+
+.fa-layers {
+  display: inline-block;
+  height: 1em;
+  position: relative;
+  text-align: center;
+  vertical-align: -0.125em;
+  width: var(--fa-width, 1.25em);
+}
+.fa-layers .svg-inline--fa {
+  inset: 0;
+  margin: auto;
+  position: absolute;
+  transform-origin: center center;
+}
+
+.fa-layers-text {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
+}
+
+.fa-layers-counter {
+  background-color: var(--fa-counter-background-color, #ff253a);
+  border-radius: var(--fa-counter-border-radius, 1em);
+  box-sizing: border-box;
+  color: var(--fa-inverse, #fff);
+  line-height: var(--fa-counter-line-height, 1);
+  max-width: var(--fa-counter-max-width, 5em);
+  min-width: var(--fa-counter-min-width, 1.5em);
+  overflow: hidden;
+  padding: var(--fa-counter-padding, 0.25em 0.5em);
+  right: var(--fa-right, 0);
+  text-overflow: ellipsis;
+  top: var(--fa-top, 0);
+  transform: scale(var(--fa-counter-scale, 0.25));
+  transform-origin: top right;
+}
+
+.fa-layers-bottom-right {
+  bottom: var(--fa-bottom, 0);
+  right: var(--fa-right, 0);
+  top: auto;
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: bottom right;
+}
+
+.fa-layers-bottom-left {
+  bottom: var(--fa-bottom, 0);
+  left: var(--fa-left, 0);
+  right: auto;
+  top: auto;
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: bottom left;
+}
+
+.fa-layers-top-right {
+  top: var(--fa-top, 0);
+  right: var(--fa-right, 0);
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: top right;
+}
+
+.fa-layers-top-left {
+  left: var(--fa-left, 0);
+  right: auto;
+  top: var(--fa-top, 0);
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: top left;
+}
+
+.fa-1x {
+  font-size: 1em;
+}
+
+.fa-2x {
+  font-size: 2em;
+}
+
+.fa-3x {
+  font-size: 3em;
+}
+
+.fa-4x {
+  font-size: 4em;
+}
+
+.fa-5x {
+  font-size: 5em;
+}
+
+.fa-6x {
+  font-size: 6em;
+}
+
+.fa-7x {
+  font-size: 7em;
+}
+
+.fa-8x {
+  font-size: 8em;
+}
+
+.fa-9x {
+  font-size: 9em;
+}
+
+.fa-10x {
+  font-size: 10em;
+}
+
+.fa-2xs {
+  font-size: calc(10 / 16 * 1em); /* converts a 10px size into an em-based value that's relative to the scale's 16px base */
+  line-height: calc(1 / 10 * 1em); /* sets the line-height of the icon back to that of it's parent */
+  vertical-align: calc((6 / 10 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
+}
+
+.fa-xs {
+  font-size: calc(12 / 16 * 1em); /* converts a 12px size into an em-based value that's relative to the scale's 16px base */
+  line-height: calc(1 / 12 * 1em); /* sets the line-height of the icon back to that of it's parent */
+  vertical-align: calc((6 / 12 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
+}
+
+.fa-sm {
+  font-size: calc(14 / 16 * 1em); /* converts a 14px size into an em-based value that's relative to the scale's 16px base */
+  line-height: calc(1 / 14 * 1em); /* sets the line-height of the icon back to that of it's parent */
+  vertical-align: calc((6 / 14 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
+}
+
+.fa-lg {
+  font-size: calc(20 / 16 * 1em); /* converts a 20px size into an em-based value that's relative to the scale's 16px base */
+  line-height: calc(1 / 20 * 1em); /* sets the line-height of the icon back to that of it's parent */
+  vertical-align: calc((6 / 20 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
+}
+
+.fa-xl {
+  font-size: calc(24 / 16 * 1em); /* converts a 24px size into an em-based value that's relative to the scale's 16px base */
+  line-height: calc(1 / 24 * 1em); /* sets the line-height of the icon back to that of it's parent */
+  vertical-align: calc((6 / 24 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
+}
+
+.fa-2xl {
+  font-size: calc(32 / 16 * 1em); /* converts a 32px size into an em-based value that's relative to the scale's 16px base */
+  line-height: calc(1 / 32 * 1em); /* sets the line-height of the icon back to that of it's parent */
+  vertical-align: calc((6 / 32 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
+}
+
+.fa-width-auto {
+  --fa-width: auto;
+}
+
+.fa-fw,
+.fa-width-fixed {
+  --fa-width: 1.25em;
+}
+
+.fa-ul {
+  list-style-type: none;
+  margin-inline-start: var(--fa-li-margin, 2.5em);
+  padding-inline-start: 0;
+}
+.fa-ul > li {
+  position: relative;
+}
+
+.fa-li {
+  inset-inline-start: calc(-1 * var(--fa-li-width, 2em));
+  position: absolute;
+  text-align: center;
+  width: var(--fa-li-width, 2em);
+  line-height: inherit;
+}
+
+/* Heads Up: Bordered Icons will not be supported in the future!
+  - This feature will be deprecated in the next major release of Font Awesome (v8)!
+  - You may continue to use it in this version *v7), but it will not be supported in Font Awesome v8.
+*/
+/* Notes:
+* --@{v.$css-prefix}-border-width = 1/16 by default (to render as ~1px based on a 16px default font-size)
+* --@{v.$css-prefix}-border-padding =
+  ** 3/16 for vertical padding (to give ~2px of vertical whitespace around an icon considering it's vertical alignment)
+  ** 4/16 for horizontal padding (to give ~4px of horizontal whitespace around an icon)
+*/
+.fa-border {
+  border-color: var(--fa-border-color, #eee);
+  border-radius: var(--fa-border-radius, 0.1em);
+  border-style: var(--fa-border-style, solid);
+  border-width: var(--fa-border-width, 0.0625em);
+  box-sizing: var(--fa-border-box-sizing, content-box);
+  padding: var(--fa-border-padding, 0.1875em 0.25em);
+}
+
+.fa-pull-left,
+.fa-pull-start {
+  float: inline-start;
+  margin-inline-end: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-pull-right,
+.fa-pull-end {
+  float: inline-end;
+  margin-inline-start: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-beat {
+  animation-name: fa-beat;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-bounce {
+  animation-name: fa-bounce;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));
+}
+
+.fa-fade {
+  animation-name: fa-fade;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-beat-fade {
+  animation-name: fa-beat-fade;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-flip {
+  animation-name: fa-flip;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-shake {
+  animation-name: fa-shake;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin {
+  animation-name: fa-spin;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 2s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin-reverse {
+  --fa-animation-direction: reverse;
+}
+
+.fa-pulse,
+.fa-spin-pulse {
+  animation-name: fa-spin;
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, steps(8));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fa-beat,
+  .fa-bounce,
+  .fa-fade,
+  .fa-beat-fade,
+  .fa-flip,
+  .fa-pulse,
+  .fa-shake,
+  .fa-spin,
+  .fa-spin-pulse {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+@keyframes fa-beat {
+  0%, 90% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(var(--fa-beat-scale, 1.25));
+  }
+}
+@keyframes fa-bounce {
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+  }
+  30% {
+    transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+  }
+  50% {
+    transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+  }
+  57% {
+    transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+  }
+  64% {
+    transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
+}
+@keyframes fa-fade {
+  50% {
+    opacity: var(--fa-fade-opacity, 0.4);
+  }
+}
+@keyframes fa-beat-fade {
+  0%, 100% {
+    opacity: var(--fa-beat-fade-opacity, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(var(--fa-beat-fade-scale, 1.125));
+  }
+}
+@keyframes fa-flip {
+  50% {
+    transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+  }
+}
+@keyframes fa-shake {
+  0% {
+    transform: rotate(-15deg);
+  }
+  4% {
+    transform: rotate(15deg);
+  }
+  8%, 24% {
+    transform: rotate(-18deg);
+  }
+  12%, 28% {
+    transform: rotate(18deg);
+  }
+  16% {
+    transform: rotate(-22deg);
+  }
+  20% {
+    transform: rotate(22deg);
+  }
+  32% {
+    transform: rotate(-12deg);
+  }
+  36% {
+    transform: rotate(12deg);
+  }
+  40%, 100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes fa-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.fa-rotate-90 {
+  transform: rotate(90deg);
+}
+
+.fa-rotate-180 {
+  transform: rotate(180deg);
+}
+
+.fa-rotate-270 {
+  transform: rotate(270deg);
+}
+
+.fa-flip-horizontal {
+  transform: scale(-1, 1);
+}
+
+.fa-flip-vertical {
+  transform: scale(1, -1);
+}
+
+.fa-flip-both,
+.fa-flip-horizontal.fa-flip-vertical {
+  transform: scale(-1, -1);
+}
+
+.fa-rotate-by {
+  transform: rotate(var(--fa-rotate-angle, 0));
+}
+
+.svg-inline--fa .fa-primary {
+  fill: var(--fa-primary-color, currentColor);
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa .fa-secondary {
+  fill: var(--fa-secondary-color, currentColor);
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-primary {
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-secondary {
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa mask .fa-primary,
+.svg-inline--fa mask .fa-secondary {
+  fill: black;
+}
+
+.svg-inline--fa.fa-inverse {
+  fill: var(--fa-inverse, #fff);
+}
+
+.fa-stack {
+  display: inline-block;
+  height: 2em;
+  line-height: 2em;
+  position: relative;
+  vertical-align: middle;
+  width: 2.5em;
+}
+
+.fa-inverse {
+  color: var(--fa-inverse, #fff);
+}
+
+.svg-inline--fa.fa-stack-1x {
+  --fa-width: 1.25em;
+  height: 1em;
+  width: var(--fa-width);
+}
+.svg-inline--fa.fa-stack-2x {
+  --fa-width: 2.5em;
+  height: 2em;
+  width: var(--fa-width);
+}
+
+.fa-stack-1x,
+.fa-stack-2x {
+  inset: 0;
+  margin: auto;
+  position: absolute;
+  z-index: var(--fa-stack-z-index, auto);
+}</style><link rel="stylesheet" href="./Connection Layer API — Elasticsearch 7.13.0 documentation_files/theme.css" type="text/css">
+  <link rel="stylesheet" href="./Connection Layer API — Elasticsearch 7.13.0 documentation_files/pygments.css" type="text/css">
+    <link rel="index" title="Index" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/genindex.html">
+    <link rel="search" title="Search" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/search.html">
+    <link rel="next" title="Transport classes" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/transports.html">
+    <link rel="prev" title="Using Asyncio with Elasticsearch" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/async.html"> 
+
+<!-- RTD Extra Head -->
+
+    <!--
+    Always link to the latest version, as canonical.
+    http://docs.readthedocs.org/en/latest/canonical.html
+    -->
+    <link rel="canonical" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html">
+
+
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": false, "api_host": "https://readthedocs.org", "build_date": "2021-05-25T12:49:49Z", "builder": "sphinx", "canonical_url": "https://elasticsearch-py.readthedocs.io/en/v7.13.0/", "commit": "b177103c", "docroot": "/docs/sphinx/", "features": {"docsearch_disabled": false}, "global_analytics_code": "UA-17997319-1", "language": "en", "page": "connection", "programming_language": "py", "project": "elasticsearch-py", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "sphinx_rtd_theme", "user_analytics_code": "UA-12395217-7", "version": "v7.13.0"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+
+
+<!-- end RTD <extrahead> -->
+<script async="" type="text/javascript" src="./Connection Layer API — Elasticsearch 7.13.0 documentation_files/readthedocs-addons.js.download"></script><meta name="readthedocs-project-slug" content="elasticsearch-py"><meta name="readthedocs-version-slug" content="v7.13.0"><meta name="readthedocs-resolver-filename" content="/connection.html"><meta name="readthedocs-http-status" content="200"><script id="ethicaladsjs" type="text/javascript" async="true" src="./Connection Layer API — Elasticsearch 7.13.0 documentation_files/ethicalads.min.js.download"></script><style>@layer defaults{:root{--ea-container-md: 720px;--ea-container-lg: 960px;--ea-container-xl: 1040px;--ea-image-width: 120px;--ea-image-width-xs: 44px;--ea-image-placement-width: 180px;--ea-image-placement-width-horizontal: 320px;--ea-fixedheader-height: 50px;--ea-font-size: 14px;--ea-font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;--ea-bgcolor: rgba(0, 0, 0, 0.03);--ea-bgcolor-dark: rgba(255, 255, 255, 0.05);--ea-stylefixed-bgcolor: rgb(220, 220, 220);--ea-stylefixed-bgcolor-dark: rgb(80, 80, 80);--ea-color-link: rgb(80, 80, 80);--ea-color-link-dark: rgb(220, 220, 220);--ea-color-link-active: rgb(54.5, 54.5, 54.5);--ea-color-link-dark-active: rgb(245.5, 245.5, 245.5);--ea-color-link-callout: rgb(105.5, 105.5, 105.5);--ea-color-link-callout-dark: rgb(194.5, 194.5, 194.5);--ea-color-link-callout-active: #505050;--ea-color-link-callout-dark-active: gainsboro;--ea-color-link-bold: #088cdb;--ea-color-link-bold-dark: rgb(80.3788546256, 185.6299559471, 248.6211453744);--ea-color-domain: rgb(156.5, 156.5, 156.5);--ea-color-domain-dark: rgb(143.5, 143.5, 143.5)}}[data-ea-publisher].loaded{font-size:var(--ea-font-size);font-family:var(--ea-font-family);font-weight:normal;font-style:normal;letter-spacing:0px;vertical-align:baseline;line-height:1.3em}[data-ea-publisher].loaded a{text-decoration:none}[data-ea-publisher].loaded .ea-pixel{display:none}[data-ea-publisher].loaded .ea-content{margin:1em 1em .5em 1em;padding:1em;background:var(--ea-bgcolor);color:var(--ea-color-link);color:var(--ea-color-link)}[data-ea-publisher].loaded .ea-content a:link{color:var(--ea-color-link)}[data-ea-publisher].loaded .ea-content a:visited{color:var(--ea-color-link)}[data-ea-publisher].loaded .ea-content a:hover{color:var(--ea-color-link-active)}[data-ea-publisher].loaded .ea-content a:active{color:var(--ea-color-link-active)}[data-ea-publisher].loaded .ea-content a strong,[data-ea-publisher].loaded .ea-content a b{color:var(--ea-color-link-bold)}[data-ea-publisher].loaded .ea-callout{color:var(--ea-color-link-callout)}[data-ea-publisher].loaded .ea-callout a{font-size:.8em}[data-ea-publisher].loaded .ea-callout a:link{color:var(--ea-color-link-callout)}[data-ea-publisher].loaded .ea-callout a:visited{color:var(--ea-color-link-callout)}[data-ea-publisher].loaded .ea-callout a:hover{color:var(--ea-color-link-callout-active)}[data-ea-publisher].loaded .ea-callout a:active{color:var(--ea-color-link-callout-active)}[data-ea-publisher].loaded .ea-callout a strong,[data-ea-publisher].loaded .ea-callout a b{color:var(--ea-color-link-callout)}[data-ea-publisher].loaded .ea-domain{margin-top:.75em;font-size:.8em;text-align:center;color:var(--ea-color-domain)}[data-ea-publisher].loaded.dark{--ea-bgcolor: var(--ea-bgcolor-dark);--ea-stylefixed-bgcolor: var(--ea-stylefixed-bgcolor-dark);--ea-color-link: var(--ea-color-link-dark);--ea-color-link-active: var(--ea-color-link-dark-active);--ea-color-link-callout: var(--ea-color-link-callout-dark);--ea-color-link-callout-active: var(--ea-color-link-callout-dark-active);--ea-color-link-bold: var(--ea-color-link-bold-dark);--ea-color-domain: var(--ea-color-domain-dark)}@media(prefers-color-scheme: dark){[data-ea-publisher].loaded.adaptive{--ea-bgcolor: var(--ea-bgcolor-dark);--ea-stylefixed-bgcolor: var(--ea-stylefixed-bgcolor-dark);--ea-color-link: var(--ea-color-link-dark);--ea-color-link-active: var(--ea-color-link-dark-active);--ea-color-link-callout: var(--ea-color-link-callout-dark);--ea-color-link-callout-active: var(--ea-color-link-callout-dark-active);--ea-color-link-bold: var(--ea-color-link-bold-dark);--ea-color-domain: var(--ea-color-domain-dark)}}html.dark [data-ea-publisher].loaded.adaptive-css,body.dark [data-ea-publisher].loaded.adaptive-css,html[data-theme=dark] [data-ea-publisher].loaded.adaptive-css,body[data-theme=dark] [data-ea-publisher].loaded.adaptive-css,html[data-bs-theme=dark] [data-ea-publisher].loaded.adaptive-css,body[data-bs-theme=dark] [data-ea-publisher].loaded.adaptive-css{--ea-bgcolor: var(--ea-bgcolor-dark);--ea-stylefixed-bgcolor: var(--ea-stylefixed-bgcolor-dark);--ea-color-link: var(--ea-color-link-dark);--ea-color-link-active: var(--ea-color-link-dark-active);--ea-color-link-callout: var(--ea-color-link-callout-dark);--ea-color-link-callout-active: var(--ea-color-link-callout-dark-active);--ea-color-link-bold: var(--ea-color-link-bold-dark);--ea-color-domain: var(--ea-color-domain-dark)}@media(prefers-color-scheme: dark){html.auto [data-ea-publisher].loaded.adaptive-css,body.auto [data-ea-publisher].loaded.adaptive-css,html.system [data-ea-publisher].loaded.adaptive-css,body.system [data-ea-publisher].loaded.adaptive-css,html[data-theme=auto] [data-ea-publisher].loaded.adaptive-css,body[data-theme=auto] [data-ea-publisher].loaded.adaptive-css,html[data-bs-theme=auto] [data-ea-publisher].loaded.adaptive-css,body[data-bs-theme=auto] [data-ea-publisher].loaded.adaptive-css{--ea-bgcolor: var(--ea-bgcolor-dark);--ea-stylefixed-bgcolor: var(--ea-stylefixed-bgcolor-dark);--ea-color-link: var(--ea-color-link-dark);--ea-color-link-active: var(--ea-color-link-dark-active);--ea-color-link-callout: var(--ea-color-link-callout-dark);--ea-color-link-callout-active: var(--ea-color-link-callout-dark-active);--ea-color-link-bold: var(--ea-color-link-bold-dark);--ea-color-domain: var(--ea-color-domain-dark)}}[data-ea-publisher].loaded .ea-content{border:0px;border-radius:3px;box-shadow:0px 2px 3px rgba(0,0,0,.15)}[data-ea-publisher].loaded.raised .ea-content{border:0px;border-radius:3px;box-shadow:0px 2px 3px rgba(0,0,0,.15)}[data-ea-publisher].loaded.bordered .ea-content{border:1px solid rgba(0,0,0,.04);border-radius:3px;box-shadow:none}[data-ea-publisher].loaded.bordered.dark .ea-content{border:1px solid hsla(0,0%,100%,.07)}@media(prefers-color-scheme: dark){[data-ea-publisher].loaded.bordered.adaptive .ea-content{border:1px solid hsla(0,0%,100%,.07)}}[data-ea-publisher].loaded.flat .ea-content{border:0px;border-radius:3px;box-shadow:none}[data-ea-type=image].loaded,[data-ea-publisher]:not([data-ea-type]).loaded,.ea-type-image{display:inline-block}[data-ea-type=image].loaded .ea-content,[data-ea-publisher]:not([data-ea-type]).loaded .ea-content,.ea-type-image .ea-content{max-width:var(--ea-image-placement-width);overflow:auto;text-align:center}[data-ea-type=image].loaded .ea-content>a>img,[data-ea-publisher]:not([data-ea-type]).loaded .ea-content>a>img,.ea-type-image .ea-content>a>img{width:var(--ea-image-width);height:auto;display:inline-block}[data-ea-type=image].loaded .ea-content>.ea-text,[data-ea-publisher]:not([data-ea-type]).loaded .ea-content>.ea-text,.ea-type-image .ea-content>.ea-text{margin-top:1em;font-size:1em;text-align:center}[data-ea-type=image].loaded .ea-callout,[data-ea-publisher]:not([data-ea-type]).loaded .ea-callout,.ea-type-image .ea-callout{max-width:var(--ea-image-placement-width);margin:0em 1em 1em 1em;padding-left:1em;padding-right:1em;font-style:italic;text-align:right}[data-ea-type=image].loaded.horizontal .ea-content,[data-ea-publisher]:not([data-ea-type]).loaded.horizontal .ea-content,.ea-type-image.horizontal .ea-content{max-width:var(--ea-image-placement-width-horizontal)}[data-ea-type=image].loaded.horizontal .ea-content>a>img,[data-ea-publisher]:not([data-ea-type]).loaded.horizontal .ea-content>a>img,.ea-type-image.horizontal .ea-content>a>img{float:left;margin-right:1em}[data-ea-type=image].loaded.horizontal .ea-content .ea-text,[data-ea-publisher]:not([data-ea-type]).loaded.horizontal .ea-content .ea-text,.ea-type-image.horizontal .ea-content .ea-text{margin-top:0em;text-align:left;overflow:auto}[data-ea-type=image].loaded.horizontal .ea-callout,[data-ea-publisher]:not([data-ea-type]).loaded.horizontal .ea-callout,.ea-type-image.horizontal .ea-callout{max-width:var(--ea-image-placement-width-horizontal);text-align:right}[data-ea-type=text].loaded,.ea-type-text{font-size:var(--ea-font-size)}[data-ea-type=text].loaded .ea-content,.ea-type-text .ea-content{text-align:left}[data-ea-type=text].loaded .ea-callout,.ea-type-text .ea-callout{margin:.5em 1em 1em 1em;padding-left:1em;padding-right:1em;text-align:right;font-style:italic}[data-ea-style=stickybox].loaded{position:fixed;bottom:20px;right:20px;z-index:100}[data-ea-style=stickybox].loaded .ea-type-image .ea-stickybox-hide{cursor:pointer;position:absolute;top:.75em;right:.75em;background-color:#fefefe;border:1px solid #088cdb;border-radius:50%;color:#088cdb;font-size:1em;text-align:center;height:1.5em;width:1.5em;line-height:1.4}[data-ea-style=stickybox].loaded .ea-type-text{display:none !important}@media(max-width: 1300px){[data-ea-style=stickybox].loaded{position:static;bottom:0;right:0;margin:auto;text-align:center}[data-ea-style=stickybox].loaded .ea-stickybox-hide{display:none}}@media(min-width: 1301px){[data-ea-style=stickybox].loaded .ea-type-image .ea-content{background:var(--ea-stylefixed-bgcolor)}}[data-ea-style=fixedfooter].loaded{position:fixed;bottom:0;left:0;z-index:200;width:100%;max-width:100%}[data-ea-style=fixedfooter].loaded .ea-type-text{width:100%;max-width:100%;display:flex;z-index:200;background:var(--ea-stylefixed-bgcolor)}[data-ea-style=fixedfooter].loaded .ea-type-text .ea-content{border:0px;border-radius:3px;box-shadow:none}[data-ea-style=fixedfooter].loaded .ea-type-text .ea-content{background-color:inherit;max-width:100%;margin:0;padding:1em;flex:auto}[data-ea-style=fixedfooter].loaded .ea-type-text .ea-callout{max-width:100%;margin:0;padding:1em;flex:initial}@media(max-width: 576px){[data-ea-style=fixedfooter].loaded .ea-type-text .ea-callout{display:none}}[data-ea-style=fixedfooter].loaded .ea-type-text .ea-fixedfooter-hide{cursor:pointer;color:var(--ea-color-link);padding:1em;flex:initial;margin:auto 0}[data-ea-style=fixedfooter].loaded .ea-type-text .ea-fixedfooter-hide span{padding:.25em;font-size:.8em;font-weight:bold;border:.15em solid var(--ea-color-link);border-radius:.5em;white-space:nowrap}[data-ea-style=fixedfooter].loaded .ea-type-image{display:none !important}[data-ea-style=fixedheader]{height:var(--ea-fixedheader-height);width:100%;max-width:100%;background:var(--ea-stylefixed-bgcolor);border-bottom:1px solid var(--ea-background-color)}@media(max-width: 768px){[data-ea-style=fixedheader]{display:none !important}}[data-ea-style=fixedheader].loaded .ea-type-image,[data-ea-style=fixedheader].loaded .ea-type-text{width:var(--ea-container-xl);margin:0 auto;display:flex}@media(max-width: 992px){[data-ea-style=fixedheader].loaded .ea-type-image,[data-ea-style=fixedheader].loaded .ea-type-text{width:var(--ea-container-md)}}@media(max-width: 1200px){[data-ea-style=fixedheader].loaded .ea-type-image,[data-ea-style=fixedheader].loaded .ea-type-text{width:var(--ea-container-lg)}}[data-ea-style=fixedheader].loaded .ea-type-image .ea-content,[data-ea-style=fixedheader].loaded .ea-type-text .ea-content{border:0px;border-radius:3px;box-shadow:none}[data-ea-style=fixedheader].loaded .ea-type-image .ea-content,[data-ea-style=fixedheader].loaded .ea-type-text .ea-content{background-color:inherit;max-width:100%;margin:0;padding:0;flex:auto;display:flex}[data-ea-style=fixedheader].loaded .ea-type-image .ea-content .ea-text,[data-ea-style=fixedheader].loaded .ea-type-text .ea-content .ea-text{margin-top:0;padding:1em;flex:auto;text-align:left}[data-ea-style=fixedheader].loaded .ea-type-image .ea-callout,[data-ea-style=fixedheader].loaded .ea-type-text .ea-callout{max-width:100%;margin:0;padding:1em;flex:initial}@media(max-width: 576px){[data-ea-style=fixedheader].loaded .ea-type-image .ea-callout,[data-ea-style=fixedheader].loaded .ea-type-text .ea-callout{display:none}}[data-ea-style=fixedheader].loaded .ea-type-image img{width:var(--ea-image-width-xs) !important;margin:.6em}[data-ea-style=fixedheader].loaded .ea-type-image .ea-domain{display:none}</style><script src="./Connection Layer API — Elasticsearch 7.13.0 documentation_files/saved_resource" type="text/javascript" async=""></script></head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/index.html" class="icon icon-home"> Elasticsearch
+          
+
+          
+          </a>
+
+          
+            
+            
+            
+              <div class="version">
+                v7.13.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="https://elasticsearch-py.readthedocs.io/en/v7.13.0/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/api.html">API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/exceptions.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/async.html">Using Asyncio with Elasticsearch</a></li>
+<li class="toctree-l1 current"><a class="reference internal current" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#"><span class="toctree-expand"></span>Connection Layer API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#transport">Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#connection-pool">Connection Pool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#connection-selector">Connection Selector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#urllib3httpconnection-default-connection-class">Urllib3HttpConnection (default connection_class)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#api-compatibility-http-header">API Compatibility HTTP Header</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/transports.html">Transport classes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/helpers.html">Helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/Changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      <div class="raised ethical-rtd ethical-dark-theme adaptive-css loaded" data-ea-type="readthedocs-sidebar" data-ea-manual="true" data-ea-publisher="readthedocs" data-ea-keywords="client|elasticsearch|python|readthedocs-project-9100|readthedocs-project-elasticsearch-py|search" data-ea-campaign-types="community|house|paid" id="readthedocs-ea-readthedocs-sidebar-nostyle-sphinx"><div class="ethical-sidebar"><div class="ethical-content"><a href="https://server.ethicalads.io/proxy/click/671/019a83cf-d7c1-7f50-93ac-ac42a50372f9/" rel="nofollow noopener sponsored" target="_blank" class="ethical-image-link"><img src="./Connection Layer API — Elasticsearch 7.13.0 documentation_files/ElasticReadTheDocs_Z0grhDC.png" alt="Sponsored: Elastic"></a><div class="ethical-text"><a href="https://server.ethicalads.io/proxy/click/671/019a83cf-d7c1-7f50-93ac-ac42a50372f9/" rel="nofollow noopener sponsored" target="_blank">Read the Docs uses the official Elasticsearch Service on the Elastic Cloud. <strong>Take it for a spin...</strong></a></div></div><div class="ethical-callout"><small><em><a rel="nofollow noopener" target="_blank" href="https://www.ethicalads.io/?ref=rtd-sidebar">Ad by EthicalAds</a></em></small><span> &nbsp; · &nbsp; </span><a rel="nofollow noopener" target="_blank" href="https://www.ethicalads.io/advertisers/topics/backend-web/?ref=rtd-sidebar-buy-ads">ℹ️</a></div></div><img src="./Connection Layer API — Elasticsearch 7.13.0 documentation_files/saved_resource(1)" class="ea-pixel"></div></div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/index.html">Elasticsearch</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/index.html">Docs</a> »</li>
+        
+      <li>Connection Layer API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/elastic/elasticsearch-py/blob/v7.13.0/docs/sphinx/connection.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="connection-layer-api">
+<span id="connection-api"></span><h1>Connection Layer API<a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#connection-layer-api" title="Permalink to this headline">¶</a></h1>
+<p>All of the classes responsible for handling the connection to the Elasticsearch
+cluster. The default subclasses used can be overriden by passing parameters to the
+<a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/api.html#elasticsearch.Elasticsearch" title="elasticsearch.Elasticsearch"><code class="xref py py-class docutils literal"><span class="pre">Elasticsearch</span></code></a> class. All of the arguments to the client
+will be passed on to <a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.Transport" title="elasticsearch.Transport"><code class="xref py py-class docutils literal"><span class="pre">Transport</span></code></a>,
+<a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.ConnectionPool" title="elasticsearch.ConnectionPool"><code class="xref py py-class docutils literal"><span class="pre">ConnectionPool</span></code></a> and <code class="xref py py-class docutils literal"><span class="pre">Connection</span></code>.</p>
+<p>For example if you wanted to use your own implementation of the
+<a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.ConnectionSelector" title="elasticsearch.ConnectionSelector"><code class="xref py py-class docutils literal"><span class="pre">ConnectionSelector</span></code></a> class you can just pass in the
+<code class="docutils literal"><span class="pre">selector_class</span></code> parameter.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.ConnectionPool" title="elasticsearch.ConnectionPool"><code class="xref py py-class docutils literal"><span class="pre">ConnectionPool</span></code></a> and related options (like
+<code class="docutils literal"><span class="pre">selector_class</span></code>) will only be used if more than one connection is defined.
+Either directly or via the <a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/index.html#sniffing"><span class="std std-ref">Sniffing</span></a> mechanism.</p>
+</div>
+<span class="target" id="module-elasticsearch"></span><div class="section" id="transport">
+<h2>Transport<a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#transport" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="elasticsearch.Transport">
+<em class="property">class </em><code class="descclassname">elasticsearch.</code><code class="descname">Transport</code><span class="sig-paren">(</span><em>hosts</em>, <em>connection_class=Urllib3HttpConnection</em>, <em>connection_pool_class=ConnectionPool</em>, <em>host_info_callback=construct_hosts_list</em>, <em>sniff_on_start=False</em>, <em>sniffer_timeout=None</em>, <em>sniff_on_connection_fail=False</em>, <em>serializer=JSONSerializer()</em>, <em>max_retries=3</em>, <em>** kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.Transport" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encapsulation of transport-related to logic. Handles instantiation of the
+individual connections as well as creating a connection pool to hold them.</p>
+<p>Main interface is the <cite>perform_request</cite> method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>hosts</strong> – list of dictionaries, each containing keyword arguments to
+create a <cite>connection_class</cite> instance</li>
+<li><strong>connection_class</strong> – subclass of <code class="xref py py-class docutils literal"><span class="pre">Connection</span></code> to use</li>
+<li><strong>connection_pool_class</strong> – subclass of <a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.ConnectionPool" title="elasticsearch.ConnectionPool"><code class="xref py py-class docutils literal"><span class="pre">ConnectionPool</span></code></a> to use</li>
+<li><strong>host_info_callback</strong> – callback responsible for taking the node information from
+<cite>/_cluster/nodes</cite>, along with already extracted information, and
+producing a list of arguments (same as <cite>hosts</cite> parameter)</li>
+<li><strong>sniff_on_start</strong> – flag indicating whether to obtain a list of nodes
+from the cluster at startup time</li>
+<li><strong>sniffer_timeout</strong> – number of seconds between automatic sniffs</li>
+<li><strong>sniff_on_connection_fail</strong> – flag controlling if connection failure triggers a sniff</li>
+<li><strong>sniff_timeout</strong> – timeout used for the sniff request - it should be a
+fast api call and we are talking potentially to more nodes so we want
+to fail quickly. Not used during initial sniffing (if
+<code class="docutils literal"><span class="pre">sniff_on_start</span></code> is on) when the connection still isn’t
+initialized.</li>
+<li><strong>serializer</strong> – serializer instance</li>
+<li><strong>serializers</strong> – optional dict of serializer instances that will be
+used for deserializing data coming from the server. (key is the mimetype)</li>
+<li><strong>default_mimetype</strong> – when no mimetype is specified by the server
+response assume this mimetype, defaults to <cite>‘application/json’</cite></li>
+<li><strong>max_retries</strong> – maximum number of retries before an exception is propagated</li>
+<li><strong>retry_on_status</strong> – set of HTTP status codes on which we should retry
+on a different node. defaults to <code class="docutils literal"><span class="pre">(502,</span> <span class="pre">503,</span> <span class="pre">504)</span></code></li>
+<li><strong>retry_on_timeout</strong> – should timeout trigger a retry on different
+node? (default <cite>False</cite>)</li>
+<li><strong>send_get_body_as</strong> – for GET requests with body this option allows
+you to specify an alternate way of execution for environments that
+don’t support passing bodies with GET requests. If you set this to
+‘POST’ a POST method will be used instead, if to ‘source’ then the body
+will be serialized and passed as a query parameter <cite>source</cite>.</li>
+<li><strong>meta_header</strong> – If True will send the ‘X-Elastic-Client-Meta’ HTTP header containing
+simple client metadata. Setting to False will disable the header. Defaults to True.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Any extra keyword arguments will be passed to the <cite>connection_class</cite>
+when creating and instance unless overridden by that connection’s
+options provided as part of the hosts parameter.</p>
+<dl class="attribute">
+<dt id="elasticsearch.Transport.DEFAULT_CONNECTION_CLASS">
+<code class="descname">DEFAULT_CONNECTION_CLASS</code><a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.Transport.DEFAULT_CONNECTION_CLASS" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">elasticsearch.connection.http_urllib3.Urllib3HttpConnection</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="elasticsearch.Transport.add_connection">
+<code class="descname">add_connection</code><span class="sig-paren">(</span><em>host</em><span class="sig-paren">)</span><a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.Transport.add_connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new <code class="xref py py-class docutils literal"><span class="pre">Connection</span></code> instance and add it to the pool.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>host</strong> – kwargs that will be used to create the instance</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="elasticsearch.Transport.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.Transport.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Explicitly closes connections</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="elasticsearch.Transport.get_connection">
+<code class="descname">get_connection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.Transport.get_connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve a <code class="xref py py-class docutils literal"><span class="pre">Connection</span></code> instance from the
+<a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.ConnectionPool" title="elasticsearch.ConnectionPool"><code class="xref py py-class docutils literal"><span class="pre">ConnectionPool</span></code></a> instance.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="elasticsearch.Transport.mark_dead">
+<code class="descname">mark_dead</code><span class="sig-paren">(</span><em>connection</em><span class="sig-paren">)</span><a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.Transport.mark_dead" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark a connection as dead (failed) in the connection pool. If sniffing
+on failure is enabled this will initiate the sniffing process.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>connection</strong> – instance of <code class="xref py py-class docutils literal"><span class="pre">Connection</span></code> that failed</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="elasticsearch.Transport.perform_request">
+<code class="descname">perform_request</code><span class="sig-paren">(</span><em>method</em>, <em>url</em>, <em>headers=None</em>, <em>params=None</em>, <em>body=None</em><span class="sig-paren">)</span><a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.Transport.perform_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform the actual request. Retrieve a connection from the connection
+pool, pass all the information to it’s perform_request method and
+return the data.</p>
+<p>If an exception was raised, mark the connection as failed and retry (up
+to <cite>max_retries</cite> times).</p>
+<p>If the operation was successful and the connection used was previously
+marked as dead, mark it as live, resetting it’s failure count.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>method</strong> – HTTP method to use</li>
+<li><strong>url</strong> – absolute url (without host) to target</li>
+<li><strong>headers</strong> – dictionary of headers, will be handed over to the
+underlying <code class="xref py py-class docutils literal"><span class="pre">Connection</span></code> class</li>
+<li><strong>params</strong> – dictionary of query parameters, will be handed over to the
+underlying <code class="xref py py-class docutils literal"><span class="pre">Connection</span></code> class for serialization</li>
+<li><strong>body</strong> – body of the request, will be serialized using serializer and
+passed to the connection</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="elasticsearch.Transport.set_connections">
+<code class="descname">set_connections</code><span class="sig-paren">(</span><em>hosts</em><span class="sig-paren">)</span><a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.Transport.set_connections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Instantiate all the connections and create new connection pool to hold them.
+Tries to identify unchanged hosts and re-use existing
+<code class="xref py py-class docutils literal"><span class="pre">Connection</span></code> instances.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>hosts</strong> – same as <cite>__init__</cite></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="elasticsearch.Transport.sniff_hosts">
+<code class="descname">sniff_hosts</code><span class="sig-paren">(</span><em>initial=False</em><span class="sig-paren">)</span><a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.Transport.sniff_hosts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtain a list of nodes from the cluster and create a new connection
+pool using the information retrieved.</p>
+<p>To extract the node connection parameters use the <code class="docutils literal"><span class="pre">nodes_to_host_callback</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>initial</strong> – flag indicating if this is during startup
+(<code class="docutils literal"><span class="pre">sniff_on_start</span></code>), ignore the <code class="docutils literal"><span class="pre">sniff_timeout</span></code> if <code class="docutils literal"><span class="pre">True</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="connection-pool">
+<h2>Connection Pool<a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#connection-pool" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="elasticsearch.ConnectionPool">
+<em class="property">class </em><code class="descclassname">elasticsearch.</code><code class="descname">ConnectionPool</code><span class="sig-paren">(</span><em>connections</em>, <em>dead_timeout=60</em>, <em>selector_class=RoundRobinSelector</em>, <em>randomize_hosts=True</em>, <em>** kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.ConnectionPool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Container holding the <code class="xref py py-class docutils literal"><span class="pre">Connection</span></code> instances,
+managing the selection process (via a
+<a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.ConnectionSelector" title="elasticsearch.ConnectionSelector"><code class="xref py py-class docutils literal"><span class="pre">ConnectionSelector</span></code></a>) and dead connections.</p>
+<p>It’s only interactions are with the <a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.Transport" title="elasticsearch.Transport"><code class="xref py py-class docutils literal"><span class="pre">Transport</span></code></a> class
+that drives all the actions within <cite>ConnectionPool</cite>.</p>
+<p>Initially connections are stored on the class as a list and, along with the
+connection options, get passed to the <cite>ConnectionSelector</cite> instance for
+future reference.</p>
+<p>Upon each request the <cite>Transport</cite> will ask for a <cite>Connection</cite> via the
+<cite>get_connection</cite> method. If the connection fails (it’s <cite>perform_request</cite>
+raises a <cite>ConnectionError</cite>) it will be marked as dead (via <cite>mark_dead</cite>) and
+put on a timeout (if it fails N times in a row the timeout is exponentially
+longer - the formula is <cite>default_timeout * 2 ** (fail_count - 1)</cite>). When
+the timeout is over the connection will be resurrected and returned to the
+live pool. A connection that has been previously marked as dead and
+succeeds will be marked as live (its fail count will be deleted).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>connections</strong> – list of tuples containing the
+<code class="xref py py-class docutils literal"><span class="pre">Connection</span></code> instance and it’s options</li>
+<li><strong>dead_timeout</strong> – number of seconds a connection should be retired for
+after a failure, increases on consecutive failures</li>
+<li><strong>timeout_cutoff</strong> – number of consecutive failures after which the
+timeout doesn’t increase</li>
+<li><strong>selector_class</strong> – <a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.ConnectionSelector" title="elasticsearch.ConnectionSelector"><code class="xref py py-class docutils literal"><span class="pre">ConnectionSelector</span></code></a>
+subclass to use if more than one connection is live</li>
+<li><strong>randomize_hosts</strong> – shuffle the list of connections upon arrival to
+avoid dog piling effect across processes</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="elasticsearch.ConnectionPool.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.ConnectionPool.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Explicitly closes connections</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="elasticsearch.ConnectionPool.get_connection">
+<code class="descname">get_connection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.ConnectionPool.get_connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a connection from the pool using the <cite>ConnectionSelector</cite>
+instance.</p>
+<p>It tries to resurrect eligible connections, forces a resurrection when
+no connections are availible and passes the list of live connections to
+the selector instance to choose from.</p>
+<p>Returns a connection instance and it’s current fail count.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="elasticsearch.ConnectionPool.mark_dead">
+<code class="descname">mark_dead</code><span class="sig-paren">(</span><em>connection</em>, <em>now=None</em><span class="sig-paren">)</span><a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.ConnectionPool.mark_dead" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark the connection as dead (failed). Remove it from the live pool and
+put it on a timeout.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>connection</strong> – the failed instance</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="elasticsearch.ConnectionPool.mark_live">
+<code class="descname">mark_live</code><span class="sig-paren">(</span><em>connection</em><span class="sig-paren">)</span><a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.ConnectionPool.mark_live" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark connection as healthy after a resurrection. Resets the fail
+counter for the connection.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>connection</strong> – the connection to redeem</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="elasticsearch.ConnectionPool.resurrect">
+<code class="descname">resurrect</code><span class="sig-paren">(</span><em>force=False</em><span class="sig-paren">)</span><a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.ConnectionPool.resurrect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attempt to resurrect a connection from the dead pool. It will try to
+locate one (not all) eligible (it’s timeout is over) connection to
+return to the live pool. Any resurrected connection is also returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>force</strong> – resurrect a connection even if there is none eligible (used
+when we have no live connections). If force is specified resurrect
+always returns a connection.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="connection-selector">
+<h2>Connection Selector<a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#connection-selector" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="elasticsearch.ConnectionSelector">
+<em class="property">class </em><code class="descclassname">elasticsearch.</code><code class="descname">ConnectionSelector</code><span class="sig-paren">(</span><em>opts</em><span class="sig-paren">)</span><a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.ConnectionSelector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple class used to select a connection from a list of currently live
+connection instances. In init time it is passed a dictionary containing all
+the connections’ options which it can then use during the selection
+process. When the <cite>select</cite> method is called it is given a list of
+<em>currently</em> live connections to choose from.</p>
+<p>The options dictionary is the one that has been passed to
+<a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.Transport" title="elasticsearch.Transport"><code class="xref py py-class docutils literal"><span class="pre">Transport</span></code></a> as <cite>hosts</cite> param and the same that is
+used to construct the Connection object itself. When the Connection was
+created from information retrieved from the cluster via the sniffing
+process it will be the dictionary returned by the <cite>host_info_callback</cite>.</p>
+<p>Example of where this would be useful is a zone-aware selector that would
+only select connections from it’s own zones and only fall back to other
+connections where there would be none in it’s zones.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>opts</strong> – dictionary of connection instances and their options</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="elasticsearch.ConnectionSelector.select">
+<code class="descname">select</code><span class="sig-paren">(</span><em>connections</em><span class="sig-paren">)</span><a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.ConnectionSelector.select" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select a connection from the given list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>connections</strong> – list of live connections to choose from</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="urllib3httpconnection-default-connection-class">
+<h2>Urllib3HttpConnection (default connection_class)<a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#urllib3httpconnection-default-connection-class" title="Permalink to this headline">¶</a></h2>
+<p>If you have complex SSL logic for connecting to Elasticsearch using an <cite>SSLContext</cite> object
+might be more helpful. You can create one natively using the python SSL library with the
+<cite>create_default_context</cite> (<a class="reference external" href="https://docs.python.org/3/library/ssl.html#ssl.create_default_context">https://docs.python.org/3/library/ssl.html#ssl.create_default_context</a>) method.</p>
+<p>To create an <cite>SSLContext</cite> object you only need to use one of cafile, capath or cadata:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ssl</span> <span class="kn">import</span> <span class="n">create_default_context</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">context</span> <span class="o">=</span> <span class="n">create_default_context</span><span class="p">(</span><span class="n">cafile</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">capath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cadata</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><cite>cafile</cite> is the path to your CA File</li>
+<li><cite>capath</cite> is the directory of a collection of CA’s</li>
+<li><cite>cadata</cite> is either an ASCII string of one or more PEM-encoded certificates or a bytes-like object of DER-encoded certificates.</li>
+</ul>
+<p>Please note that the use of SSLContext is only available for urllib3.</p>
+<dl class="class">
+<dt id="elasticsearch.Urllib3HttpConnection">
+<em class="property">class </em><code class="descclassname">elasticsearch.</code><code class="descname">Urllib3HttpConnection</code><span class="sig-paren">(</span><em>host='localhost'</em>, <em>port=None</em>, <em>http_auth=None</em>, <em>use_ssl=False</em>, <em>verify_certs=&lt;object object&gt;</em>, <em>ssl_show_warn=&lt;object object&gt;</em>, <em>ca_certs=None</em>, <em>client_cert=None</em>, <em>client_key=None</em>, <em>ssl_version=None</em>, <em>ssl_assert_hostname=None</em>, <em>ssl_assert_fingerprint=None</em>, <em>maxsize=10</em>, <em>headers=None</em>, <em>ssl_context=None</em>, <em>http_compress=None</em>, <em>cloud_id=None</em>, <em>api_key=None</em>, <em>opaque_id=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.Urllib3HttpConnection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default connection class using the <cite>urllib3</cite> library and the http protocol.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>host</strong> – hostname of the node (default: localhost)</li>
+<li><strong>port</strong> – port to use (integer, default: 9200)</li>
+<li><strong>url_prefix</strong> – optional url prefix for elasticsearch</li>
+<li><strong>timeout</strong> – default timeout in seconds (float, default: 10)</li>
+<li><strong>http_auth</strong> – optional http auth information as either ‘:’ separated
+string or a tuple</li>
+<li><strong>use_ssl</strong> – use ssl for the connection if <cite>True</cite></li>
+<li><strong>verify_certs</strong> – whether to verify SSL certificates</li>
+<li><strong>ssl_show_warn</strong> – show warning when verify certs is disabled</li>
+<li><strong>ca_certs</strong> – optional path to CA bundle.
+See <a class="reference external" href="https://urllib3.readthedocs.io/en/latest/security.html#using-certifi-with-urllib3">https://urllib3.readthedocs.io/en/latest/security.html#using-certifi-with-urllib3</a>
+for instructions how to get default set</li>
+<li><strong>client_cert</strong> – path to the file containing the private key and the
+certificate, or cert only if using client_key</li>
+<li><strong>client_key</strong> – path to the file containing the private key if using
+separate cert and key files (client_cert will contain only the cert)</li>
+<li><strong>ssl_version</strong> – version of the SSL protocol to use. Choices are:
+SSLv23 (default) SSLv2 SSLv3 TLSv1 (see <code class="docutils literal"><span class="pre">PROTOCOL_*</span></code> constants in the
+<code class="docutils literal"><span class="pre">ssl</span></code> module for exact options for your environment).</li>
+<li><strong>ssl_assert_hostname</strong> – use hostname verification if not <cite>False</cite></li>
+<li><strong>ssl_assert_fingerprint</strong> – verify the supplied certificate fingerprint if not <cite>None</cite></li>
+<li><strong>maxsize</strong> – the number of connections which will be kept open to this
+host. See <a class="reference external" href="https://urllib3.readthedocs.io/en/1.4/pools.html#api">https://urllib3.readthedocs.io/en/1.4/pools.html#api</a> for more
+information.</li>
+<li><strong>headers</strong> – any custom http headers to be add to requests</li>
+<li><strong>http_compress</strong> – Use gzip compression</li>
+<li><strong>cloud_id</strong> – The Cloud ID from ElasticCloud. Convenient way to connect to cloud instances.
+Other host connection params will be ignored.</li>
+<li><strong>api_key</strong> – optional API Key authentication as either base64 encoded string or a tuple.</li>
+<li><strong>opaque_id</strong> – Send this value in the ‘X-Opaque-Id’ HTTP header
+For tracing all requests made by this transport.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="elasticsearch.Urllib3HttpConnection.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#elasticsearch.Urllib3HttpConnection.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Explicitly closes connection</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="api-compatibility-http-header">
+<h2>API Compatibility HTTP Header<a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html#api-compatibility-http-header" title="Permalink to this headline">¶</a></h2>
+<p>The Python client can be configured to emit an HTTP header
+<code class="docutils literal"><span class="pre">Accept:</span> <span class="pre">application/vnd.elasticsearch+json;</span> <span class="pre">compatible-with=7</span></code>
+which signals to Elasticsearch that the client is requesting
+<code class="docutils literal"><span class="pre">7.x</span></code> version of request and response bodies. This allows for
+upgrading from 7.x to 8.x version of Elasticsearch without upgrading
+everything at once. Elasticsearch should be upgraded first after
+the compatibility header is configured and clients should be upgraded
+second.</p>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">elasticsearch</span> <span class="kn">import</span> <span class="n">Elasticsearch</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">Elasticsearch</span><span class="p">(</span><span class="s2">"http://..."</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">"accept"</span><span class="p">:</span> <span class="s2">"application/vnd.elasticsearch+json; compatible-with=7"</span><span class="p">})</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>If you’d like to have the client emit the header without configuring <code class="docutils literal"><span class="pre">headers</span></code> you
+can use the environment variable <code class="docutils literal"><span class="pre">ELASTIC_CLIENT_APIVERSIONING=1</span></code>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/transports.html" class="btn btn-neutral float-right" title="Transport classes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/async.html" class="btn btn-neutral float-left" title="Using Asyncio with Elasticsearch" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+        © Copyright 2021, Elasticsearch B.V
+      
+        <span class="commit">
+          Revision <code>b177103c</code>.
+        </span>
+      
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+   
+
+
+<readthedocs-flyout><template shadowrootmode="open"><!---->
+      <div class=" floating container bottom-right ">
+        <!--?lit$336792125$-->
+      <header>
+        <img class="logo" alt="Read the Docs" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmc6c3ZnCiAgIHZlcnNpb249IjEuMSIKICAgaWQ9InN2ZyIKICAgeD0iMHB4IgogICB5PSIwcHgiCiAgIHZpZXdCb3g9IjY5NCAxOTcgMzQ2LjY5ODU1IDM5OS45ODQ3NyIKICAgc29kaXBvZGk6ZG9jbmFtZT0ibG9nby1saWdodC5zdmciCiAgIHdpZHRoPSIzNDYuNjk4NTUiCiAgIGhlaWdodD0iMzk5Ljk4NDc3IgogICBpbmtzY2FwZTp2ZXJzaW9uPSIxLjMuMiAoMDkxZTIwZWYwZiwgMjAyMy0xMS0yNSwgY3VzdG9tKSIKICAgeG1sbnM6aW5rc2NhcGU9Imh0dHA6Ly93d3cuaW5rc2NhcGUub3JnL25hbWVzcGFjZXMvaW5rc2NhcGUiCiAgIHhtbG5zOnNvZGlwb2RpPSJodHRwOi8vc29kaXBvZGkuc291cmNlZm9yZ2UubmV0L0RURC9zb2RpcG9kaS0wLmR0ZCIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHN2ZzpkZWZzCiAgICAgaWQ9ImRlZnMxMiIgLz4KICA8c29kaXBvZGk6bmFtZWR2aWV3CiAgICAgaWQ9Im5hbWVkdmlldzEyIgogICAgIHBhZ2Vjb2xvcj0iI2ZmZmZmZiIKICAgICBib3JkZXJjb2xvcj0iIzAwMDAwMCIKICAgICBib3JkZXJvcGFjaXR5PSIwLjI1IgogICAgIGlua3NjYXBlOnNob3dwYWdlc2hhZG93PSIyIgogICAgIGlua3NjYXBlOnBhZ2VvcGFjaXR5PSIwLjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMCIKICAgICBpbmtzY2FwZTpkZXNrY29sb3I9IiNkMWQxZDEiCiAgICAgaW5rc2NhcGU6em9vbT0iMS4yNTIiCiAgICAgaW5rc2NhcGU6Y3g9Ijk5OC40MDI1NiIKICAgICBpbmtzY2FwZTpjeT0iMTk5LjY4MDUxIgogICAgIGlua3NjYXBlOndpbmRvdy13aWR0aD0iMzQ0MCIKICAgICBpbmtzY2FwZTp3aW5kb3ctaGVpZ2h0PSIxMzg5IgogICAgIGlua3NjYXBlOndpbmRvdy14PSIwIgogICAgIGlua3NjYXBlOndpbmRvdy15PSIyNyIKICAgICBpbmtzY2FwZTp3aW5kb3ctbWF4aW1pemVkPSIxIgogICAgIGlua3NjYXBlOmN1cnJlbnQtbGF5ZXI9InN2ZyIgLz4KICA8c3ZnOmcKICAgICBpZD0ibG9nbyIKICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjU1NzUzNjQ0LDAsMCwwLjU1NzUzNjQ0LDY2LjUzMTgxMiwxMDUwLjEyNjIpIj4KICAgIDxzdmc6cGF0aAogICAgICAgc3R5bGU9ImZpbGw6I2ZjZmNmYyIKICAgICAgIGQ9Im0gMTQwOC4xLC0xMTgxLjcgYyAtNy41LDEgLTEyLjcsNy44IC0xMS43LDE1LjMgMC43LDUuNCA0LjYsOS45IDkuOSwxMS4zIDAsMCAzMy4yLDExIDg5LjcsMTUuNiA0NS40LDMuNyA5Ni45LC0zLjIgOTYuOSwtMy4yIDcuNSwtMC4yIDEzLjUsLTYuNSAxMy4yLC0xNCAtMC4zLC03LjUgLTYuNSwtMTMuNSAtMTQsLTEzLjIgLTAuOSwwIC0xLjgsMC4xIC0yLjYsMC4zIDAsMCAtNTAuNCw2LjIgLTkxLjMsMi45IC01NCwtNC40IC04My40LC0xNC4zIC04My40LC0xNC4zIC0yLjIsLTAuNyAtNC41LC0xIC02LjcsLTAuNyB6IG0gMCwtNjcuNiBjIC03LjUsMSAtMTIuNyw3LjggLTExLjcsMTUuMyAwLjcsNS40IDQuNiw5LjkgOS45LDExLjMgMCwwIDMzLjIsMTEgODkuNywxNS42IDQ1LjQsMy43IDk2LjksLTMuMiA5Ni45LC0zLjIgNy41LC0wLjIgMTMuNSwtNi41IDEzLjIsLTE0IC0wLjMsLTcuNSAtNi41LC0xMy41IC0xNCwtMTMuMiAtMC45LDAgLTEuOCwwLjEgLTIuNiwwLjMgMCwwIC01MC40LDYuMiAtOTEuMywyLjkgLTU0LC00LjQgLTgzLjQsLTE0LjMgLTgzLjQsLTE0LjMgLTIuMiwtMC43IC00LjUsLTEgLTYuNywtMC43IHogbSAwLC02Ny42IGMgLTcuNSwxIC0xMi43LDcuOCAtMTEuNywxNS4zIDAuNyw1LjQgNC42LDkuOSA5LjksMTEuMyAwLDAgMzMuMiwxMSA4OS43LDE1LjYgNDUuNCwzLjcgOTYuOSwtMy4yIDk2LjksLTMuMiA3LjUsLTAuMiAxMy41LC02LjUgMTMuMiwtMTQgLTAuMywtNy41IC02LjUsLTEzLjUgLTE0LC0xMy4yIC0wLjksMCAtMS44LDAuMSAtMi42LDAuMyAwLDAgLTUwLjQsNi4yIC05MS4zLDIuOSAtNTQsLTQuNCAtODMuNCwtMTQuMyAtODMuNCwtMTQuMyAtMi4yLC0wLjcgLTQuNSwtMSAtNi43LC0wLjcgeiBtIDAsLTY3LjUgYyAtNy41LDEgLTEyLjcsNy44IC0xMS43LDE1LjMgMC43LDUuNCA0LjYsOS45IDkuOSwxMS4zIDAsMCAzMy4yLDExIDg5LjcsMTUuNiA0NS40LDMuNyA5Ni45LC0zLjIgOTYuOSwtMy4yIDcuNSwtMC4yIDEzLjUsLTYuNSAxMy4yLC0xNCAtMC4zLC03LjUgLTYuNSwtMTMuNSAtMTQsLTEzLjIgLTAuOSwwIC0xLjgsMC4xIC0yLjYsMC4zIDAsMCAtNTAuNCw2LjIgLTkxLjMsMi45IC01NCwtNC40IC04My40LC0xNC4zIC04My40LC0xNC4zIC0yLjIsLTAuOCAtNC41LC0xIC02LjcsLTAuNyB6IG0gLTk0LjcsLTcxLjMgYyAtNzEsMC41IC05Ny41LDIyLjMgLTk3LjUsMjIuMyB2IDUzMC4zIGMgMCwwIDI1LjgsLTIyLjMgMTA5LC0xOC45IDgzLjIsMy40IDEwMC4zLDMyLjYgMjAyLjUsMzQuNiAxMDIuMiwyLjEgMTI3LjksLTE1LjcgMTI3LjksLTE1LjcgbCAxLjUsLTU0MC42IGMgMCwwIC00NiwxMyAtMTM1LjUsMTMuNyAtODkuNSwwLjcgLTExMSwtMjIuOCAtMTkzLjIsLTI1LjUgLTUuMSwtMC4xIC0xMCwtMC4yIC0xNC43LC0wLjIgeiBtIDU5LjQsMzQuNiBjIDAsMCA0MywxNC4yIDEyMi41LDE4LjIgNjcuMiwzLjMgMTM0LjUsLTYuNiAxMzQuNSwtNi42IFYgLTkyOSBjIDAsMCAtMzQuMSwxNy45IC0xMTkuMywxMS44IC02NiwtNC43IC0xMzguNywtMjkuNyAtMTM4LjcsLTI5LjcgeiBtIC00MS41LDEyLjUgYyA3LjYsMCAxMy43LDYuMiAxMy43LDEzLjcgMCw3LjUgLTYuMiwxMy43IC0xMy43LDEzLjcgMCwwIC0yMi4zLDAuMSAtMzUuOCwxLjUgLTIyLjgsMi4zIC0zOC4zLDEwLjYgLTM4LjMsMTAuNiAtNi43LDMuNSAtMTUsMSAtMTguNSwtNS43IC0zLjUsLTYuNyAtMSwtMTUgNS43LC0xOC41IDAsMCAwLDAgMCwwIDAsMCAyMC4yLC0xMC43IDQ4LjQsLTEzLjUgMTYuMywtMS43IDM4LjUsLTEuOCAzOC41LC0xLjggeiBtIC0xMy4yLDY3LjggYyA3LjYsLTAuMiAxMy4zLDAgMTMuMywwIDcuNSwwLjkgMTIuOSw3LjggMTIsMTUuMyAtMC44LDYuMyAtNS43LDExLjIgLTEyLDEyIDAsMCAtMjIuMywwLjEgLTM1LjgsMS41IC0yMi44LDIuMyAtMzguMywxMC42IC0zOC4zLDEwLjYgLTYuNywzLjUgLTE1LDAuOSAtMTguNSwtNS44IC0zLjUsLTYuNyAtMC45LC0xNSA1LjgsLTE4LjUgMCwwIDIwLjIsLTEwLjcgNDguNCwtMTMuNSA3LjksLTAuOSAxNy41LC0xLjQgMjUuMSwtMS42IHogbSAxMy4yLDY3LjUgYyA3LjYsMCAxMy43LDYuMiAxMy43LDEzLjcgMCw3LjYgLTYuMiwxMy43IC0xMy43LDEzLjcgMCwwIC0yMi4zLC0wLjEgLTM1LjgsMS4yIC0yMi44LDIuMyAtMzguMywxMC42IC0zOC4zLDEwLjYgLTYuNywzLjUgLTE1LDAuOSAtMTguNSwtNS44IC0zLjUsLTYuNyAtMC45LC0xNSA1LjgsLTE4LjUgMCwwIDIwLjIsLTEwLjcgNDguNCwtMTMuNSAxNi4yLC0xLjUgMzguNCwtMS40IDM4LjQsLTEuNCB6IgogICAgICAgaWQ9InBhdGgxIiAvPgogIDwvc3ZnOmc+CiAgPGRpdgogICAgIGlkPSJzYWthLWd1aS1yb290Ij4KICAgIDxkaXY+CiAgICAgIDxkaXY+CiAgICAgICAgPHN0eWxlIC8+CiAgICAgIDwvZGl2PgogICAgPC9kaXY+CiAgPC9kaXY+Cjwvc3ZnOnN2Zz4K">
+        <!--?lit$336792125$--> <!--?lit$336792125$--><span class="version">
+        <!--?lit$336792125$--><svg data-prefix="fas" data-icon="code-branch" class="svg-inline--fa fa-code-branch icon" role="img" viewBox="0 0 448 512" aria-hidden="true"><path fill="currentColor" d="M80 104a24 24 0 1 0 0-48 24 24 0 1 0 0 48zm80-24c0 32.8-19.7 61-48 73.3l0 70.7 176 0c26.5 0 48-21.5 48-48l0-22.7c-28.3-12.3-48-40.5-48-73.3 0-44.2 35.8-80 80-80s80 35.8 80 80c0 32.8-19.7 61-48 73.3l0 22.7c0 61.9-50.1 112-112 112l-176 0 0 70.7c28.3 12.3 48 40.5 48 73.3 0 44.2-35.8 80-80 80S0 476.2 0 432c0-32.8 19.7-61 48-73.3l0-205.3C19.7 141 0 112.8 0 80 0 35.8 35.8 0 80 0s80 35.8 80 80zm232 0a24 24 0 1 0 -48 0 24 24 0 1 0 48 0zM80 456a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"></path></svg> <!--?lit$336792125$-->v7.13.0
+      </span> 
+        <span class="caret"><!--?lit$336792125$--><svg data-prefix="fas" data-icon="caret-down" class="svg-inline--fa fa-caret-down icon" role="img" viewBox="0 0 384 512" aria-hidden="true"><path fill="currentColor" d="M352 160c12.9 0 24.6 7.8 29.6 19.8s2.2 25.7-6.9 34.9l-160 160c-12.5 12.5-32.8 12.5-45.3 0l-160-160c-9.2-9.2-11.9-22.9-6.9-34.9S19.1 160 32 160l320 0z"></path></svg></span>
+      </header>
+    
+        <main class=" closed ">
+          <!--?lit$336792125$--> <!--?lit$336792125$-->
+      <dl class="versions">
+        <dt>Versions</dt>
+        <!--?lit$336792125$--><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/latest/connection.html"><!--?lit$336792125$-->latest</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/stable/connection.html"><!--?lit$336792125$-->stable</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v9.2.0/connection.html"><!--?lit$336792125$-->v9.2.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v9.1.2/connection.html"><!--?lit$336792125$-->v9.1.2</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v9.1.1/connection.html"><!--?lit$336792125$-->v9.1.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v9.1.0/connection.html"><!--?lit$336792125$-->v9.1.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v9.0.4/connection.html"><!--?lit$336792125$-->v9.0.4</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v9.0.3/connection.html"><!--?lit$336792125$-->v9.0.3</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v9.0.2/connection.html"><!--?lit$336792125$-->v9.0.2</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v9.0.1/connection.html"><!--?lit$336792125$-->v9.0.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v9.0.0/connection.html"><!--?lit$336792125$-->v9.0.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.19.2/connection.html"><!--?lit$336792125$-->v8.19.2</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.19.1/connection.html"><!--?lit$336792125$-->v8.19.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.19.0/connection.html"><!--?lit$336792125$-->v8.19.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.18.1/connection.html"><!--?lit$336792125$-->v8.18.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.18.0/connection.html"><!--?lit$336792125$-->v8.18.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.17.2/connection.html"><!--?lit$336792125$-->v8.17.2</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.17.1/connection.html"><!--?lit$336792125$-->v8.17.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.17.0/connection.html"><!--?lit$336792125$-->v8.17.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.16.0/connection.html"><!--?lit$336792125$-->v8.16.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.15.1/connection.html"><!--?lit$336792125$-->v8.15.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.15.0/connection.html"><!--?lit$336792125$-->v8.15.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.14.0/connection.html"><!--?lit$336792125$-->v8.14.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.13.2/connection.html"><!--?lit$336792125$-->v8.13.2</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.13.1/connection.html"><!--?lit$336792125$-->v8.13.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.13.0/connection.html"><!--?lit$336792125$-->v8.13.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.12.1/connection.html"><!--?lit$336792125$-->v8.12.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.12.0/connection.html"><!--?lit$336792125$-->v8.12.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.11.1/connection.html"><!--?lit$336792125$-->v8.11.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.11.0/connection.html"><!--?lit$336792125$-->v8.11.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.10.1/connection.html"><!--?lit$336792125$-->v8.10.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.10.0/connection.html"><!--?lit$336792125$-->v8.10.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.9.0/connection.html"><!--?lit$336792125$-->v8.9.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.8.2/connection.html"><!--?lit$336792125$-->v8.8.2</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.8.1/connection.html"><!--?lit$336792125$-->v8.8.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.8.0/connection.html"><!--?lit$336792125$-->v8.8.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.7.1/connection.html"><!--?lit$336792125$-->v8.7.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.7.0/connection.html"><!--?lit$336792125$-->v8.7.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.6.2/connection.html"><!--?lit$336792125$-->v8.6.2</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.6.1/connection.html"><!--?lit$336792125$-->v8.6.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.6.0/connection.html"><!--?lit$336792125$-->v8.6.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.5.3/connection.html"><!--?lit$336792125$-->v8.5.3</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.5.2/connection.html"><!--?lit$336792125$-->v8.5.2</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.5.1/connection.html"><!--?lit$336792125$-->v8.5.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.5.0/connection.html"><!--?lit$336792125$-->v8.5.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.4.3/connection.html"><!--?lit$336792125$-->v8.4.3</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.4.2/connection.html"><!--?lit$336792125$-->v8.4.2</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.4.1/connection.html"><!--?lit$336792125$-->v8.4.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.4.0/connection.html"><!--?lit$336792125$-->v8.4.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.3.3/connection.html"><!--?lit$336792125$-->v8.3.3</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.3.2/connection.html"><!--?lit$336792125$-->v8.3.2</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.3.1/connection.html"><!--?lit$336792125$-->v8.3.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.3.0/connection.html"><!--?lit$336792125$-->v8.3.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.2.3/connection.html"><!--?lit$336792125$-->v8.2.3</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.2.2/connection.html"><!--?lit$336792125$-->v8.2.2</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.2.1/connection.html"><!--?lit$336792125$-->v8.2.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.2.0/connection.html"><!--?lit$336792125$-->v8.2.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.1.3/connection.html"><!--?lit$336792125$-->v8.1.3</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.1.2/connection.html"><!--?lit$336792125$-->v8.1.2</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.1.1/connection.html"><!--?lit$336792125$-->v8.1.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.1.0/connection.html"><!--?lit$336792125$-->v8.1.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.0.1/connection.html"><!--?lit$336792125$-->v8.0.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.0.0/connection.html"><!--?lit$336792125$-->v8.0.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.0.0a1/connection.html"><!--?lit$336792125$-->v8.0.0a1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/7.x/connection.html"><!--?lit$336792125$-->7.x</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.17.12/connection.html"><!--?lit$336792125$-->v7.17.12</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.17.11/connection.html"><!--?lit$336792125$-->v7.17.11</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.17.10/connection.html"><!--?lit$336792125$-->v7.17.10</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.17.9/connection.html"><!--?lit$336792125$-->v7.17.9</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.17.8/connection.html"><!--?lit$336792125$-->v7.17.8</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.17.7/connection.html"><!--?lit$336792125$-->v7.17.7</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.17.6/connection.html"><!--?lit$336792125$-->v7.17.6</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.17.5/connection.html"><!--?lit$336792125$-->v7.17.5</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.17.4/connection.html"><!--?lit$336792125$-->v7.17.4</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.17.3/connection.html"><!--?lit$336792125$-->v7.17.3</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.17.2/connection.html"><!--?lit$336792125$-->v7.17.2</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.17.1/connection.html"><!--?lit$336792125$-->v7.17.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.17.0/connection.html"><!--?lit$336792125$-->v7.17.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.16.3/connection.html"><!--?lit$336792125$-->v7.16.3</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.16.2/connection.html"><!--?lit$336792125$-->v7.16.2</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.16.1/connection.html"><!--?lit$336792125$-->v7.16.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.16.0/connection.html"><!--?lit$336792125$-->v7.16.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.15.2/connection.html"><!--?lit$336792125$-->v7.15.2</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.15.1/connection.html"><!--?lit$336792125$-->v7.15.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.15.0/connection.html"><!--?lit$336792125$-->v7.15.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.15.0a1/connection.html"><!--?lit$336792125$-->v7.15.0a1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.14.2/connection.html"><!--?lit$336792125$-->v7.14.2</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.14.1/connection.html"><!--?lit$336792125$-->v7.14.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.14.0/connection.html"><!--?lit$336792125$-->v7.14.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.14.0a2/connection.html"><!--?lit$336792125$-->v7.14.0a2</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.14.0a1/connection.html"><!--?lit$336792125$-->v7.14.0a1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.13.4/connection.html"><!--?lit$336792125$-->v7.13.4</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.13.3/connection.html"><!--?lit$336792125$-->v7.13.3</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.13.2/connection.html"><!--?lit$336792125$-->v7.13.2</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.13.1/connection.html"><!--?lit$336792125$-->v7.13.1</a></dd><!----><!----><dd><!--?lit$336792125$--><strong><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html"><!--?lit$336792125$-->v7.13.0</a></strong></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.12.1/connection.html"><!--?lit$336792125$-->v7.12.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.12.0/connection.html"><!--?lit$336792125$-->v7.12.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.11.0/connection.html"><!--?lit$336792125$-->v7.11.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.11.0b1/connection.html"><!--?lit$336792125$-->v7.11.0b1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/7.11.0b1/connection.html"><!--?lit$336792125$-->7.11.0b1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.10.1/connection.html"><!--?lit$336792125$-->v7.10.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/7.10.0/connection.html"><!--?lit$336792125$-->7.10.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/7.10.0a2/connection.html"><!--?lit$336792125$-->7.10.0a2</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/7.10.0a1/connection.html"><!--?lit$336792125$-->7.10.0a1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/7.9.1/connection.html"><!--?lit$336792125$-->7.9.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/7.9.0/connection.html"><!--?lit$336792125$-->7.9.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/7.8.1/connection.html"><!--?lit$336792125$-->7.8.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/7.8.0/connection.html"><!--?lit$336792125$-->7.8.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/7.7.1/connection.html"><!--?lit$336792125$-->7.7.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/7.7.0/connection.html"><!--?lit$336792125$-->7.7.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/7.6.0/connection.html"><!--?lit$336792125$-->7.6.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/7.5.1/connection.html"><!--?lit$336792125$-->7.5.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/7.0.1/connection.html"><!--?lit$336792125$-->7.0.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/7.0.0/connection.html"><!--?lit$336792125$-->7.0.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/6.8.2/connection.html"><!--?lit$336792125$-->6.8.2</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/6.3.1/connection.html"><!--?lit$336792125$-->6.3.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/6.3.0/connection.html"><!--?lit$336792125$-->6.3.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/6.2.0/connection.html"><!--?lit$336792125$-->6.2.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/6.1.1/connection.html"><!--?lit$336792125$-->6.1.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/6.1.0/connection.html"><!--?lit$336792125$-->6.1.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/6.0.0/connection.html"><!--?lit$336792125$-->6.0.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/5.5.1/connection.html"><!--?lit$336792125$-->5.5.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/5.5.0/connection.html"><!--?lit$336792125$-->5.5.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/5.4.0/connection.html"><!--?lit$336792125$-->5.4.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/5.3.0/connection.html"><!--?lit$336792125$-->5.3.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/5.2.0/connection.html"><!--?lit$336792125$-->5.2.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/5.1.0/connection.html"><!--?lit$336792125$-->5.1.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/5.0.1/connection.html"><!--?lit$336792125$-->5.0.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/5.0.0/connection.html"><!--?lit$336792125$-->5.0.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/2.4.0/connection.html"><!--?lit$336792125$-->2.4.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/2.3.0/connection.html"><!--?lit$336792125$-->2.3.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/2.2.0/connection.html"><!--?lit$336792125$-->2.2.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/2.1.0/connection.html"><!--?lit$336792125$-->2.1.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/2.0.0/connection.html"><!--?lit$336792125$-->2.0.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/1.x/connection.html"><!--?lit$336792125$-->1.x</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/1.9.0/connection.html"><!--?lit$336792125$-->1.9.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/1.8.0/connection.html"><!--?lit$336792125$-->1.8.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/1.7.0/connection.html"><!--?lit$336792125$-->1.7.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/1.6.0/connection.html"><!--?lit$336792125$-->1.6.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/1.5.0/connection.html"><!--?lit$336792125$-->1.5.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/1.4.0/connection.html"><!--?lit$336792125$-->1.4.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/1.3.0/connection.html"><!--?lit$336792125$-->1.3.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/1.2.0/connection.html"><!--?lit$336792125$-->1.2.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/1.1.1/connection.html"><!--?lit$336792125$-->1.1.1</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/1.0.0/connection.html"><!--?lit$336792125$-->1.0.0</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/0.4.5/connection.html"><!--?lit$336792125$-->0.4.5</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/0.4.4/connection.html"><!--?lit$336792125$-->0.4.4</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/0.4.3/connection.html"><!--?lit$336792125$-->0.4.3</a></dd><!----><!----><dd><!--?lit$336792125$--><a href="https://elasticsearch-py.readthedocs.io/en/0.4/connection.html"><!--?lit$336792125$-->0.4</a></dd><!---->
+      </dl>
+    
+          <!--?lit$336792125$--> <!--?lit$336792125$-->
+      <dl>
+        <dt>On Read the Docs</dt>
+        <dd>
+          <a href="https://app.readthedocs.org/projects/elasticsearch-py/?utm_source=elasticsearch-py&amp;utm_content=flyout">Project Home</a>
+        </dd>
+        <dd>
+          <a href="https://app.readthedocs.org/projects/elasticsearch-py/builds/?utm_source=elasticsearch-py&amp;utm_content=flyout">Builds</a>
+        </dd>
+      </dl>
+    
+          <!--?lit$336792125$--> <!--?lit$336792125$-->
+        <dl>
+          <dt>Search</dt>
+          <dd>
+            <form id="flyout-search-form">
+              <input type="text" name="q" aria-label="Search docs" placeholder="Search docs">
+            </form>
+          </dd>
+        </dl>
+      
+          <hr>
+          <!--?lit$336792125$-->
+      <small>
+        <span>
+          <a href="https://docs.readthedocs.io/page/addons.html?utm_source=elasticsearch-py&amp;utm_content=flyout">Addons documentation</a></span>
+        <span> ― </span>
+        <span>Hosted by
+          <a href="https://about.readthedocs.com/?utm_source=elasticsearch-py&amp;utm_content=flyout">Read the Docs</a></span>
+      </small>
+    
+        </main>
+      </div>
+    </template></readthedocs-flyout><readthedocs-notification class="raised toast"><template shadowrootmode="open"><!----></template></readthedocs-notification><readthedocs-search class="raised floating"><template shadowrootmode="open"><!---->
+      <div role="search" hidden="">
+        <div class="background"></div>
+        <div class="content">
+          <form class="  ">
+            <label><!--?lit$336792125$--><svg data-prefix="fas" data-icon="magnifying-glass" class="svg-inline--fa fa-magnifying-glass" role="img" viewBox="0 0 512 512" aria-hidden="true"><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376C296.3 401.1 253.9 416 208 416 93.1 416 0 322.9 0 208S93.1 0 208 0 416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg></label>
+            <input placeholder="Search docs" type="search" autocomplete="off">
+          </form>
+          <!--?lit$336792125$-->
+          <div class="results">
+            <!--?lit$336792125$--><p>No recent searches</p>
+          </div>
+          <div class="footer">
+            <ul class="help">
+              <li><code>Enter</code> to select</li>
+              <li><code>Up</code>/<code>Down</code> to navigate</li>
+              <li><code>Esc</code> to close</li>
+            </ul>
+            <div class="credits">
+              Search powered by
+              <a href="https://about.readthedocs.com/?utm_source=elasticsearch-py&amp;utm_content=search">
+                <img alt="Read the Docs" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJzdmciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSI2OTQgMTk3IDIwMDAgNDAwIj4KPGcgaWQ9ImxvZ28iIHRyYW5zZm9ybT0ibWF0cml4KDAuNTU3NTM2NDQsMCwwLDAuNTU3NTM2NDQsNjguMzA4MTM1LDEwNTAuMTI2MikiPgoJPHBhdGggc3R5bGU9ImZpbGw6IzMyMzIyQSIgZD0iTTE0MDguMS0xMTgxLjdjLTcuNSwxLTEyLjcsNy44LTExLjcsMTUuMyAgIGMwLjcsNS40LDQuNiw5LjksOS45LDExLjNjMCwwLDMzLjIsMTEsODkuNywxNS42YzQ1LjQsMy43LDk2LjktMy4yLDk2LjktMy4yYzcuNS0wLjIsMTMuNS02LjUsMTMuMi0xNHMtNi41LTEzLjUtMTQtMTMuMiAgIGMtMC45LDAtMS44LDAuMS0yLjYsMC4zYzAsMC01MC40LDYuMi05MS4zLDIuOWMtNTQtNC40LTgzLjQtMTQuMy04My40LTE0LjNDMTQxMi42LTExODEuNywxNDEwLjMtMTE4MiwxNDA4LjEtMTE4MS43eiAgICBNMTQwOC4xLTEyNDkuM2MtNy41LDEtMTIuNyw3LjgtMTEuNywxNS4zYzAuNyw1LjQsNC42LDkuOSw5LjksMTEuM2MwLDAsMzMuMiwxMSw4OS43LDE1LjZjNDUuNCwzLjcsOTYuOS0zLjIsOTYuOS0zLjIgICBjNy41LTAuMiwxMy41LTYuNSwxMy4yLTE0cy02LjUtMTMuNS0xNC0xMy4yYy0wLjksMC0xLjgsMC4xLTIuNiwwLjNjMCwwLTUwLjQsNi4yLTkxLjMsMi45Yy01NC00LjQtODMuNC0xNC4zLTgzLjQtMTQuMyAgIEMxNDEyLjYtMTI0OS4zLDE0MTAuMy0xMjQ5LjYsMTQwOC4xLTEyNDkuM3ogTTE0MDguMS0xMzE2LjljLTcuNSwxLTEyLjcsNy44LTExLjcsMTUuM2MwLjcsNS40LDQuNiw5LjksOS45LDExLjMgICBjMCwwLDMzLjIsMTEsODkuNywxNS42YzQ1LjQsMy43LDk2LjktMy4yLDk2LjktMy4yYzcuNS0wLjIsMTMuNS02LjUsMTMuMi0xNHMtNi41LTEzLjUtMTQtMTMuMmMtMC45LDAtMS44LDAuMS0yLjYsMC4zICAgYzAsMC01MC40LDYuMi05MS4zLDIuOWMtNTQtNC40LTgzLjQtMTQuMy04My40LTE0LjNDMTQxMi42LTEzMTYuOSwxNDEwLjMtMTMxNy4yLDE0MDguMS0xMzE2Ljl6IE0xNDA4LjEtMTM4NC40ICAgYy03LjUsMS0xMi43LDcuOC0xMS43LDE1LjNjMC43LDUuNCw0LjYsOS45LDkuOSwxMS4zYzAsMCwzMy4yLDExLDg5LjcsMTUuNmM0NS40LDMuNyw5Ni45LTMuMiw5Ni45LTMuMmM3LjUtMC4yLDEzLjUtNi41LDEzLjItMTQgICBzLTYuNS0xMy41LTE0LTEzLjJjLTAuOSwwLTEuOCwwLjEtMi42LDAuM2MwLDAtNTAuNCw2LjItOTEuMywyLjljLTU0LTQuNC04My40LTE0LjMtODMuNC0xNC4zICAgQzE0MTIuNi0xMzg0LjUsMTQxMC4zLTEzODQuNywxNDA4LjEtMTM4NC40eiBNMTMxMy40LTE0NTUuN2MtNzEsMC41LTk3LjUsMjIuMy05Ny41LDIyLjN2NTMwLjNjMCwwLDI1LjgtMjIuMywxMDktMTguOSAgIGM4My4yLDMuNCwxMDAuMywzMi42LDIwMi41LDM0LjZjMTAyLjIsMi4xLDEyNy45LTE1LjcsMTI3LjktMTUuN2wxLjUtNTQwLjZjMCwwLTQ2LDEzLTEzNS41LDEzLjdzLTExMS0yMi44LTE5My4yLTI1LjUgICBDMTMyMy0xNDU1LjYsMTMxOC4xLTE0NTUuNywxMzEzLjQtMTQ1NS43eiBNMTM3Mi44LTE0MjEuMWMwLDAsNDMsMTQuMiwxMjIuNSwxOC4yYzY3LjIsMy4zLDEzNC41LTYuNiwxMzQuNS02LjZ2NDgwLjUgICBjMCwwLTM0LjEsMTcuOS0xMTkuMywxMS44Yy02Ni00LjctMTM4LjctMjkuNy0xMzguNy0yOS43TDEzNzIuOC0xNDIxLjF6IE0xMzMxLjMtMTQwOC42YzcuNiwwLDEzLjcsNi4yLDEzLjcsMTMuNyAgIHMtNi4yLDEzLjctMTMuNywxMy43YzAsMC0yMi4zLDAuMS0zNS44LDEuNWMtMjIuOCwyLjMtMzguMywxMC42LTM4LjMsMTAuNmMtNi43LDMuNS0xNSwxLTE4LjUtNS43cy0xLTE1LDUuNy0xOC41YzAsMCwwLDAsMCwwICAgYzAsMCwyMC4yLTEwLjcsNDguNC0xMy41QzEzMDkuMS0xNDA4LjUsMTMzMS4zLTE0MDguNiwxMzMxLjMtMTQwOC42eiBNMTMxOC4xLTEzNDAuOGM3LjYtMC4yLDEzLjMsMCwxMy4zLDAgICBjNy41LDAuOSwxMi45LDcuOCwxMiwxNS4zYy0wLjgsNi4zLTUuNywxMS4yLTEyLDEyYzAsMC0yMi4zLDAuMS0zNS44LDEuNWMtMjIuOCwyLjMtMzguMywxMC42LTM4LjMsMTAuNmMtNi43LDMuNS0xNSwwLjktMTguNS01LjggICBjLTMuNS02LjctMC45LTE1LDUuOC0xOC41YzAsMCwyMC4yLTEwLjcsNDguNC0xMy41QzEzMDAuOS0xMzQwLjEsMTMxMC41LTEzNDAuNiwxMzE4LjEtMTM0MC44eiBNMTMzMS4zLTEyNzMuMyAgIGM3LjYsMCwxMy43LDYuMiwxMy43LDEzLjdjMCw3LjYtNi4yLDEzLjctMTMuNywxMy43YzAsMC0yMi4zLTAuMS0zNS44LDEuMmMtMjIuOCwyLjMtMzguMywxMC42LTM4LjMsMTAuNiAgIGMtNi43LDMuNS0xNSwwLjktMTguNS01LjhjLTMuNS02LjctMC45LTE1LDUuOC0xOC41YzAsMCwyMC4yLTEwLjcsNDguNC0xMy41QzEzMDkuMS0xMjczLjQsMTMzMS4zLTEyNzMuMywxMzMxLjMtMTI3My4zeiIvPgo8L2c+CjxnIGlkPSJ0ZXh0Ij4KCTxwYXRoIHN0eWxlPSJmaWxsOiMzMjMyMkEiIGQ9Ik0xMTI4LjYsNDkxLjlWNDcwbDguOS0wLjhjNS4yLTAuNSw3LjgtMy4xLDcuOC03LjZWMzM2bC0xNS40LTAuOHYtMjNoNzMuOCAgIGMyMC45LDAsMzYuOSwzLjksNDguMSwxMS42YzExLjIsNy43LDE2LjgsMjAuNSwxNi44LDM4LjFjMCwxMi4zLTMuMiwyMi4zLTkuNywzMC4zYy02LjMsNy45LTEzLjksMTMuNy0yMi43LDE3LjMgICBjNi41LDIuMywxMS42LDcuOCwxNS40LDE2LjVsMTkuNSw0Mi40bDE1LjQsMC41djIzaC02Ni44VjQ3MGw3LjgtMC44YzQuMS0wLjUsNi4yLTIuMiw2LjItNC45YzAtMS4xLTAuNC0yLjMtMS4xLTMuOGwtMTIuNy0yNyAgIGMtMi00LjUtNC4yLTcuNy02LjgtOS41Yy0yLjMtMi01LjgtMy0xMC4zLTNoLTI0LjZ2NDdsMTcuNiwwLjh2MjNMMTEyOC42LDQ5MS45IE0xMTc4LjMsMzk1LjRoMjMuNWMyMi4yLDAsMzMuMi05LjksMzMuMi0yOS43ICAgYzAtMTEuNC0zLTE4LjctOC45LTIyLjJjLTUuOC0zLjQtMTUuMS01LjEtMjguMS01LjFoLTE5LjdWMzk1LjQiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiMzMjMyMkEiIGQ9Ik0xMzU2LDM1MS45YzEzLjUsMCwyNC4yLDMuMywzMi4yLDEwYzcuOSw2LjUsMTEuOSwxNS43LDExLjksMjcuNmMwLDcuOS0xLjcsMTUtNS4xLDIxLjEgICBjLTMuNCw1LjktNy43LDEwLjYtMTIuNywxNC4xYy01LDMuNC0xMS4yLDYuMi0xOC40LDguNGMtMTIuMSwzLjYtMjUuNyw1LjQtNDAuOCw1LjRjMC41LDkuNSwzLjUsMTcuMyw4LjksMjMuMiAgIGM1LjQsNS44LDEzLjcsOC42LDI0LjksOC42YzExLjIsMCwyMi4zLTQsMzMuNS0xMS45bDEwLjMsMjEuOWMtMy42LDMuMi05LjcsNi42LTE4LjQsMTBjLTguNSwzLjQtMTguMiw1LjEtMjkuMiw1LjEgICBjLTIyLDAtMzguMS02LTQ4LjQtMTguMWMtMTAuMy0xMi4zLTE1LjQtMjktMTUuNC01MC4zYzAtMjEuMyw1LjktMzkuMSwxNy42LTUzLjVDMTMxOC41LDM1OS4xLDEzMzQuOSwzNTEuOSwxMzU2LDM1MS45ICAgIE0xMzQzLjYsNDEzLjhjNi43LTEuMywxMi44LTMuOSwxOC40LTcuOGM1LjYtNC4xLDguNC05LDguNC0xNC42YzAtMTEtNS40LTE2LjUtMTYuMi0xNi41Yy0xMC4xLDAtMTcuOCw0LjEtMjMuMiwxMi4yICAgYy01LjQsNy45LTguNCwxNy41LTguOSwyOC42QzEzMjkuOSw0MTUuNSwxMzM3LjEsNDE0LjksMTM0My42LDQxMy44Ii8+Cgk8cGF0aCBzdHlsZT0iZmlsbDojMzIzMjJBIiBkPSJNMTUyOS42LDM2MS40djEwMC41YzAsMi45LDAuNSw0LjksMS40LDUuOWMxLjEsMS4xLDIuOSwxLjcsNS40LDEuOWw4LjYsMC41djIxLjZoLTQzdi0xNS43ICAgbC0wLjgtMC4zYy05LDEzLTIxLjQsMTkuNS0zNywxOS41Yy0xOC40LDAtMzItNS45LTQwLjgtMTcuNmMtOC44LTExLjctMTMuMi0yNy43LTEzLjItNDguMWMwLTI0LjUsNS45LTQzLjYsMTcuOC01Ny4zICAgYzExLjktMTMuNywyOS43LTIwLjUsNTMuNS0yMC41QzE0OTYuOCwzNTEuOSwxNTEyLjksMzU1LjEsMTUyOS42LDM2MS40IE0xNDk4LjMsNDQ4Ljl2LTcwYy01LTIuMy0xMi0zLjUtMjAuOC0zLjUgICBjLTEyLjEsMC0yMC44LDQuOS0yNi4yLDE0LjZjLTUuNCw5LjctOC4xLDIyLjYtOC4xLDM4LjdjMCwyOS4yLDkuNCw0My44LDI4LjEsNDMuOGM3LjksMCwxNC40LTIuMywxOS41LTcgICBDMTQ5NS43LDQ2MC42LDE0OTguMyw0NTUuMSwxNDk4LjMsNDQ4LjkiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiMzMjMyMkEiIGQ9Ik0xNjE2LjMsMzUxLjljNy43LDAsMTUuMSwxLjEsMjIuMiwzLjJ2LTI3LjNjMC00LTIuMy02LjEtNy02LjVsLTExLjYtMC44di0yMS40aDUwLjN2MTY0LjMgICBjMC4yLDQuMSwyLjQsNi4yLDYuOCw2LjJsOS41LDAuNXYyMS42aC00My44VjQ3NmwtMC44LTAuM2MtOC4xLDEzLjItMjAuNCwxOS43LTM2LjgsMTkuN2MtMjAuNSwwLTM1LTYuOC00My4yLTIwLjUgICBjLTcuNi0xMi40LTExLjQtMjcuNy0xMS40LTQ1LjdjMC0yMy40LDUuOC00Mi4yLDE3LjMtNTYuMkMxNTc5LjMsMzU4LjksMTU5NS41LDM1MS45LDE2MTYuMywzNTEuOSBNMTYzOC40LDQ0OS44di03MCAgIGMtNi41LTIuOS0xMy4zLTQuMy0yMC41LTQuM2MtMTEuOSwwLTIwLjYsNC44LTI2LjIsMTQuM2MtNS40LDkuNi04LjEsMjEuNy04LjEsMzYuNWMwLDMwLjMsOS43LDQ1LjQsMjkuMiw0NS40ICAgYzcuNCwwLDEzLjUtMi4xLDE4LjQtNi4yQzE2MzYsNDYxLjEsMTYzOC40LDQ1NS45LDE2MzguNCw0NDkuOCIvPgoJPHBhdGggc3R5bGU9ImZpbGw6IzMyMzIyQSIgZD0iTTE3OTEuNyw0NzAuNmMwLDAtMTIuNSw0LjctMTkuMiw0LjdzLTkuMi0zLjMtOS4yLTExLjhjMC0zLjgsMC41LTguOCwxLjQtMTQuOWwxMC4yLTYzLjFoMzIuNiAgIGwyLjgtMTcuN2gtMzIuNmw1LjctMzQuNUwxNzYwLDMzOGwtNC43LDI5LjhsLTIzLjYsMi40bC0yLjYsMTUuNGgyMy40TDE3NDIsNDUxYy0wLjksNS40LTEuNCwxMC42LTEuNCwxNS4xICAgYzAsMTguNyw3LjgsMjguMSwyMy45LDI4LjFjMTMuMiwwLDMxLTEwLjksMzEtMTAuOUwxNzkxLjcsNDcwLjYiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiMzMjMyMkEiIGQ9Ik0xODY1LDMwOS44bC00My4zLDEuMmwtMi4xLDEzbDE5LjksNC43bC0yNiwxNjMuMmgyMi41bDcuOC00Mi42YzAsMCwxOC43LTY1LDQ5LjQtNjUgICBjOS41LDAsMTIuMyw2LjksMTIuMywxNS42YzAsMy4zLTAuNSw2LjktMC45LDEwLjRsLTEzLjUsODEuNmw0My4zLTIuNGwyLjEtMTNsLTE5LjktMy41bDEwLjYtNjYuMmMwLjctNSwxLjItOS43LDEuMi0xNCAgIGMwLTE3LTYuOS0yOC42LTI1LjgtMjguNmMtMzUuOSwwLTU0LjksNDUuNi01NS44LDQ4LjJMMTg2NSwzMDkuOCIvPgoJPHBhdGggc3R5bGU9ImZpbGw6IzMyMzIyQSIgZD0iTTIwMzUsNDY0LjdjMCwwLTIxLjUsMTAuNi0zOC44LDEwLjZjLTE3LjcsMC0yNi03LjgtMjYtMjQuNmMwLTMuMSwwLjItNi42LDAuNy0xMC4yICAgYzQ5LDAsODMtMTguNCw4My00NS42YzAtMTguNy0xNS4xLTMwLjctMzktMzAuN2MtMzcuNiwwLTY4LjMsMzguNS02OC4zLDg3LjVjMCwyNiwxNi42LDQyLjYsNDIuNiw0Mi42YzI3LjksMCw1My0xNy41LDUzLTE3LjUgICBMMjAzNSw0NjQuNyBNMTk3Myw0MjRjNi4xLTI0LjgsMjMuNC00Mi4xLDQwLjctNDIuMWMxMi4xLDAsMTcuNyw1LDE3LjcsMTUuNEMyMDMxLjUsNDEyLjksMjAwNi42LDQyNCwxOTczLDQyNCIvPgoJPHBhdGggc3R5bGU9ImZpbGw6IzMyMzIyQSIgZD0iTTIwOTMuNyw0OTEuOVY0NzBsOC45LTAuOGM1LjItMC41LDcuOC0zLjEsNy44LTcuNlYzMzZsLTE1LjQtMC44di0yM2g3NC4xICAgYzI2LjUsMCw0Ny4xLDcsNjEuOSwyMS4xYzE1LDE0LjEsMjIuNCwzNC45LDIyLjQsNjIuNGMwLDE3LjEtMi4zLDMyLjEtNi44LDQ0LjljLTQuNSwxMi42LTEwLjYsMjIuNS0xOC40LDI5LjcgICBjLTE1LjUsMTQuNC0zNC44LDIxLjYtNTcuOCwyMS42TDIwOTMuNyw0OTEuOSBNMjE0My40LDMzOC40VjQ2NmgyNy42YzE1LjUsMCwyNy42LTUuNiwzNi4yLTE2LjhjOC42LTExLjIsMTMtMjcuNCwxMy00OC43ICAgYzAtNDEuNC0xNy42LTYyLjItNTIuNy02Mi4ySDIxNDMuNCIvPgoJPHBhdGggc3R5bGU9ImZpbGw6IzMyMzIyQSIgZD0iTTIzMzAsNDcyLjJjMTkuNiwwLDI5LjUtMTUuOSwyOS41LTQ3LjZjMC0xNi0yLjMtMjguMi02LjgtMzYuNWMtNC4zLTguMy0xMS43LTEyLjQtMjIuMi0xMi40ICAgYy0xMC4zLDAtMTcuOCw0LTIyLjcsMTEuOWMtNC45LDcuOS03LjMsMTguNy03LjMsMzIuNGMwLDI1LjQsNC43LDQxLjQsMTQuMSw0Ny44QzIzMTguOCw0NzAuNywyMzIzLjksNDcyLjIsMjMzMCw0NzIuMiAgICBNMjI2Ny45LDQyMy44YzAtMTMuMywyLTI0LjksNS45LTM0LjZjNC05LjksOS4zLTE3LjUsMTUuOS0yMi43YzEyLjgtOS43LDI2LjktMTQuNiw0Mi40LTE0LjZjMTAuOCwwLDE5LjksMS44LDI3LjMsNS40ICAgYzcuNiwzLjQsMTMuNCw3LjUsMTcuNiwxMi4yYzQuMyw0LjUsNy45LDExLjIsMTAuOCwyMGMzLjEsOC42LDQuNiwxOC45LDQuNiwzMC44YzAsMjQuOS02LDQzLjctMTguMSw1Ni41ICAgYy0xMi4xLDEyLjgtMjcuNiwxOS4yLTQ2LjUsMTkuMmMtMTguNywwLTMzLjQtNi00NC4xLTE4LjFDMjI3My4yLDQ2NS42LDIyNjcuOSw0NDcuNiwyMjY3LjksNDIzLjgiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiMzMjMyMkEiIGQ9Ik0yNDM4LjIsNDIyLjVjMCwxNS4zLDIuOSwyNy4yLDguNiwzNS43YzUuOCw4LjUsMTQuMSwxMi43LDI0LjksMTIuN2MxMSwwLDIxLjgtMy45LDMyLjQtMTEuNiAgIGwxMS42LDIwLjhjLTEyLjgsMTAuNS0yOC44LDE1LjctNDguMSwxNS43Yy0xOS4zLDAtMzQuNS02LTQ1LjctMTguMWMtMTEtMTIuMy0xNi41LTMwLjMtMTYuNS01NC4xczYuMy00MS42LDE4LjktNTMuNSAgIGMxMi44LTEyLjEsMjcuMS0xOC4xLDQzLTE4LjFjMTYsMCwzMC45LDMuNyw0NC42LDExLjF2MzUuMWwtMjQuOSwxLjl2LTEzYzAtNC45LTEuOC03LjgtNS40LTguOWMtMy40LTEuMy03LTEuOS0xMC44LTEuOSAgIEMyNDQ5LjEsMzc2LjIsMjQzOC4yLDM5MS42LDI0MzguMiw0MjIuNSIvPgoJPHBhdGggc3R5bGU9ImZpbGw6IzMyMzIyQSIgZD0iTTI1OTIuOSwzNzYuNWMtNC4zLTEuNi05LjYtMi40LTE1LjctMi40Yy02LjEsMC0xMS4xLDEuNC0xNC45LDQuM2MtMy42LDIuNy01LjQsNi4xLTUuNCwxMC4zICAgYzAsNCwwLjYsNy4xLDEuOSw5LjVjMS40LDIuMiwzLjYsNC4xLDYuNSw1LjdjNC41LDIuMyw5LjksNC40LDE2LjIsNi4yYzYuMywxLjYsMTEsMywxNC4xLDQuMWMzLjEsMC45LDYuOCwyLjUsMTEuNCw0LjkgICBjNC43LDIuMyw4LjIsNC45LDEwLjUsNy42YzYuMyw2LjcsOS41LDE1LjIsOS41LDI1LjdjMCwxMy41LTUsMjQuMS0xNC45LDMxLjljLTkuNyw3LjYtMjIuMiwxMS40LTM3LjMsMTEuNCAgIGMtMjIsMC0zOC42LTIuOC00OS43LTguNHYtMzcuNmwyNC4zLTEuOXYxM2MwLDcuOSw3LjYsMTEuOSwyMi43LDExLjlzMjIuNy01LjUsMjIuNy0xNi41YzAtNC0xLjQtNy4yLTQuMS05LjcgICBjLTIuNS0yLjUtNS00LjItNy42LTUuMWMtMi41LTAuOS01LjYtMS44LTkuMi0yLjdjLTMuNC0wLjktNi44LTEuOC0xMC4zLTIuN2MtMy4yLTAuOS02LjgtMi4xLTEwLjgtMy41Yy0zLjgtMS42LTgtMy45LTEyLjctNi44ICAgYy05LjItNS45LTEzLjgtMTUuOS0xMy44LTI5LjdjMC0xNC4xLDUtMjQuOSwxNC45LTMyLjRjOS45LTcuNiwyMi4zLTExLjQsMzcuMy0xMS40YzE1LjEsMCwzMC4xLDMuNiw0NC45LDEwLjh2MzIuNGwtMjQuMywxLjkgICB2LTExLjRDMjU5OS4xLDM4MS4yLDI1OTcsMzc4LjEsMjU5Mi45LDM3Ni41Ii8+CjwvZz4KPGRpdiB4bWxucz0iIiBpZD0ic2FrYS1ndWktcm9vdCI+PGRpdj48ZGl2PjxzdHlsZS8+PC9kaXY+PC9kaXY+PC9kaXY+PC9zdmc+">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template></readthedocs-search><readthedocs-hotkeys><template shadowrootmode="open"><!----></template></readthedocs-hotkeys></body></html>

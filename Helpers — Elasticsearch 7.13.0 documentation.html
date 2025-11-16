@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)https://elasticsearch-py.readthedocs.io/en/v7.13.0/helpers.html -->
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en" style="" data-readthedocs-tool="sphinx" data-readthedocs-tool-theme="readthedocs"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Helpers — Elasticsearch 7.13.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="./Helpers — Elasticsearch 7.13.0 documentation_files/modernizr.min.js.download"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'./',
+              VERSION:'7.13.0',
+              LANGUAGE:'en',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="./Helpers — Elasticsearch 7.13.0 documentation_files/jquery.js.download"></script>
+        <script type="text/javascript" src="./Helpers — Elasticsearch 7.13.0 documentation_files/underscore.js.download"></script>
+        <script type="text/javascript" src="./Helpers — Elasticsearch 7.13.0 documentation_files/doctools.js.download"></script>
+        
+    
+    <script type="text/javascript" src="./Helpers — Elasticsearch 7.13.0 documentation_files/theme.js.download"></script>
+
+    
+
+  
+  <style type="text/css">:root, :host {
+  --fa-font-solid: normal 900 1em/1 "Font Awesome 7 Free";
+  --fa-font-regular: normal 400 1em/1 "Font Awesome 7 Free";
+  --fa-font-light: normal 300 1em/1 "Font Awesome 7 Pro";
+  --fa-font-thin: normal 100 1em/1 "Font Awesome 7 Pro";
+  --fa-font-duotone: normal 900 1em/1 "Font Awesome 7 Duotone";
+  --fa-font-duotone-regular: normal 400 1em/1 "Font Awesome 7 Duotone";
+  --fa-font-duotone-light: normal 300 1em/1 "Font Awesome 7 Duotone";
+  --fa-font-duotone-thin: normal 100 1em/1 "Font Awesome 7 Duotone";
+  --fa-font-brands: normal 400 1em/1 "Font Awesome 7 Brands";
+  --fa-font-sharp-solid: normal 900 1em/1 "Font Awesome 7 Sharp";
+  --fa-font-sharp-regular: normal 400 1em/1 "Font Awesome 7 Sharp";
+  --fa-font-sharp-light: normal 300 1em/1 "Font Awesome 7 Sharp";
+  --fa-font-sharp-thin: normal 100 1em/1 "Font Awesome 7 Sharp";
+  --fa-font-sharp-duotone-solid: normal 900 1em/1 "Font Awesome 7 Sharp Duotone";
+  --fa-font-sharp-duotone-regular: normal 400 1em/1 "Font Awesome 7 Sharp Duotone";
+  --fa-font-sharp-duotone-light: normal 300 1em/1 "Font Awesome 7 Sharp Duotone";
+  --fa-font-sharp-duotone-thin: normal 100 1em/1 "Font Awesome 7 Sharp Duotone";
+  --fa-font-slab-regular: normal 400 1em/1 "Font Awesome 7 Slab";
+  --fa-font-slab-press-regular: normal 400 1em/1 "Font Awesome 7 Slab Press";
+  --fa-font-whiteboard-semibold: normal 600 1em/1 "Font Awesome 7 Whiteboard";
+  --fa-font-thumbprint-light: normal 300 1em/1 "Font Awesome 7 Thumbprint";
+  --fa-font-notdog-solid: normal 900 1em/1 "Font Awesome 7 Notdog";
+  --fa-font-notdog-duo-solid: normal 900 1em/1 "Font Awesome 7 Notdog Duo";
+  --fa-font-etch-solid: normal 900 1em/1 "Font Awesome 7 Etch";
+  --fa-font-jelly-regular: normal 400 1em/1 "Font Awesome 7 Jelly";
+  --fa-font-jelly-fill-regular: normal 400 1em/1 "Font Awesome 7 Jelly Fill";
+  --fa-font-jelly-duo-regular: normal 400 1em/1 "Font Awesome 7 Jelly Duo";
+  --fa-font-chisel-regular: normal 400 1em/1 "Font Awesome 7 Chisel";
+}
+
+.svg-inline--fa {
+  box-sizing: content-box;
+  display: var(--fa-display, inline-block);
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+  width: var(--fa-width, 1.25em);
+}
+.svg-inline--fa.fa-2xs {
+  vertical-align: 0.1em;
+}
+.svg-inline--fa.fa-xs {
+  vertical-align: 0em;
+}
+.svg-inline--fa.fa-sm {
+  vertical-align: -0.0714285714em;
+}
+.svg-inline--fa.fa-lg {
+  vertical-align: -0.2em;
+}
+.svg-inline--fa.fa-xl {
+  vertical-align: -0.25em;
+}
+.svg-inline--fa.fa-2xl {
+  vertical-align: -0.3125em;
+}
+.svg-inline--fa.fa-pull-left,
+.svg-inline--fa .fa-pull-start {
+  float: inline-start;
+  margin-inline-end: var(--fa-pull-margin, 0.3em);
+}
+.svg-inline--fa.fa-pull-right,
+.svg-inline--fa .fa-pull-end {
+  float: inline-end;
+  margin-inline-start: var(--fa-pull-margin, 0.3em);
+}
+.svg-inline--fa.fa-li {
+  width: var(--fa-li-width, 2em);
+  inset-inline-start: calc(-1 * var(--fa-li-width, 2em));
+  inset-block-start: 0.25em; /* syncing vertical alignment with Web Font rendering */
+}
+
+.fa-layers-counter, .fa-layers-text {
+  display: inline-block;
+  position: absolute;
+  text-align: center;
+}
+
+.fa-layers {
+  display: inline-block;
+  height: 1em;
+  position: relative;
+  text-align: center;
+  vertical-align: -0.125em;
+  width: var(--fa-width, 1.25em);
+}
+.fa-layers .svg-inline--fa {
+  inset: 0;
+  margin: auto;
+  position: absolute;
+  transform-origin: center center;
+}
+
+.fa-layers-text {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
+}
+
+.fa-layers-counter {
+  background-color: var(--fa-counter-background-color, #ff253a);
+  border-radius: var(--fa-counter-border-radius, 1em);
+  box-sizing: border-box;
+  color: var(--fa-inverse, #fff);
+  line-height: var(--fa-counter-line-height, 1);
+  max-width: var(--fa-counter-max-width, 5em);
+  min-width: var(--fa-counter-min-width, 1.5em);
+  overflow: hidden;
+  padding: var(--fa-counter-padding, 0.25em 0.5em);
+  right: var(--fa-right, 0);
+  text-overflow: ellipsis;
+  top: var(--fa-top, 0);
+  transform: scale(var(--fa-counter-scale, 0.25));
+  transform-origin: top right;
+}
+
+.fa-layers-bottom-right {
+  bottom: var(--fa-bottom, 0);
+  right: var(--fa-right, 0);
+  top: auto;
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: bottom right;
+}
+
+.fa-layers-bottom-left {
+  bottom: var(--fa-bottom, 0);
+  left: var(--fa-left, 0);
+  right: auto;
+  top: auto;
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: bottom left;
+}
+
+.fa-layers-top-right {
+  top: var(--fa-top, 0);
+  right: var(--fa-right, 0);
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: top right;
+}
+
+.fa-layers-top-left {
+  left: var(--fa-left, 0);
+  right: auto;
+  top: var(--fa-top, 0);
+  transform: scale(var(--fa-layers-scale, 0.25));
+  transform-origin: top left;
+}
+
+.fa-1x {
+  font-size: 1em;
+}
+
+.fa-2x {
+  font-size: 2em;
+}
+
+.fa-3x {
+  font-size: 3em;
+}
+
+.fa-4x {
+  font-size: 4em;
+}
+
+.fa-5x {
+  font-size: 5em;
+}
+
+.fa-6x {
+  font-size: 6em;
+}
+
+.fa-7x {
+  font-size: 7em;
+}
+
+.fa-8x {
+  font-size: 8em;
+}
+
+.fa-9x {
+  font-size: 9em;
+}
+
+.fa-10x {
+  font-size: 10em;
+}
+
+.fa-2xs {
+  font-size: calc(10 / 16 * 1em); /* converts a 10px size into an em-based value that's relative to the scale's 16px base */
+  line-height: calc(1 / 10 * 1em); /* sets the line-height of the icon back to that of it's parent */
+  vertical-align: calc((6 / 10 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
+}
+
+.fa-xs {
+  font-size: calc(12 / 16 * 1em); /* converts a 12px size into an em-based value that's relative to the scale's 16px base */
+  line-height: calc(1 / 12 * 1em); /* sets the line-height of the icon back to that of it's parent */
+  vertical-align: calc((6 / 12 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
+}
+
+.fa-sm {
+  font-size: calc(14 / 16 * 1em); /* converts a 14px size into an em-based value that's relative to the scale's 16px base */
+  line-height: calc(1 / 14 * 1em); /* sets the line-height of the icon back to that of it's parent */
+  vertical-align: calc((6 / 14 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
+}
+
+.fa-lg {
+  font-size: calc(20 / 16 * 1em); /* converts a 20px size into an em-based value that's relative to the scale's 16px base */
+  line-height: calc(1 / 20 * 1em); /* sets the line-height of the icon back to that of it's parent */
+  vertical-align: calc((6 / 20 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
+}
+
+.fa-xl {
+  font-size: calc(24 / 16 * 1em); /* converts a 24px size into an em-based value that's relative to the scale's 16px base */
+  line-height: calc(1 / 24 * 1em); /* sets the line-height of the icon back to that of it's parent */
+  vertical-align: calc((6 / 24 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
+}
+
+.fa-2xl {
+  font-size: calc(32 / 16 * 1em); /* converts a 32px size into an em-based value that's relative to the scale's 16px base */
+  line-height: calc(1 / 32 * 1em); /* sets the line-height of the icon back to that of it's parent */
+  vertical-align: calc((6 / 32 - 0.375) * 1em); /* vertically centers the icon taking into account the surrounding text's descender */
+}
+
+.fa-width-auto {
+  --fa-width: auto;
+}
+
+.fa-fw,
+.fa-width-fixed {
+  --fa-width: 1.25em;
+}
+
+.fa-ul {
+  list-style-type: none;
+  margin-inline-start: var(--fa-li-margin, 2.5em);
+  padding-inline-start: 0;
+}
+.fa-ul > li {
+  position: relative;
+}
+
+.fa-li {
+  inset-inline-start: calc(-1 * var(--fa-li-width, 2em));
+  position: absolute;
+  text-align: center;
+  width: var(--fa-li-width, 2em);
+  line-height: inherit;
+}
+
+/* Heads Up: Bordered Icons will not be supported in the future!
+  - This feature will be deprecated in the next major release of Font Awesome (v8)!
+  - You may continue to use it in this version *v7), but it will not be supported in Font Awesome v8.
+*/
+/* Notes:
+* --@{v.$css-prefix}-border-width = 1/16 by default (to render as ~1px based on a 16px default font-size)
+* --@{v.$css-prefix}-border-padding =
+  ** 3/16 for vertical padding (to give ~2px of vertical whitespace around an icon considering it's vertical alignment)
+  ** 4/16 for horizontal padding (to give ~4px of horizontal whitespace around an icon)
+*/
+.fa-border {
+  border-color: var(--fa-border-color, #eee);
+  border-radius: var(--fa-border-radius, 0.1em);
+  border-style: var(--fa-border-style, solid);
+  border-width: var(--fa-border-width, 0.0625em);
+  box-sizing: var(--fa-border-box-sizing, content-box);
+  padding: var(--fa-border-padding, 0.1875em 0.25em);
+}
+
+.fa-pull-left,
+.fa-pull-start {
+  float: inline-start;
+  margin-inline-end: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-pull-right,
+.fa-pull-end {
+  float: inline-end;
+  margin-inline-start: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-beat {
+  animation-name: fa-beat;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-bounce {
+  animation-name: fa-bounce;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));
+}
+
+.fa-fade {
+  animation-name: fa-fade;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-beat-fade {
+  animation-name: fa-beat-fade;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-flip {
+  animation-name: fa-flip;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-shake {
+  animation-name: fa-shake;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin {
+  animation-name: fa-spin;
+  animation-delay: var(--fa-animation-delay, 0s);
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 2s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin-reverse {
+  --fa-animation-direction: reverse;
+}
+
+.fa-pulse,
+.fa-spin-pulse {
+  animation-name: fa-spin;
+  animation-direction: var(--fa-animation-direction, normal);
+  animation-duration: var(--fa-animation-duration, 1s);
+  animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  animation-timing-function: var(--fa-animation-timing, steps(8));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fa-beat,
+  .fa-bounce,
+  .fa-fade,
+  .fa-beat-fade,
+  .fa-flip,
+  .fa-pulse,
+  .fa-shake,
+  .fa-spin,
+  .fa-spin-pulse {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+@keyframes fa-beat {
+  0%, 90% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(var(--fa-beat-scale, 1.25));
+  }
+}
+@keyframes fa-bounce {
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+  }
+  30% {
+    transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+  }
+  50% {
+    transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+  }
+  57% {
+    transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+  }
+  64% {
+    transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
+}
+@keyframes fa-fade {
+  50% {
+    opacity: var(--fa-fade-opacity, 0.4);
+  }
+}
+@keyframes fa-beat-fade {
+  0%, 100% {
+    opacity: var(--fa-beat-fade-opacity, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(var(--fa-beat-fade-scale, 1.125));
+  }
+}
+@keyframes fa-flip {
+  50% {
+    transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+  }
+}
+@keyframes fa-shake {
+  0% {
+    transform: rotate(-15deg);
+  }
+  4% {
+    transform: rotate(15deg);
+  }
+  8%, 24% {
+    transform: rotate(-18deg);
+  }
+  12%, 28% {
+    transform: rotate(18deg);
+  }
+  16% {
+    transform: rotate(-22deg);
+  }
+  20% {
+    transform: rotate(22deg);
+  }
+  32% {
+    transform: rotate(-12deg);
+  }
+  36% {
+    transform: rotate(12deg);
+  }
+  40%, 100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes fa-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.fa-rotate-90 {
+  transform: rotate(90deg);
+}
+
+.fa-rotate-180 {
+  transform: rotate(180deg);
+}
+
+.fa-rotate-270 {
+  transform: rotate(270deg);
+}
+
+.fa-flip-horizontal {
+  transform: scale(-1, 1);
+}
+
+.fa-flip-vertical {
+  transform: scale(1, -1);
+}
+
+.fa-flip-both,
+.fa-flip-horizontal.fa-flip-vertical {
+  transform: scale(-1, -1);
+}
+
+.fa-rotate-by {
+  transform: rotate(var(--fa-rotate-angle, 0));
+}
+
+.svg-inline--fa .fa-primary {
+  fill: var(--fa-primary-color, currentColor);
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa .fa-secondary {
+  fill: var(--fa-secondary-color, currentColor);
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-primary {
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-secondary {
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa mask .fa-primary,
+.svg-inline--fa mask .fa-secondary {
+  fill: black;
+}
+
+.svg-inline--fa.fa-inverse {
+  fill: var(--fa-inverse, #fff);
+}
+
+.fa-stack {
+  display: inline-block;
+  height: 2em;
+  line-height: 2em;
+  position: relative;
+  vertical-align: middle;
+  width: 2.5em;
+}
+
+.fa-inverse {
+  color: var(--fa-inverse, #fff);
+}
+
+.svg-inline--fa.fa-stack-1x {
+  --fa-width: 1.25em;
+  height: 1em;
+  width: var(--fa-width);
+}
+.svg-inline--fa.fa-stack-2x {
+  --fa-width: 2.5em;
+  height: 2em;
+  width: var(--fa-width);
+}
+
+.fa-stack-1x,
+.fa-stack-2x {
+  inset: 0;
+  margin: auto;
+  position: absolute;
+  z-index: var(--fa-stack-z-index, auto);
+}</style><link rel="stylesheet" href="./Helpers — Elasticsearch 7.13.0 documentation_files/theme.css" type="text/css">
+  <link rel="stylesheet" href="./Helpers — Elasticsearch 7.13.0 documentation_files/pygments.css" type="text/css">
+    <link rel="index" title="Index" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/genindex.html">
+    <link rel="search" title="Search" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/search.html">
+    <link rel="next" title="Changelog" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/Changelog.html">
+    <link rel="prev" title="Transport classes" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/transports.html"> 
+
+<!-- RTD Extra Head -->
+
+    <!--
+    Always link to the latest version, as canonical.
+    http://docs.readthedocs.org/en/latest/canonical.html
+    -->
+    <link rel="canonical" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/helpers.html">
+
+
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": false, "api_host": "https://readthedocs.org", "build_date": "2021-05-25T12:49:50Z", "builder": "sphinx", "canonical_url": "https://elasticsearch-py.readthedocs.io/en/v7.13.0/", "commit": "b177103c", "docroot": "/docs/sphinx/", "features": {"docsearch_disabled": false}, "global_analytics_code": "UA-17997319-1", "language": "en", "page": "helpers", "programming_language": "py", "project": "elasticsearch-py", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "sphinx_rtd_theme", "user_analytics_code": "UA-12395217-7", "version": "v7.13.0"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+
+
+<!-- end RTD <extrahead> -->
+<script async="" type="text/javascript" src="./Helpers — Elasticsearch 7.13.0 documentation_files/readthedocs-addons.js.download"></script><meta name="readthedocs-project-slug" content="elasticsearch-py"><meta name="readthedocs-version-slug" content="v7.13.0"><meta name="readthedocs-resolver-filename" content="/helpers.html"><meta name="readthedocs-http-status" content="200"><script id="ethicaladsjs" type="text/javascript" async="true" src="./Helpers — Elasticsearch 7.13.0 documentation_files/ethicalads.min.js.download"></script><style>@layer defaults{:root{--ea-container-md: 720px;--ea-container-lg: 960px;--ea-container-xl: 1040px;--ea-image-width: 120px;--ea-image-width-xs: 44px;--ea-image-placement-width: 180px;--ea-image-placement-width-horizontal: 320px;--ea-fixedheader-height: 50px;--ea-font-size: 14px;--ea-font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;--ea-bgcolor: rgba(0, 0, 0, 0.03);--ea-bgcolor-dark: rgba(255, 255, 255, 0.05);--ea-stylefixed-bgcolor: rgb(220, 220, 220);--ea-stylefixed-bgcolor-dark: rgb(80, 80, 80);--ea-color-link: rgb(80, 80, 80);--ea-color-link-dark: rgb(220, 220, 220);--ea-color-link-active: rgb(54.5, 54.5, 54.5);--ea-color-link-dark-active: rgb(245.5, 245.5, 245.5);--ea-color-link-callout: rgb(105.5, 105.5, 105.5);--ea-color-link-callout-dark: rgb(194.5, 194.5, 194.5);--ea-color-link-callout-active: #505050;--ea-color-link-callout-dark-active: gainsboro;--ea-color-link-bold: #088cdb;--ea-color-link-bold-dark: rgb(80.3788546256, 185.6299559471, 248.6211453744);--ea-color-domain: rgb(156.5, 156.5, 156.5);--ea-color-domain-dark: rgb(143.5, 143.5, 143.5)}}[data-ea-publisher].loaded{font-size:var(--ea-font-size);font-family:var(--ea-font-family);font-weight:normal;font-style:normal;letter-spacing:0px;vertical-align:baseline;line-height:1.3em}[data-ea-publisher].loaded a{text-decoration:none}[data-ea-publisher].loaded .ea-pixel{display:none}[data-ea-publisher].loaded .ea-content{margin:1em 1em .5em 1em;padding:1em;background:var(--ea-bgcolor);color:var(--ea-color-link);color:var(--ea-color-link)}[data-ea-publisher].loaded .ea-content a:link{color:var(--ea-color-link)}[data-ea-publisher].loaded .ea-content a:visited{color:var(--ea-color-link)}[data-ea-publisher].loaded .ea-content a:hover{color:var(--ea-color-link-active)}[data-ea-publisher].loaded .ea-content a:active{color:var(--ea-color-link-active)}[data-ea-publisher].loaded .ea-content a strong,[data-ea-publisher].loaded .ea-content a b{color:var(--ea-color-link-bold)}[data-ea-publisher].loaded .ea-callout{color:var(--ea-color-link-callout)}[data-ea-publisher].loaded .ea-callout a{font-size:.8em}[data-ea-publisher].loaded .ea-callout a:link{color:var(--ea-color-link-callout)}[data-ea-publisher].loaded .ea-callout a:visited{color:var(--ea-color-link-callout)}[data-ea-publisher].loaded .ea-callout a:hover{color:var(--ea-color-link-callout-active)}[data-ea-publisher].loaded .ea-callout a:active{color:var(--ea-color-link-callout-active)}[data-ea-publisher].loaded .ea-callout a strong,[data-ea-publisher].loaded .ea-callout a b{color:var(--ea-color-link-callout)}[data-ea-publisher].loaded .ea-domain{margin-top:.75em;font-size:.8em;text-align:center;color:var(--ea-color-domain)}[data-ea-publisher].loaded.dark{--ea-bgcolor: var(--ea-bgcolor-dark);--ea-stylefixed-bgcolor: var(--ea-stylefixed-bgcolor-dark);--ea-color-link: var(--ea-color-link-dark);--ea-color-link-active: var(--ea-color-link-dark-active);--ea-color-link-callout: var(--ea-color-link-callout-dark);--ea-color-link-callout-active: var(--ea-color-link-callout-dark-active);--ea-color-link-bold: var(--ea-color-link-bold-dark);--ea-color-domain: var(--ea-color-domain-dark)}@media(prefers-color-scheme: dark){[data-ea-publisher].loaded.adaptive{--ea-bgcolor: var(--ea-bgcolor-dark);--ea-stylefixed-bgcolor: var(--ea-stylefixed-bgcolor-dark);--ea-color-link: var(--ea-color-link-dark);--ea-color-link-active: var(--ea-color-link-dark-active);--ea-color-link-callout: var(--ea-color-link-callout-dark);--ea-color-link-callout-active: var(--ea-color-link-callout-dark-active);--ea-color-link-bold: var(--ea-color-link-bold-dark);--ea-color-domain: var(--ea-color-domain-dark)}}html.dark [data-ea-publisher].loaded.adaptive-css,body.dark [data-ea-publisher].loaded.adaptive-css,html[data-theme=dark] [data-ea-publisher].loaded.adaptive-css,body[data-theme=dark] [data-ea-publisher].loaded.adaptive-css,html[data-bs-theme=dark] [data-ea-publisher].loaded.adaptive-css,body[data-bs-theme=dark] [data-ea-publisher].loaded.adaptive-css{--ea-bgcolor: var(--ea-bgcolor-dark);--ea-stylefixed-bgcolor: var(--ea-stylefixed-bgcolor-dark);--ea-color-link: var(--ea-color-link-dark);--ea-color-link-active: var(--ea-color-link-dark-active);--ea-color-link-callout: var(--ea-color-link-callout-dark);--ea-color-link-callout-active: var(--ea-color-link-callout-dark-active);--ea-color-link-bold: var(--ea-color-link-bold-dark);--ea-color-domain: var(--ea-color-domain-dark)}@media(prefers-color-scheme: dark){html.auto [data-ea-publisher].loaded.adaptive-css,body.auto [data-ea-publisher].loaded.adaptive-css,html.system [data-ea-publisher].loaded.adaptive-css,body.system [data-ea-publisher].loaded.adaptive-css,html[data-theme=auto] [data-ea-publisher].loaded.adaptive-css,body[data-theme=auto] [data-ea-publisher].loaded.adaptive-css,html[data-bs-theme=auto] [data-ea-publisher].loaded.adaptive-css,body[data-bs-theme=auto] [data-ea-publisher].loaded.adaptive-css{--ea-bgcolor: var(--ea-bgcolor-dark);--ea-stylefixed-bgcolor: var(--ea-stylefixed-bgcolor-dark);--ea-color-link: var(--ea-color-link-dark);--ea-color-link-active: var(--ea-color-link-dark-active);--ea-color-link-callout: var(--ea-color-link-callout-dark);--ea-color-link-callout-active: var(--ea-color-link-callout-dark-active);--ea-color-link-bold: var(--ea-color-link-bold-dark);--ea-color-domain: var(--ea-color-domain-dark)}}[data-ea-publisher].loaded .ea-content{border:0px;border-radius:3px;box-shadow:0px 2px 3px rgba(0,0,0,.15)}[data-ea-publisher].loaded.raised .ea-content{border:0px;border-radius:3px;box-shadow:0px 2px 3px rgba(0,0,0,.15)}[data-ea-publisher].loaded.bordered .ea-content{border:1px solid rgba(0,0,0,.04);border-radius:3px;box-shadow:none}[data-ea-publisher].loaded.bordered.dark .ea-content{border:1px solid hsla(0,0%,100%,.07)}@media(prefers-color-scheme: dark){[data-ea-publisher].loaded.bordered.adaptive .ea-content{border:1px solid hsla(0,0%,100%,.07)}}[data-ea-publisher].loaded.flat .ea-content{border:0px;border-radius:3px;box-shadow:none}[data-ea-type=image].loaded,[data-ea-publisher]:not([data-ea-type]).loaded,.ea-type-image{display:inline-block}[data-ea-type=image].loaded .ea-content,[data-ea-publisher]:not([data-ea-type]).loaded .ea-content,.ea-type-image .ea-content{max-width:var(--ea-image-placement-width);overflow:auto;text-align:center}[data-ea-type=image].loaded .ea-content>a>img,[data-ea-publisher]:not([data-ea-type]).loaded .ea-content>a>img,.ea-type-image .ea-content>a>img{width:var(--ea-image-width);height:auto;display:inline-block}[data-ea-type=image].loaded .ea-content>.ea-text,[data-ea-publisher]:not([data-ea-type]).loaded .ea-content>.ea-text,.ea-type-image .ea-content>.ea-text{margin-top:1em;font-size:1em;text-align:center}[data-ea-type=image].loaded .ea-callout,[data-ea-publisher]:not([data-ea-type]).loaded .ea-callout,.ea-type-image .ea-callout{max-width:var(--ea-image-placement-width);margin:0em 1em 1em 1em;padding-left:1em;padding-right:1em;font-style:italic;text-align:right}[data-ea-type=image].loaded.horizontal .ea-content,[data-ea-publisher]:not([data-ea-type]).loaded.horizontal .ea-content,.ea-type-image.horizontal .ea-content{max-width:var(--ea-image-placement-width-horizontal)}[data-ea-type=image].loaded.horizontal .ea-content>a>img,[data-ea-publisher]:not([data-ea-type]).loaded.horizontal .ea-content>a>img,.ea-type-image.horizontal .ea-content>a>img{float:left;margin-right:1em}[data-ea-type=image].loaded.horizontal .ea-content .ea-text,[data-ea-publisher]:not([data-ea-type]).loaded.horizontal .ea-content .ea-text,.ea-type-image.horizontal .ea-content .ea-text{margin-top:0em;text-align:left;overflow:auto}[data-ea-type=image].loaded.horizontal .ea-callout,[data-ea-publisher]:not([data-ea-type]).loaded.horizontal .ea-callout,.ea-type-image.horizontal .ea-callout{max-width:var(--ea-image-placement-width-horizontal);text-align:right}[data-ea-type=text].loaded,.ea-type-text{font-size:var(--ea-font-size)}[data-ea-type=text].loaded .ea-content,.ea-type-text .ea-content{text-align:left}[data-ea-type=text].loaded .ea-callout,.ea-type-text .ea-callout{margin:.5em 1em 1em 1em;padding-left:1em;padding-right:1em;text-align:right;font-style:italic}[data-ea-style=stickybox].loaded{position:fixed;bottom:20px;right:20px;z-index:100}[data-ea-style=stickybox].loaded .ea-type-image .ea-stickybox-hide{cursor:pointer;position:absolute;top:.75em;right:.75em;background-color:#fefefe;border:1px solid #088cdb;border-radius:50%;color:#088cdb;font-size:1em;text-align:center;height:1.5em;width:1.5em;line-height:1.4}[data-ea-style=stickybox].loaded .ea-type-text{display:none !important}@media(max-width: 1300px){[data-ea-style=stickybox].loaded{position:static;bottom:0;right:0;margin:auto;text-align:center}[data-ea-style=stickybox].loaded .ea-stickybox-hide{display:none}}@media(min-width: 1301px){[data-ea-style=stickybox].loaded .ea-type-image .ea-content{background:var(--ea-stylefixed-bgcolor)}}[data-ea-style=fixedfooter].loaded{position:fixed;bottom:0;left:0;z-index:200;width:100%;max-width:100%}[data-ea-style=fixedfooter].loaded .ea-type-text{width:100%;max-width:100%;display:flex;z-index:200;background:var(--ea-stylefixed-bgcolor)}[data-ea-style=fixedfooter].loaded .ea-type-text .ea-content{border:0px;border-radius:3px;box-shadow:none}[data-ea-style=fixedfooter].loaded .ea-type-text .ea-content{background-color:inherit;max-width:100%;margin:0;padding:1em;flex:auto}[data-ea-style=fixedfooter].loaded .ea-type-text .ea-callout{max-width:100%;margin:0;padding:1em;flex:initial}@media(max-width: 576px){[data-ea-style=fixedfooter].loaded .ea-type-text .ea-callout{display:none}}[data-ea-style=fixedfooter].loaded .ea-type-text .ea-fixedfooter-hide{cursor:pointer;color:var(--ea-color-link);padding:1em;flex:initial;margin:auto 0}[data-ea-style=fixedfooter].loaded .ea-type-text .ea-fixedfooter-hide span{padding:.25em;font-size:.8em;font-weight:bold;border:.15em solid var(--ea-color-link);border-radius:.5em;white-space:nowrap}[data-ea-style=fixedfooter].loaded .ea-type-image{display:none !important}[data-ea-style=fixedheader]{height:var(--ea-fixedheader-height);width:100%;max-width:100%;background:var(--ea-stylefixed-bgcolor);border-bottom:1px solid var(--ea-background-color)}@media(max-width: 768px){[data-ea-style=fixedheader]{display:none !important}}[data-ea-style=fixedheader].loaded .ea-type-image,[data-ea-style=fixedheader].loaded .ea-type-text{width:var(--ea-container-xl);margin:0 auto;display:flex}@media(max-width: 992px){[data-ea-style=fixedheader].loaded .ea-type-image,[data-ea-style=fixedheader].loaded .ea-type-text{width:var(--ea-container-md)}}@media(max-width: 1200px){[data-ea-style=fixedheader].loaded .ea-type-image,[data-ea-style=fixedheader].loaded .ea-type-text{width:var(--ea-container-lg)}}[data-ea-style=fixedheader].loaded .ea-type-image .ea-content,[data-ea-style=fixedheader].loaded .ea-type-text .ea-content{border:0px;border-radius:3px;box-shadow:none}[data-ea-style=fixedheader].loaded .ea-type-image .ea-content,[data-ea-style=fixedheader].loaded .ea-type-text .ea-content{background-color:inherit;max-width:100%;margin:0;padding:0;flex:auto;display:flex}[data-ea-style=fixedheader].loaded .ea-type-image .ea-content .ea-text,[data-ea-style=fixedheader].loaded .ea-type-text .ea-content .ea-text{margin-top:0;padding:1em;flex:auto;text-align:left}[data-ea-style=fixedheader].loaded .ea-type-image .ea-callout,[data-ea-style=fixedheader].loaded .ea-type-text .ea-callout{max-width:100%;margin:0;padding:1em;flex:initial}@media(max-width: 576px){[data-ea-style=fixedheader].loaded .ea-type-image .ea-callout,[data-ea-style=fixedheader].loaded .ea-type-text .ea-callout{display:none}}[data-ea-style=fixedheader].loaded .ea-type-image img{width:var(--ea-image-width-xs) !important;margin:.6em}[data-ea-style=fixedheader].loaded .ea-type-image .ea-domain{display:none}</style><script src="./Helpers — Elasticsearch 7.13.0 documentation_files/saved_resource" type="text/javascript" async=""></script></head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/index.html" class="icon icon-home"> Elasticsearch
+          
+
+          
+          </a>
+
+          
+            
+            
+            
+              <div class="version">
+                v7.13.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="https://elasticsearch-py.readthedocs.io/en/v7.13.0/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/api.html">API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/exceptions.html">Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/async.html">Using Asyncio with Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/connection.html">Connection Layer API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/transports.html">Transport classes</a></li>
+<li class="toctree-l1 current"><a class="reference internal current" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/helpers.html#"><span class="toctree-expand"></span>Helpers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/helpers.html#bulk-helpers"><span class="toctree-expand"></span>Bulk helpers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/helpers.html#example">Example:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/helpers.html#scan">Scan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/helpers.html#reindex">Reindex</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/Changelog.html">Changelog</a></li>
+</ul>
+
+            
+          
+        </div>
+      <div class="raised ethical-rtd ethical-dark-theme adaptive-css loaded" data-ea-type="readthedocs-sidebar" data-ea-manual="true" data-ea-publisher="readthedocs" data-ea-keywords="client|elasticsearch|python|readthedocs-project-9100|readthedocs-project-elasticsearch-py|search" data-ea-campaign-types="community|house|paid" id="readthedocs-ea-readthedocs-sidebar-nostyle-sphinx"><div class="ethical-sidebar"><div class="ethical-content"><a href="https://server.ethicalads.io/proxy/click/671/019a83d0-5f97-7fd2-8483-ca4c6a7daf96/" rel="nofollow noopener sponsored" target="_blank" class="ethical-image-link"><img src="./Helpers — Elasticsearch 7.13.0 documentation_files/ElasticReadTheDocs_Z0grhDC.png" alt="Sponsored: Elastic"></a><div class="ethical-text"><a href="https://server.ethicalads.io/proxy/click/671/019a83d0-5f97-7fd2-8483-ca4c6a7daf96/" rel="nofollow noopener sponsored" target="_blank">Read the Docs uses the official Elasticsearch Service on the Elastic Cloud. <strong>Take it for a spin...</strong></a></div></div><div class="ethical-callout"><small><em><a rel="nofollow noopener" target="_blank" href="https://www.ethicalads.io/?ref=rtd-sidebar">Ad by EthicalAds</a></em></small><span> &nbsp; · &nbsp; </span><a rel="nofollow noopener" target="_blank" href="https://www.ethicalads.io/advertisers/topics/backend-web/?ref=rtd-sidebar-buy-ads">ℹ️</a></div></div><img src="./Helpers — Elasticsearch 7.13.0 documentation_files/saved_resource(1)" class="ea-pixel"><img src="https://server.ethicalads.io/proxy/viewtime/671/019a83d0-5f97-7fd2-8483-ca4c6a7daf96/?view_time=24" class="ea-pixel"></div></div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/index.html">Elasticsearch</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/index.html">Docs</a> »</li>
+        
+      <li>Helpers</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/elastic/elasticsearch-py/blob/v7.13.0/docs/sphinx/helpers.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="helpers">
+<span id="id1"></span><h1>Helpers<a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/helpers.html#helpers" title="Permalink to this headline">¶</a></h1>
+<p>Collection of simple helper functions that abstract some specifics of the raw API.</p>
+<div class="section" id="bulk-helpers">
+<h2>Bulk helpers<a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/helpers.html#bulk-helpers" title="Permalink to this headline">¶</a></h2>
+<p>There are several helpers for the <code class="docutils literal"><span class="pre">bulk</span></code> API since its requirement for
+specific formatting and other considerations can make it cumbersome if used directly.</p>
+<p>All bulk helpers accept an instance of <code class="docutils literal"><span class="pre">Elasticsearch</span></code> class and an iterable
+<code class="docutils literal"><span class="pre">actions</span></code> (any iterable, can also be a generator, which is ideal in most
+cases since it will allow you to index large datasets without the need of
+loading them into memory).</p>
+<p>The items in the <code class="docutils literal"><span class="pre">action</span></code> iterable should be the documents we wish to index
+in several formats. The most common one is the same  as returned by
+<a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/api.html#elasticsearch.Elasticsearch.search" title="elasticsearch.Elasticsearch.search"><code class="xref py py-meth docutils literal"><span class="pre">search()</span></code></a>, for example:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s1">'_index'</span><span class="p">:</span> <span class="s1">'index-name'</span><span class="p">,</span>
+    <span class="s1">'_type'</span><span class="p">:</span> <span class="s1">'document'</span><span class="p">,</span>
+    <span class="s1">'_id'</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
+    <span class="s1">'_routing'</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s1">'pipeline'</span><span class="p">:</span> <span class="s1">'my-ingest-pipeline'</span><span class="p">,</span>
+    <span class="s1">'_source'</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"Hello World!"</span><span class="p">,</span>
+        <span class="s2">"body"</span><span class="p">:</span> <span class="s2">"..."</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Alternatively, if <cite>_source</cite> is not present, it will pop all metadata fields
+from the doc and use the rest as the document data:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">"_id"</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
+    <span class="s2">"_routing"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"Hello World!"</span><span class="p">,</span>
+    <span class="s2">"body"</span><span class="p">:</span> <span class="s2">"..."</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/api.html#elasticsearch.Elasticsearch.bulk" title="elasticsearch.Elasticsearch.bulk"><code class="xref py py-meth docutils literal"><span class="pre">bulk()</span></code></a> api accepts <code class="docutils literal"><span class="pre">index</span></code>, <code class="docutils literal"><span class="pre">create</span></code>,
+<code class="docutils literal"><span class="pre">delete</span></code>, and <code class="docutils literal"><span class="pre">update</span></code> actions. Use the <code class="docutils literal"><span class="pre">_op_type</span></code> field to specify an
+action (<code class="docutils literal"><span class="pre">_op_type</span></code> defaults to <code class="docutils literal"><span class="pre">index</span></code>):</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s1">'_op_type'</span><span class="p">:</span> <span class="s1">'delete'</span><span class="p">,</span>
+    <span class="s1">'_index'</span><span class="p">:</span> <span class="s1">'index-name'</span><span class="p">,</span>
+    <span class="s1">'_type'</span><span class="p">:</span> <span class="s1">'document'</span><span class="p">,</span>
+    <span class="s1">'_id'</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="p">{</span>
+    <span class="s1">'_op_type'</span><span class="p">:</span> <span class="s1">'update'</span><span class="p">,</span>
+    <span class="s1">'_index'</span><span class="p">:</span> <span class="s1">'index-name'</span><span class="p">,</span>
+    <span class="s1">'_type'</span><span class="p">:</span> <span class="s1">'document'</span><span class="p">,</span>
+    <span class="s1">'_id'</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span>
+    <span class="s1">'doc'</span><span class="p">:</span> <span class="p">{</span><span class="s1">'question'</span><span class="p">:</span> <span class="s1">'The life, universe and everything.'</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="example">
+<h3>Example:<a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/helpers.html#example" title="Permalink to this headline">¶</a></h3>
+<p>Lets say we have an iterable of data. Lets say a list of words called <code class="docutils literal"><span class="pre">mywords</span></code>
+and we want to index those words into individual documents where the structure of the
+document is like <code class="docutils literal"><span class="pre">{"word":</span> <span class="pre">"&lt;myword&gt;"}</span></code>.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gendata</span><span class="p">():</span>
+    <span class="n">mywords</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'foo'</span><span class="p">,</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'baz'</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">mywords</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="p">{</span>
+            <span class="s2">"_index"</span><span class="p">:</span> <span class="s2">"mywords"</span><span class="p">,</span>
+            <span class="s2">"word"</span><span class="p">:</span> <span class="n">word</span><span class="p">,</span>
+        <span class="p">}</span>
+
+<span class="n">bulk</span><span class="p">(</span><span class="n">es</span><span class="p">,</span> <span class="n">gendata</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>For a more complete and complex example please take a look at
+<a class="reference external" href="https://github.com/elastic/elasticsearch-py/blob/master/example/load.py#L76-L130">https://github.com/elastic/elasticsearch-py/blob/master/example/load.py#L76-L130</a></p>
+<p>The <code class="xref py py-meth docutils literal"><span class="pre">parallel_bulk()</span></code> api is a wrapper around the <a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/api.html#elasticsearch.Elasticsearch.bulk" title="elasticsearch.Elasticsearch.bulk"><code class="xref py py-meth docutils literal"><span class="pre">bulk()</span></code></a> api to provide threading. <code class="xref py py-meth docutils literal"><span class="pre">parallel_bulk()</span></code> returns a generator which must be consumed to produce results.</p>
+<p>To see the results use:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">success</span><span class="p">,</span> <span class="n">info</span> <span class="ow">in</span> <span class="n">parallel_bulk</span><span class="p">(</span><span class="o">...</span><span class="p">):</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">success</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'A document failed:'</span><span class="p">,</span> <span class="n">info</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you don’t care about the results, you can use deque from collections:</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+<span class="n">deque</span><span class="p">(</span><span class="n">parallel_bulk</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> <span class="n">maxlen</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When reading raw json strings from a file, you can also pass them in
+directly (without decoding to dicts first). In that case, however, you lose
+the ability to specify anything (index, type, even id) on a per-record
+basis, all documents will just be sent to elasticsearch to be indexed
+as-is.</p>
+</div>
+<span class="target" id="module-elasticsearch.helpers"></span><dl class="function">
+<dt id="elasticsearch.helpers.streaming_bulk">
+<code class="descclassname">elasticsearch.helpers.</code><code class="descname">streaming_bulk</code><span class="sig-paren">(</span><em>client</em>, <em>actions</em>, <em>chunk_size=500</em>, <em>max_chunk_bytes=104857600</em>, <em>raise_on_error=True</em>, <em>expand_action_callback=&lt;function expand_action&gt;</em>, <em>raise_on_exception=True</em>, <em>max_retries=0</em>, <em>initial_backoff=2</em>, <em>max_backoff=600</em>, <em>yield_ok=True</em>, <em>ignore_status=()</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/helpers.html#elasticsearch.helpers.streaming_bulk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Streaming bulk consumes actions from the iterable passed in and yields
+results per action. For non-streaming usecases use
+<a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/helpers.html#elasticsearch.helpers.bulk" title="elasticsearch.helpers.bulk"><code class="xref py py-func docutils literal"><span class="pre">bulk()</span></code></a> which is a wrapper around streaming
+bulk that returns summary information about the bulk operation once the
+entire input is consumed and sent.</p>
+<p>If you specify <code class="docutils literal"><span class="pre">max_retries</span></code> it will also retry any documents that were
+rejected with a <code class="docutils literal"><span class="pre">429</span></code> status code. To do this it will wait (<strong>by calling
+time.sleep which will block</strong>) for <code class="docutils literal"><span class="pre">initial_backoff</span></code> seconds and then,
+every subsequent rejection for the same chunk, for double the time every
+time up to <code class="docutils literal"><span class="pre">max_backoff</span></code> seconds.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>client</strong> – instance of <a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/api.html#elasticsearch.Elasticsearch" title="elasticsearch.Elasticsearch"><code class="xref py py-class docutils literal"><span class="pre">Elasticsearch</span></code></a> to use</li>
+<li><strong>actions</strong> – iterable containing the actions to be executed</li>
+<li><strong>chunk_size</strong> – number of docs in one chunk sent to es (default: 500)</li>
+<li><strong>max_chunk_bytes</strong> – the maximum size of the request in bytes (default: 100MB)</li>
+<li><strong>raise_on_error</strong> – raise <code class="docutils literal"><span class="pre">BulkIndexError</span></code> containing errors (as <cite>.errors</cite>)
+from the execution of the last chunk when some occur. By default we raise.</li>
+<li><strong>raise_on_exception</strong> – if <code class="docutils literal"><span class="pre">False</span></code> then don’t propagate exceptions from
+call to <code class="docutils literal"><span class="pre">bulk</span></code> and just report the items that failed as failed.</li>
+<li><strong>expand_action_callback</strong> – callback executed on each action passed in,
+should return a tuple containing the action line and the data line
+(<cite>None</cite> if data line should be omitted).</li>
+<li><strong>max_retries</strong> – maximum number of times a document will be retried when
+<code class="docutils literal"><span class="pre">429</span></code> is received, set to 0 (default) for no retries on <code class="docutils literal"><span class="pre">429</span></code></li>
+<li><strong>initial_backoff</strong> – number of seconds we should wait before the first
+retry. Any subsequent retries will be powers of <code class="docutils literal"><span class="pre">initial_backoff</span> <span class="pre">*</span>
+<span class="pre">2**retry_number</span></code></li>
+<li><strong>max_backoff</strong> – maximum number of seconds a retry will wait</li>
+<li><strong>yield_ok</strong> – if set to False will skip successful documents in the output</li>
+<li><strong>ignore_status</strong> – list of HTTP status code that you want to ignore</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="elasticsearch.helpers.parallel_bulk">
+<code class="descclassname">elasticsearch.helpers.</code><code class="descname">parallel_bulk</code><span class="sig-paren">(</span><em>client</em>, <em>actions</em>, <em>thread_count=4</em>, <em>chunk_size=500</em>, <em>max_chunk_bytes=104857600</em>, <em>queue_size=4</em>, <em>expand_action_callback=&lt;function expand_action&gt;</em>, <em>ignore_status=()</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/helpers.html#elasticsearch.helpers.parallel_bulk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parallel version of the bulk helper run in multiple threads at once.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>client</strong> – instance of <a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/api.html#elasticsearch.Elasticsearch" title="elasticsearch.Elasticsearch"><code class="xref py py-class docutils literal"><span class="pre">Elasticsearch</span></code></a> to use</li>
+<li><strong>actions</strong> – iterator containing the actions</li>
+<li><strong>thread_count</strong> – size of the threadpool to use for the bulk requests</li>
+<li><strong>chunk_size</strong> – number of docs in one chunk sent to es (default: 500)</li>
+<li><strong>max_chunk_bytes</strong> – the maximum size of the request in bytes (default: 100MB)</li>
+<li><strong>raise_on_error</strong> – raise <code class="docutils literal"><span class="pre">BulkIndexError</span></code> containing errors (as <cite>.errors</cite>)
+from the execution of the last chunk when some occur. By default we raise.</li>
+<li><strong>raise_on_exception</strong> – if <code class="docutils literal"><span class="pre">False</span></code> then don’t propagate exceptions from
+call to <code class="docutils literal"><span class="pre">bulk</span></code> and just report the items that failed as failed.</li>
+<li><strong>expand_action_callback</strong> – callback executed on each action passed in,
+should return a tuple containing the action line and the data line
+(<cite>None</cite> if data line should be omitted).</li>
+<li><strong>queue_size</strong> – size of the task queue between the main thread (producing
+chunks to send) and the processing threads.</li>
+<li><strong>ignore_status</strong> – list of HTTP status code that you want to ignore</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="elasticsearch.helpers.bulk">
+<code class="descclassname">elasticsearch.helpers.</code><code class="descname">bulk</code><span class="sig-paren">(</span><em>client</em>, <em>actions</em>, <em>stats_only=False</em>, <em>ignore_status=()</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/helpers.html#elasticsearch.helpers.bulk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper for the <a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/api.html#elasticsearch.Elasticsearch.bulk" title="elasticsearch.Elasticsearch.bulk"><code class="xref py py-meth docutils literal"><span class="pre">bulk()</span></code></a> api that provides
+a more human friendly interface - it consumes an iterator of actions and
+sends them to elasticsearch in chunks. It returns a tuple with summary
+information - number of successfully executed actions and either list of
+errors or number of errors if <code class="docutils literal"><span class="pre">stats_only</span></code> is set to <code class="docutils literal"><span class="pre">True</span></code>. Note that
+by default we raise a <code class="docutils literal"><span class="pre">BulkIndexError</span></code> when we encounter an error so
+options like <code class="docutils literal"><span class="pre">stats_only</span></code> only apply when <code class="docutils literal"><span class="pre">raise_on_error</span></code> is set to
+<code class="docutils literal"><span class="pre">False</span></code>.</p>
+<p>When errors are being collected original document data is included in the
+error dictionary which can lead to an extra high memory usage. If you need
+to process a lot of data and want to ignore/collect errors please consider
+using the <a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/helpers.html#elasticsearch.helpers.streaming_bulk" title="elasticsearch.helpers.streaming_bulk"><code class="xref py py-func docutils literal"><span class="pre">streaming_bulk()</span></code></a> helper which will
+just return the errors and not store them in memory.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>client</strong> – instance of <a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/api.html#elasticsearch.Elasticsearch" title="elasticsearch.Elasticsearch"><code class="xref py py-class docutils literal"><span class="pre">Elasticsearch</span></code></a> to use</li>
+<li><strong>actions</strong> – iterator containing the actions</li>
+<li><strong>stats_only</strong> – if <cite>True</cite> only report number of successful/failed
+operations instead of just number of successful and a list of error responses</li>
+<li><strong>ignore_status</strong> – list of HTTP status code that you want to ignore</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Any additional keyword arguments will be passed to
+<a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/helpers.html#elasticsearch.helpers.streaming_bulk" title="elasticsearch.helpers.streaming_bulk"><code class="xref py py-func docutils literal"><span class="pre">streaming_bulk()</span></code></a> which is used to execute
+the operation, see <a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/helpers.html#elasticsearch.helpers.streaming_bulk" title="elasticsearch.helpers.streaming_bulk"><code class="xref py py-func docutils literal"><span class="pre">streaming_bulk()</span></code></a> for more
+accepted parameters.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="scan">
+<h2>Scan<a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/helpers.html#scan" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="elasticsearch.helpers.scan">
+<code class="descclassname">elasticsearch.helpers.</code><code class="descname">scan</code><span class="sig-paren">(</span><em>client</em>, <em>query=None</em>, <em>scroll='5m'</em>, <em>raise_on_error=True</em>, <em>preserve_order=False</em>, <em>size=1000</em>, <em>request_timeout=None</em>, <em>clear_scroll=True</em>, <em>scroll_kwargs=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/helpers.html#elasticsearch.helpers.scan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple abstraction on top of the
+<a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/api.html#elasticsearch.Elasticsearch.scroll" title="elasticsearch.Elasticsearch.scroll"><code class="xref py py-meth docutils literal"><span class="pre">scroll()</span></code></a> api - a simple iterator that
+yields all hits as returned by underlining scroll requests.</p>
+<p>By default scan does not return results in any pre-determined order. To
+have a standard order in the returned documents (either by score or
+explicit sort definition) when scrolling, use <code class="docutils literal"><span class="pre">preserve_order=True</span></code>. This
+may be an expensive operation and will negate the performance benefits of
+using <code class="docutils literal"><span class="pre">scan</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>client</strong> – instance of <a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/api.html#elasticsearch.Elasticsearch" title="elasticsearch.Elasticsearch"><code class="xref py py-class docutils literal"><span class="pre">Elasticsearch</span></code></a> to use</li>
+<li><strong>query</strong> – body for the <a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/api.html#elasticsearch.Elasticsearch.search" title="elasticsearch.Elasticsearch.search"><code class="xref py py-meth docutils literal"><span class="pre">search()</span></code></a> api</li>
+<li><strong>scroll</strong> – Specify how long a consistent view of the index should be
+maintained for scrolled search</li>
+<li><strong>raise_on_error</strong> – raises an exception (<code class="docutils literal"><span class="pre">ScanError</span></code>) if an error is
+encountered (some shards fail to execute). By default we raise.</li>
+<li><strong>preserve_order</strong> – don’t set the <code class="docutils literal"><span class="pre">search_type</span></code> to <code class="docutils literal"><span class="pre">scan</span></code> - this will
+cause the scroll to paginate with preserving the order. Note that this
+can be an extremely expensive operation and can easily lead to
+unpredictable results, use with caution.</li>
+<li><strong>size</strong> – size (per shard) of the batch send at each iteration.</li>
+<li><strong>request_timeout</strong> – explicit timeout for each call to <code class="docutils literal"><span class="pre">scan</span></code></li>
+<li><strong>clear_scroll</strong> – explicitly calls delete on the scroll id via the clear
+scroll API at the end of the method on completion or error, defaults
+to true.</li>
+<li><strong>scroll_kwargs</strong> – additional kwargs to be passed to
+<a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/api.html#elasticsearch.Elasticsearch.scroll" title="elasticsearch.Elasticsearch.scroll"><code class="xref py py-meth docutils literal"><span class="pre">scroll()</span></code></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Any additional keyword arguments will be passed to the initial
+<a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/api.html#elasticsearch.Elasticsearch.search" title="elasticsearch.Elasticsearch.search"><code class="xref py py-meth docutils literal"><span class="pre">search()</span></code></a> call:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">scan</span><span class="p">(</span><span class="n">es</span><span class="p">,</span>
+    <span class="n">query</span><span class="o">=</span><span class="p">{</span><span class="s2">"query"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"match"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"title"</span><span class="p">:</span> <span class="s2">"python"</span><span class="p">}}},</span>
+    <span class="n">index</span><span class="o">=</span><span class="s2">"orders-*"</span><span class="p">,</span>
+    <span class="n">doc_type</span><span class="o">=</span><span class="s2">"books"</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="reindex">
+<h2>Reindex<a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/helpers.html#reindex" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="elasticsearch.helpers.reindex">
+<code class="descclassname">elasticsearch.helpers.</code><code class="descname">reindex</code><span class="sig-paren">(</span><em>client</em>, <em>source_index</em>, <em>target_index</em>, <em>query=None</em>, <em>target_client=None</em>, <em>chunk_size=500</em>, <em>scroll='5m'</em>, <em>scan_kwargs={}</em>, <em>bulk_kwargs={}</em><span class="sig-paren">)</span><a class="headerlink" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/helpers.html#elasticsearch.helpers.reindex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reindex all documents from one index that satisfy a given query
+to another, potentially (if <cite>target_client</cite> is specified) on a different cluster.
+If you don’t specify the query you will reindex all the documents.</p>
+<p>Since <code class="docutils literal"><span class="pre">2.3</span></code> a <a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/api.html#elasticsearch.Elasticsearch.reindex" title="elasticsearch.Elasticsearch.reindex"><code class="xref py py-meth docutils literal"><span class="pre">reindex()</span></code></a> api is
+available as part of elasticsearch itself. It is recommended to use the api
+instead of this helper wherever possible. The helper is here mostly for
+backwards compatibility and for situations where more flexibility is
+needed.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This helper doesn’t transfer mappings, just the data.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<colgroup><col class="field-name">
+<col class="field-body">
+</colgroup><tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>client</strong> – instance of <a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/api.html#elasticsearch.Elasticsearch" title="elasticsearch.Elasticsearch"><code class="xref py py-class docutils literal"><span class="pre">Elasticsearch</span></code></a> to use (for
+read if <cite>target_client</cite> is specified as well)</li>
+<li><strong>source_index</strong> – index (or list of indices) to read documents from</li>
+<li><strong>target_index</strong> – name of the index in the target cluster to populate</li>
+<li><strong>query</strong> – body for the <a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/api.html#elasticsearch.Elasticsearch.search" title="elasticsearch.Elasticsearch.search"><code class="xref py py-meth docutils literal"><span class="pre">search()</span></code></a> api</li>
+<li><strong>target_client</strong> – optional, is specified will be used for writing (thus
+enabling reindex between clusters)</li>
+<li><strong>chunk_size</strong> – number of docs in one chunk sent to es (default: 500)</li>
+<li><strong>scroll</strong> – Specify how long a consistent view of the index should be
+maintained for scrolled search</li>
+<li><strong>scan_kwargs</strong> – additional kwargs to be passed to
+<a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/helpers.html#elasticsearch.helpers.scan" title="elasticsearch.helpers.scan"><code class="xref py py-func docutils literal"><span class="pre">scan()</span></code></a></li>
+<li><strong>bulk_kwargs</strong> – additional kwargs to be passed to
+<a class="reference internal" href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/helpers.html#elasticsearch.helpers.bulk" title="elasticsearch.helpers.bulk"><code class="xref py py-func docutils literal"><span class="pre">bulk()</span></code></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/Changelog.html" class="btn btn-neutral float-right" title="Changelog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/transports.html" class="btn btn-neutral float-left" title="Transport classes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+        © Copyright 2021, Elasticsearch B.V
+      
+        <span class="commit">
+          Revision <code>b177103c</code>.
+        </span>
+      
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div><readthedocs-flyout><template shadowrootmode="open"><!---->
+      <div class=" floating container bottom-right ">
+        <!--?lit$285235260$-->
+      <header>
+        <img class="logo" alt="Read the Docs" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmc6c3ZnCiAgIHZlcnNpb249IjEuMSIKICAgaWQ9InN2ZyIKICAgeD0iMHB4IgogICB5PSIwcHgiCiAgIHZpZXdCb3g9IjY5NCAxOTcgMzQ2LjY5ODU1IDM5OS45ODQ3NyIKICAgc29kaXBvZGk6ZG9jbmFtZT0ibG9nby1saWdodC5zdmciCiAgIHdpZHRoPSIzNDYuNjk4NTUiCiAgIGhlaWdodD0iMzk5Ljk4NDc3IgogICBpbmtzY2FwZTp2ZXJzaW9uPSIxLjMuMiAoMDkxZTIwZWYwZiwgMjAyMy0xMS0yNSwgY3VzdG9tKSIKICAgeG1sbnM6aW5rc2NhcGU9Imh0dHA6Ly93d3cuaW5rc2NhcGUub3JnL25hbWVzcGFjZXMvaW5rc2NhcGUiCiAgIHhtbG5zOnNvZGlwb2RpPSJodHRwOi8vc29kaXBvZGkuc291cmNlZm9yZ2UubmV0L0RURC9zb2RpcG9kaS0wLmR0ZCIKICAgeG1sbnM6c3ZnPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHN2ZzpkZWZzCiAgICAgaWQ9ImRlZnMxMiIgLz4KICA8c29kaXBvZGk6bmFtZWR2aWV3CiAgICAgaWQ9Im5hbWVkdmlldzEyIgogICAgIHBhZ2Vjb2xvcj0iI2ZmZmZmZiIKICAgICBib3JkZXJjb2xvcj0iIzAwMDAwMCIKICAgICBib3JkZXJvcGFjaXR5PSIwLjI1IgogICAgIGlua3NjYXBlOnNob3dwYWdlc2hhZG93PSIyIgogICAgIGlua3NjYXBlOnBhZ2VvcGFjaXR5PSIwLjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMCIKICAgICBpbmtzY2FwZTpkZXNrY29sb3I9IiNkMWQxZDEiCiAgICAgaW5rc2NhcGU6em9vbT0iMS4yNTIiCiAgICAgaW5rc2NhcGU6Y3g9Ijk5OC40MDI1NiIKICAgICBpbmtzY2FwZTpjeT0iMTk5LjY4MDUxIgogICAgIGlua3NjYXBlOndpbmRvdy13aWR0aD0iMzQ0MCIKICAgICBpbmtzY2FwZTp3aW5kb3ctaGVpZ2h0PSIxMzg5IgogICAgIGlua3NjYXBlOndpbmRvdy14PSIwIgogICAgIGlua3NjYXBlOndpbmRvdy15PSIyNyIKICAgICBpbmtzY2FwZTp3aW5kb3ctbWF4aW1pemVkPSIxIgogICAgIGlua3NjYXBlOmN1cnJlbnQtbGF5ZXI9InN2ZyIgLz4KICA8c3ZnOmcKICAgICBpZD0ibG9nbyIKICAgICB0cmFuc2Zvcm09Im1hdHJpeCgwLjU1NzUzNjQ0LDAsMCwwLjU1NzUzNjQ0LDY2LjUzMTgxMiwxMDUwLjEyNjIpIj4KICAgIDxzdmc6cGF0aAogICAgICAgc3R5bGU9ImZpbGw6I2ZjZmNmYyIKICAgICAgIGQ9Im0gMTQwOC4xLC0xMTgxLjcgYyAtNy41LDEgLTEyLjcsNy44IC0xMS43LDE1LjMgMC43LDUuNCA0LjYsOS45IDkuOSwxMS4zIDAsMCAzMy4yLDExIDg5LjcsMTUuNiA0NS40LDMuNyA5Ni45LC0zLjIgOTYuOSwtMy4yIDcuNSwtMC4yIDEzLjUsLTYuNSAxMy4yLC0xNCAtMC4zLC03LjUgLTYuNSwtMTMuNSAtMTQsLTEzLjIgLTAuOSwwIC0xLjgsMC4xIC0yLjYsMC4zIDAsMCAtNTAuNCw2LjIgLTkxLjMsMi45IC01NCwtNC40IC04My40LC0xNC4zIC04My40LC0xNC4zIC0yLjIsLTAuNyAtNC41LC0xIC02LjcsLTAuNyB6IG0gMCwtNjcuNiBjIC03LjUsMSAtMTIuNyw3LjggLTExLjcsMTUuMyAwLjcsNS40IDQuNiw5LjkgOS45LDExLjMgMCwwIDMzLjIsMTEgODkuNywxNS42IDQ1LjQsMy43IDk2LjksLTMuMiA5Ni45LC0zLjIgNy41LC0wLjIgMTMuNSwtNi41IDEzLjIsLTE0IC0wLjMsLTcuNSAtNi41LC0xMy41IC0xNCwtMTMuMiAtMC45LDAgLTEuOCwwLjEgLTIuNiwwLjMgMCwwIC01MC40LDYuMiAtOTEuMywyLjkgLTU0LC00LjQgLTgzLjQsLTE0LjMgLTgzLjQsLTE0LjMgLTIuMiwtMC43IC00LjUsLTEgLTYuNywtMC43IHogbSAwLC02Ny42IGMgLTcuNSwxIC0xMi43LDcuOCAtMTEuNywxNS4zIDAuNyw1LjQgNC42LDkuOSA5LjksMTEuMyAwLDAgMzMuMiwxMSA4OS43LDE1LjYgNDUuNCwzLjcgOTYuOSwtMy4yIDk2LjksLTMuMiA3LjUsLTAuMiAxMy41LC02LjUgMTMuMiwtMTQgLTAuMywtNy41IC02LjUsLTEzLjUgLTE0LC0xMy4yIC0wLjksMCAtMS44LDAuMSAtMi42LDAuMyAwLDAgLTUwLjQsNi4yIC05MS4zLDIuOSAtNTQsLTQuNCAtODMuNCwtMTQuMyAtODMuNCwtMTQuMyAtMi4yLC0wLjcgLTQuNSwtMSAtNi43LC0wLjcgeiBtIDAsLTY3LjUgYyAtNy41LDEgLTEyLjcsNy44IC0xMS43LDE1LjMgMC43LDUuNCA0LjYsOS45IDkuOSwxMS4zIDAsMCAzMy4yLDExIDg5LjcsMTUuNiA0NS40LDMuNyA5Ni45LC0zLjIgOTYuOSwtMy4yIDcuNSwtMC4yIDEzLjUsLTYuNSAxMy4yLC0xNCAtMC4zLC03LjUgLTYuNSwtMTMuNSAtMTQsLTEzLjIgLTAuOSwwIC0xLjgsMC4xIC0yLjYsMC4zIDAsMCAtNTAuNCw2LjIgLTkxLjMsMi45IC01NCwtNC40IC04My40LC0xNC4zIC04My40LC0xNC4zIC0yLjIsLTAuOCAtNC41LC0xIC02LjcsLTAuNyB6IG0gLTk0LjcsLTcxLjMgYyAtNzEsMC41IC05Ny41LDIyLjMgLTk3LjUsMjIuMyB2IDUzMC4zIGMgMCwwIDI1LjgsLTIyLjMgMTA5LC0xOC45IDgzLjIsMy40IDEwMC4zLDMyLjYgMjAyLjUsMzQuNiAxMDIuMiwyLjEgMTI3LjksLTE1LjcgMTI3LjksLTE1LjcgbCAxLjUsLTU0MC42IGMgMCwwIC00NiwxMyAtMTM1LjUsMTMuNyAtODkuNSwwLjcgLTExMSwtMjIuOCAtMTkzLjIsLTI1LjUgLTUuMSwtMC4xIC0xMCwtMC4yIC0xNC43LC0wLjIgeiBtIDU5LjQsMzQuNiBjIDAsMCA0MywxNC4yIDEyMi41LDE4LjIgNjcuMiwzLjMgMTM0LjUsLTYuNiAxMzQuNSwtNi42IFYgLTkyOSBjIDAsMCAtMzQuMSwxNy45IC0xMTkuMywxMS44IC02NiwtNC43IC0xMzguNywtMjkuNyAtMTM4LjcsLTI5LjcgeiBtIC00MS41LDEyLjUgYyA3LjYsMCAxMy43LDYuMiAxMy43LDEzLjcgMCw3LjUgLTYuMiwxMy43IC0xMy43LDEzLjcgMCwwIC0yMi4zLDAuMSAtMzUuOCwxLjUgLTIyLjgsMi4zIC0zOC4zLDEwLjYgLTM4LjMsMTAuNiAtNi43LDMuNSAtMTUsMSAtMTguNSwtNS43IC0zLjUsLTYuNyAtMSwtMTUgNS43LC0xOC41IDAsMCAwLDAgMCwwIDAsMCAyMC4yLC0xMC43IDQ4LjQsLTEzLjUgMTYuMywtMS43IDM4LjUsLTEuOCAzOC41LC0xLjggeiBtIC0xMy4yLDY3LjggYyA3LjYsLTAuMiAxMy4zLDAgMTMuMywwIDcuNSwwLjkgMTIuOSw3LjggMTIsMTUuMyAtMC44LDYuMyAtNS43LDExLjIgLTEyLDEyIDAsMCAtMjIuMywwLjEgLTM1LjgsMS41IC0yMi44LDIuMyAtMzguMywxMC42IC0zOC4zLDEwLjYgLTYuNywzLjUgLTE1LDAuOSAtMTguNSwtNS44IC0zLjUsLTYuNyAtMC45LC0xNSA1LjgsLTE4LjUgMCwwIDIwLjIsLTEwLjcgNDguNCwtMTMuNSA3LjksLTAuOSAxNy41LC0xLjQgMjUuMSwtMS42IHogbSAxMy4yLDY3LjUgYyA3LjYsMCAxMy43LDYuMiAxMy43LDEzLjcgMCw3LjYgLTYuMiwxMy43IC0xMy43LDEzLjcgMCwwIC0yMi4zLC0wLjEgLTM1LjgsMS4yIC0yMi44LDIuMyAtMzguMywxMC42IC0zOC4zLDEwLjYgLTYuNywzLjUgLTE1LDAuOSAtMTguNSwtNS44IC0zLjUsLTYuNyAtMC45LC0xNSA1LjgsLTE4LjUgMCwwIDIwLjIsLTEwLjcgNDguNCwtMTMuNSAxNi4yLC0xLjUgMzguNCwtMS40IDM4LjQsLTEuNCB6IgogICAgICAgaWQ9InBhdGgxIiAvPgogIDwvc3ZnOmc+CiAgPGRpdgogICAgIGlkPSJzYWthLWd1aS1yb290Ij4KICAgIDxkaXY+CiAgICAgIDxkaXY+CiAgICAgICAgPHN0eWxlIC8+CiAgICAgIDwvZGl2PgogICAgPC9kaXY+CiAgPC9kaXY+Cjwvc3ZnOnN2Zz4K">
+        <!--?lit$285235260$--> <!--?lit$285235260$--><span class="version">
+        <!--?lit$285235260$--><svg data-prefix="fas" data-icon="code-branch" class="svg-inline--fa fa-code-branch icon" role="img" viewBox="0 0 448 512" aria-hidden="true"><path fill="currentColor" d="M80 104a24 24 0 1 0 0-48 24 24 0 1 0 0 48zm80-24c0 32.8-19.7 61-48 73.3l0 70.7 176 0c26.5 0 48-21.5 48-48l0-22.7c-28.3-12.3-48-40.5-48-73.3 0-44.2 35.8-80 80-80s80 35.8 80 80c0 32.8-19.7 61-48 73.3l0 22.7c0 61.9-50.1 112-112 112l-176 0 0 70.7c28.3 12.3 48 40.5 48 73.3 0 44.2-35.8 80-80 80S0 476.2 0 432c0-32.8 19.7-61 48-73.3l0-205.3C19.7 141 0 112.8 0 80 0 35.8 35.8 0 80 0s80 35.8 80 80zm232 0a24 24 0 1 0 -48 0 24 24 0 1 0 48 0zM80 456a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"></path></svg> <!--?lit$285235260$-->v7.13.0
+      </span> 
+        <span class="caret"><!--?lit$285235260$--><svg data-prefix="fas" data-icon="caret-down" class="svg-inline--fa fa-caret-down icon" role="img" viewBox="0 0 384 512" aria-hidden="true"><path fill="currentColor" d="M352 160c12.9 0 24.6 7.8 29.6 19.8s2.2 25.7-6.9 34.9l-160 160c-12.5 12.5-32.8 12.5-45.3 0l-160-160c-9.2-9.2-11.9-22.9-6.9-34.9S19.1 160 32 160l320 0z"></path></svg></span>
+      </header>
+    
+        <main class=" closed ">
+          <!--?lit$285235260$--> <!--?lit$285235260$-->
+      <dl class="versions">
+        <dt>Versions</dt>
+        <!--?lit$285235260$--><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/latest/helpers.html"><!--?lit$285235260$-->latest</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/stable/helpers.html"><!--?lit$285235260$-->stable</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v9.2.0/helpers.html"><!--?lit$285235260$-->v9.2.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v9.1.2/helpers.html"><!--?lit$285235260$-->v9.1.2</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v9.1.1/helpers.html"><!--?lit$285235260$-->v9.1.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v9.1.0/helpers.html"><!--?lit$285235260$-->v9.1.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v9.0.4/helpers.html"><!--?lit$285235260$-->v9.0.4</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v9.0.3/helpers.html"><!--?lit$285235260$-->v9.0.3</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v9.0.2/helpers.html"><!--?lit$285235260$-->v9.0.2</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v9.0.1/helpers.html"><!--?lit$285235260$-->v9.0.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v9.0.0/helpers.html"><!--?lit$285235260$-->v9.0.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.19.2/helpers.html"><!--?lit$285235260$-->v8.19.2</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.19.1/helpers.html"><!--?lit$285235260$-->v8.19.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.19.0/helpers.html"><!--?lit$285235260$-->v8.19.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.18.1/helpers.html"><!--?lit$285235260$-->v8.18.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.18.0/helpers.html"><!--?lit$285235260$-->v8.18.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.17.2/helpers.html"><!--?lit$285235260$-->v8.17.2</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.17.1/helpers.html"><!--?lit$285235260$-->v8.17.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.17.0/helpers.html"><!--?lit$285235260$-->v8.17.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.16.0/helpers.html"><!--?lit$285235260$-->v8.16.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.15.1/helpers.html"><!--?lit$285235260$-->v8.15.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.15.0/helpers.html"><!--?lit$285235260$-->v8.15.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.14.0/helpers.html"><!--?lit$285235260$-->v8.14.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.13.2/helpers.html"><!--?lit$285235260$-->v8.13.2</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.13.1/helpers.html"><!--?lit$285235260$-->v8.13.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.13.0/helpers.html"><!--?lit$285235260$-->v8.13.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.12.1/helpers.html"><!--?lit$285235260$-->v8.12.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.12.0/helpers.html"><!--?lit$285235260$-->v8.12.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.11.1/helpers.html"><!--?lit$285235260$-->v8.11.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.11.0/helpers.html"><!--?lit$285235260$-->v8.11.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.10.1/helpers.html"><!--?lit$285235260$-->v8.10.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.10.0/helpers.html"><!--?lit$285235260$-->v8.10.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.9.0/helpers.html"><!--?lit$285235260$-->v8.9.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.8.2/helpers.html"><!--?lit$285235260$-->v8.8.2</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.8.1/helpers.html"><!--?lit$285235260$-->v8.8.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.8.0/helpers.html"><!--?lit$285235260$-->v8.8.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.7.1/helpers.html"><!--?lit$285235260$-->v8.7.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.7.0/helpers.html"><!--?lit$285235260$-->v8.7.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.6.2/helpers.html"><!--?lit$285235260$-->v8.6.2</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.6.1/helpers.html"><!--?lit$285235260$-->v8.6.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.6.0/helpers.html"><!--?lit$285235260$-->v8.6.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.5.3/helpers.html"><!--?lit$285235260$-->v8.5.3</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.5.2/helpers.html"><!--?lit$285235260$-->v8.5.2</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.5.1/helpers.html"><!--?lit$285235260$-->v8.5.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.5.0/helpers.html"><!--?lit$285235260$-->v8.5.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.4.3/helpers.html"><!--?lit$285235260$-->v8.4.3</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.4.2/helpers.html"><!--?lit$285235260$-->v8.4.2</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.4.1/helpers.html"><!--?lit$285235260$-->v8.4.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.4.0/helpers.html"><!--?lit$285235260$-->v8.4.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.3.3/helpers.html"><!--?lit$285235260$-->v8.3.3</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.3.2/helpers.html"><!--?lit$285235260$-->v8.3.2</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.3.1/helpers.html"><!--?lit$285235260$-->v8.3.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.3.0/helpers.html"><!--?lit$285235260$-->v8.3.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.2.3/helpers.html"><!--?lit$285235260$-->v8.2.3</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.2.2/helpers.html"><!--?lit$285235260$-->v8.2.2</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.2.1/helpers.html"><!--?lit$285235260$-->v8.2.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.2.0/helpers.html"><!--?lit$285235260$-->v8.2.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.1.3/helpers.html"><!--?lit$285235260$-->v8.1.3</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.1.2/helpers.html"><!--?lit$285235260$-->v8.1.2</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.1.1/helpers.html"><!--?lit$285235260$-->v8.1.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.1.0/helpers.html"><!--?lit$285235260$-->v8.1.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.0.1/helpers.html"><!--?lit$285235260$-->v8.0.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.0.0/helpers.html"><!--?lit$285235260$-->v8.0.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v8.0.0a1/helpers.html"><!--?lit$285235260$-->v8.0.0a1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/7.x/helpers.html"><!--?lit$285235260$-->7.x</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.17.12/helpers.html"><!--?lit$285235260$-->v7.17.12</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.17.11/helpers.html"><!--?lit$285235260$-->v7.17.11</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.17.10/helpers.html"><!--?lit$285235260$-->v7.17.10</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.17.9/helpers.html"><!--?lit$285235260$-->v7.17.9</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.17.8/helpers.html"><!--?lit$285235260$-->v7.17.8</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.17.7/helpers.html"><!--?lit$285235260$-->v7.17.7</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.17.6/helpers.html"><!--?lit$285235260$-->v7.17.6</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.17.5/helpers.html"><!--?lit$285235260$-->v7.17.5</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.17.4/helpers.html"><!--?lit$285235260$-->v7.17.4</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.17.3/helpers.html"><!--?lit$285235260$-->v7.17.3</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.17.2/helpers.html"><!--?lit$285235260$-->v7.17.2</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.17.1/helpers.html"><!--?lit$285235260$-->v7.17.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.17.0/helpers.html"><!--?lit$285235260$-->v7.17.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.16.3/helpers.html"><!--?lit$285235260$-->v7.16.3</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.16.2/helpers.html"><!--?lit$285235260$-->v7.16.2</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.16.1/helpers.html"><!--?lit$285235260$-->v7.16.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.16.0/helpers.html"><!--?lit$285235260$-->v7.16.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.15.2/helpers.html"><!--?lit$285235260$-->v7.15.2</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.15.1/helpers.html"><!--?lit$285235260$-->v7.15.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.15.0/helpers.html"><!--?lit$285235260$-->v7.15.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.15.0a1/helpers.html"><!--?lit$285235260$-->v7.15.0a1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.14.2/helpers.html"><!--?lit$285235260$-->v7.14.2</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.14.1/helpers.html"><!--?lit$285235260$-->v7.14.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.14.0/helpers.html"><!--?lit$285235260$-->v7.14.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.14.0a2/helpers.html"><!--?lit$285235260$-->v7.14.0a2</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.14.0a1/helpers.html"><!--?lit$285235260$-->v7.14.0a1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.13.4/helpers.html"><!--?lit$285235260$-->v7.13.4</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.13.3/helpers.html"><!--?lit$285235260$-->v7.13.3</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.13.2/helpers.html"><!--?lit$285235260$-->v7.13.2</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.13.1/helpers.html"><!--?lit$285235260$-->v7.13.1</a></dd><!----><!----><dd><!--?lit$285235260$--><strong><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.13.0/helpers.html"><!--?lit$285235260$-->v7.13.0</a></strong></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.12.1/helpers.html"><!--?lit$285235260$-->v7.12.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.12.0/helpers.html"><!--?lit$285235260$-->v7.12.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.11.0/helpers.html"><!--?lit$285235260$-->v7.11.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.11.0b1/helpers.html"><!--?lit$285235260$-->v7.11.0b1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/7.11.0b1/helpers.html"><!--?lit$285235260$-->7.11.0b1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/v7.10.1/helpers.html"><!--?lit$285235260$-->v7.10.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/7.10.0/helpers.html"><!--?lit$285235260$-->7.10.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/7.10.0a2/helpers.html"><!--?lit$285235260$-->7.10.0a2</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/7.10.0a1/helpers.html"><!--?lit$285235260$-->7.10.0a1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/7.9.1/helpers.html"><!--?lit$285235260$-->7.9.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/7.9.0/helpers.html"><!--?lit$285235260$-->7.9.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/7.8.1/helpers.html"><!--?lit$285235260$-->7.8.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/7.8.0/helpers.html"><!--?lit$285235260$-->7.8.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/7.7.1/helpers.html"><!--?lit$285235260$-->7.7.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/7.7.0/helpers.html"><!--?lit$285235260$-->7.7.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/7.6.0/helpers.html"><!--?lit$285235260$-->7.6.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/7.5.1/helpers.html"><!--?lit$285235260$-->7.5.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/7.0.1/helpers.html"><!--?lit$285235260$-->7.0.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/7.0.0/helpers.html"><!--?lit$285235260$-->7.0.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/6.8.2/helpers.html"><!--?lit$285235260$-->6.8.2</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/6.3.1/helpers.html"><!--?lit$285235260$-->6.3.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/6.3.0/helpers.html"><!--?lit$285235260$-->6.3.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/6.2.0/helpers.html"><!--?lit$285235260$-->6.2.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/6.1.1/helpers.html"><!--?lit$285235260$-->6.1.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/6.1.0/helpers.html"><!--?lit$285235260$-->6.1.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/6.0.0/helpers.html"><!--?lit$285235260$-->6.0.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/5.5.1/helpers.html"><!--?lit$285235260$-->5.5.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/5.5.0/helpers.html"><!--?lit$285235260$-->5.5.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/5.4.0/helpers.html"><!--?lit$285235260$-->5.4.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/5.3.0/helpers.html"><!--?lit$285235260$-->5.3.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/5.2.0/helpers.html"><!--?lit$285235260$-->5.2.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/5.1.0/helpers.html"><!--?lit$285235260$-->5.1.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/5.0.1/helpers.html"><!--?lit$285235260$-->5.0.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/5.0.0/helpers.html"><!--?lit$285235260$-->5.0.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/2.4.0/helpers.html"><!--?lit$285235260$-->2.4.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/2.3.0/helpers.html"><!--?lit$285235260$-->2.3.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/2.2.0/helpers.html"><!--?lit$285235260$-->2.2.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/2.1.0/helpers.html"><!--?lit$285235260$-->2.1.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/2.0.0/helpers.html"><!--?lit$285235260$-->2.0.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/1.x/helpers.html"><!--?lit$285235260$-->1.x</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/1.9.0/helpers.html"><!--?lit$285235260$-->1.9.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/1.8.0/helpers.html"><!--?lit$285235260$-->1.8.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/1.7.0/helpers.html"><!--?lit$285235260$-->1.7.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/1.6.0/helpers.html"><!--?lit$285235260$-->1.6.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/1.5.0/helpers.html"><!--?lit$285235260$-->1.5.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/1.4.0/helpers.html"><!--?lit$285235260$-->1.4.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/1.3.0/helpers.html"><!--?lit$285235260$-->1.3.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/1.2.0/helpers.html"><!--?lit$285235260$-->1.2.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/1.1.1/helpers.html"><!--?lit$285235260$-->1.1.1</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/1.0.0/helpers.html"><!--?lit$285235260$-->1.0.0</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/0.4.5/helpers.html"><!--?lit$285235260$-->0.4.5</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/0.4.4/helpers.html"><!--?lit$285235260$-->0.4.4</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/0.4.3/helpers.html"><!--?lit$285235260$-->0.4.3</a></dd><!----><!----><dd><!--?lit$285235260$--><a href="https://elasticsearch-py.readthedocs.io/en/0.4/helpers.html"><!--?lit$285235260$-->0.4</a></dd><!---->
+      </dl>
+    
+          <!--?lit$285235260$--> <!--?lit$285235260$-->
+      <dl>
+        <dt>On Read the Docs</dt>
+        <dd>
+          <a href="https://app.readthedocs.org/projects/elasticsearch-py/?utm_source=elasticsearch-py&amp;utm_content=flyout">Project Home</a>
+        </dd>
+        <dd>
+          <a href="https://app.readthedocs.org/projects/elasticsearch-py/builds/?utm_source=elasticsearch-py&amp;utm_content=flyout">Builds</a>
+        </dd>
+      </dl>
+    
+          <!--?lit$285235260$--> <!--?lit$285235260$-->
+        <dl>
+          <dt>Search</dt>
+          <dd>
+            <form id="flyout-search-form">
+              <input type="text" name="q" aria-label="Search docs" placeholder="Search docs">
+            </form>
+          </dd>
+        </dl>
+      
+          <hr>
+          <!--?lit$285235260$-->
+      <small>
+        <span>
+          <a href="https://docs.readthedocs.io/page/addons.html?utm_source=elasticsearch-py&amp;utm_content=flyout">Addons documentation</a></span>
+        <span> ― </span>
+        <span>Hosted by
+          <a href="https://about.readthedocs.com/?utm_source=elasticsearch-py&amp;utm_content=flyout">Read the Docs</a></span>
+      </small>
+    
+        </main>
+      </div>
+    </template></readthedocs-flyout><readthedocs-notification class="raised toast"><template shadowrootmode="open"><!----></template></readthedocs-notification><readthedocs-search class="raised floating"><template shadowrootmode="open"><!---->
+      <div role="search" hidden="">
+        <div class="background"></div>
+        <div class="content">
+          <form class="  ">
+            <label><!--?lit$285235260$--><svg data-prefix="fas" data-icon="magnifying-glass" class="svg-inline--fa fa-magnifying-glass" role="img" viewBox="0 0 512 512" aria-hidden="true"><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376C296.3 401.1 253.9 416 208 416 93.1 416 0 322.9 0 208S93.1 0 208 0 416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg></label>
+            <input placeholder="Search docs" type="search" autocomplete="off">
+          </form>
+          <!--?lit$285235260$-->
+          <div class="results">
+            <!--?lit$285235260$--><p>No recent searches</p>
+          </div>
+          <div class="footer">
+            <ul class="help">
+              <li><code>Enter</code> to select</li>
+              <li><code>Up</code>/<code>Down</code> to navigate</li>
+              <li><code>Esc</code> to close</li>
+            </ul>
+            <div class="credits">
+              Search powered by
+              <a href="https://about.readthedocs.com/?utm_source=elasticsearch-py&amp;utm_content=search">
+                <img alt="Read the Docs" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJzdmciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSI2OTQgMTk3IDIwMDAgNDAwIj4KPGcgaWQ9ImxvZ28iIHRyYW5zZm9ybT0ibWF0cml4KDAuNTU3NTM2NDQsMCwwLDAuNTU3NTM2NDQsNjguMzA4MTM1LDEwNTAuMTI2MikiPgoJPHBhdGggc3R5bGU9ImZpbGw6IzMyMzIyQSIgZD0iTTE0MDguMS0xMTgxLjdjLTcuNSwxLTEyLjcsNy44LTExLjcsMTUuMyAgIGMwLjcsNS40LDQuNiw5LjksOS45LDExLjNjMCwwLDMzLjIsMTEsODkuNywxNS42YzQ1LjQsMy43LDk2LjktMy4yLDk2LjktMy4yYzcuNS0wLjIsMTMuNS02LjUsMTMuMi0xNHMtNi41LTEzLjUtMTQtMTMuMiAgIGMtMC45LDAtMS44LDAuMS0yLjYsMC4zYzAsMC01MC40LDYuMi05MS4zLDIuOWMtNTQtNC40LTgzLjQtMTQuMy04My40LTE0LjNDMTQxMi42LTExODEuNywxNDEwLjMtMTE4MiwxNDA4LjEtMTE4MS43eiAgICBNMTQwOC4xLTEyNDkuM2MtNy41LDEtMTIuNyw3LjgtMTEuNywxNS4zYzAuNyw1LjQsNC42LDkuOSw5LjksMTEuM2MwLDAsMzMuMiwxMSw4OS43LDE1LjZjNDUuNCwzLjcsOTYuOS0zLjIsOTYuOS0zLjIgICBjNy41LTAuMiwxMy41LTYuNSwxMy4yLTE0cy02LjUtMTMuNS0xNC0xMy4yYy0wLjksMC0xLjgsMC4xLTIuNiwwLjNjMCwwLTUwLjQsNi4yLTkxLjMsMi45Yy01NC00LjQtODMuNC0xNC4zLTgzLjQtMTQuMyAgIEMxNDEyLjYtMTI0OS4zLDE0MTAuMy0xMjQ5LjYsMTQwOC4xLTEyNDkuM3ogTTE0MDguMS0xMzE2LjljLTcuNSwxLTEyLjcsNy44LTExLjcsMTUuM2MwLjcsNS40LDQuNiw5LjksOS45LDExLjMgICBjMCwwLDMzLjIsMTEsODkuNywxNS42YzQ1LjQsMy43LDk2LjktMy4yLDk2LjktMy4yYzcuNS0wLjIsMTMuNS02LjUsMTMuMi0xNHMtNi41LTEzLjUtMTQtMTMuMmMtMC45LDAtMS44LDAuMS0yLjYsMC4zICAgYzAsMC01MC40LDYuMi05MS4zLDIuOWMtNTQtNC40LTgzLjQtMTQuMy04My40LTE0LjNDMTQxMi42LTEzMTYuOSwxNDEwLjMtMTMxNy4yLDE0MDguMS0xMzE2Ljl6IE0xNDA4LjEtMTM4NC40ICAgYy03LjUsMS0xMi43LDcuOC0xMS43LDE1LjNjMC43LDUuNCw0LjYsOS45LDkuOSwxMS4zYzAsMCwzMy4yLDExLDg5LjcsMTUuNmM0NS40LDMuNyw5Ni45LTMuMiw5Ni45LTMuMmM3LjUtMC4yLDEzLjUtNi41LDEzLjItMTQgICBzLTYuNS0xMy41LTE0LTEzLjJjLTAuOSwwLTEuOCwwLjEtMi42LDAuM2MwLDAtNTAuNCw2LjItOTEuMywyLjljLTU0LTQuNC04My40LTE0LjMtODMuNC0xNC4zICAgQzE0MTIuNi0xMzg0LjUsMTQxMC4zLTEzODQuNywxNDA4LjEtMTM4NC40eiBNMTMxMy40LTE0NTUuN2MtNzEsMC41LTk3LjUsMjIuMy05Ny41LDIyLjN2NTMwLjNjMCwwLDI1LjgtMjIuMywxMDktMTguOSAgIGM4My4yLDMuNCwxMDAuMywzMi42LDIwMi41LDM0LjZjMTAyLjIsMi4xLDEyNy45LTE1LjcsMTI3LjktMTUuN2wxLjUtNTQwLjZjMCwwLTQ2LDEzLTEzNS41LDEzLjdzLTExMS0yMi44LTE5My4yLTI1LjUgICBDMTMyMy0xNDU1LjYsMTMxOC4xLTE0NTUuNywxMzEzLjQtMTQ1NS43eiBNMTM3Mi44LTE0MjEuMWMwLDAsNDMsMTQuMiwxMjIuNSwxOC4yYzY3LjIsMy4zLDEzNC41LTYuNiwxMzQuNS02LjZ2NDgwLjUgICBjMCwwLTM0LjEsMTcuOS0xMTkuMywxMS44Yy02Ni00LjctMTM4LjctMjkuNy0xMzguNy0yOS43TDEzNzIuOC0xNDIxLjF6IE0xMzMxLjMtMTQwOC42YzcuNiwwLDEzLjcsNi4yLDEzLjcsMTMuNyAgIHMtNi4yLDEzLjctMTMuNywxMy43YzAsMC0yMi4zLDAuMS0zNS44LDEuNWMtMjIuOCwyLjMtMzguMywxMC42LTM4LjMsMTAuNmMtNi43LDMuNS0xNSwxLTE4LjUtNS43cy0xLTE1LDUuNy0xOC41YzAsMCwwLDAsMCwwICAgYzAsMCwyMC4yLTEwLjcsNDguNC0xMy41QzEzMDkuMS0xNDA4LjUsMTMzMS4zLTE0MDguNiwxMzMxLjMtMTQwOC42eiBNMTMxOC4xLTEzNDAuOGM3LjYtMC4yLDEzLjMsMCwxMy4zLDAgICBjNy41LDAuOSwxMi45LDcuOCwxMiwxNS4zYy0wLjgsNi4zLTUuNywxMS4yLTEyLDEyYzAsMC0yMi4zLDAuMS0zNS44LDEuNWMtMjIuOCwyLjMtMzguMywxMC42LTM4LjMsMTAuNmMtNi43LDMuNS0xNSwwLjktMTguNS01LjggICBjLTMuNS02LjctMC45LTE1LDUuOC0xOC41YzAsMCwyMC4yLTEwLjcsNDguNC0xMy41QzEzMDAuOS0xMzQwLjEsMTMxMC41LTEzNDAuNiwxMzE4LjEtMTM0MC44eiBNMTMzMS4zLTEyNzMuMyAgIGM3LjYsMCwxMy43LDYuMiwxMy43LDEzLjdjMCw3LjYtNi4yLDEzLjctMTMuNywxMy43YzAsMC0yMi4zLTAuMS0zNS44LDEuMmMtMjIuOCwyLjMtMzguMywxMC42LTM4LjMsMTAuNiAgIGMtNi43LDMuNS0xNSwwLjktMTguNS01LjhjLTMuNS02LjctMC45LTE1LDUuOC0xOC41YzAsMCwyMC4yLTEwLjcsNDguNC0xMy41QzEzMDkuMS0xMjczLjQsMTMzMS4zLTEyNzMuMywxMzMxLjMtMTI3My4zeiIvPgo8L2c+CjxnIGlkPSJ0ZXh0Ij4KCTxwYXRoIHN0eWxlPSJmaWxsOiMzMjMyMkEiIGQ9Ik0xMTI4LjYsNDkxLjlWNDcwbDguOS0wLjhjNS4yLTAuNSw3LjgtMy4xLDcuOC03LjZWMzM2bC0xNS40LTAuOHYtMjNoNzMuOCAgIGMyMC45LDAsMzYuOSwzLjksNDguMSwxMS42YzExLjIsNy43LDE2LjgsMjAuNSwxNi44LDM4LjFjMCwxMi4zLTMuMiwyMi4zLTkuNywzMC4zYy02LjMsNy45LTEzLjksMTMuNy0yMi43LDE3LjMgICBjNi41LDIuMywxMS42LDcuOCwxNS40LDE2LjVsMTkuNSw0Mi40bDE1LjQsMC41djIzaC02Ni44VjQ3MGw3LjgtMC44YzQuMS0wLjUsNi4yLTIuMiw2LjItNC45YzAtMS4xLTAuNC0yLjMtMS4xLTMuOGwtMTIuNy0yNyAgIGMtMi00LjUtNC4yLTcuNy02LjgtOS41Yy0yLjMtMi01LjgtMy0xMC4zLTNoLTI0LjZ2NDdsMTcuNiwwLjh2MjNMMTEyOC42LDQ5MS45IE0xMTc4LjMsMzk1LjRoMjMuNWMyMi4yLDAsMzMuMi05LjksMzMuMi0yOS43ICAgYzAtMTEuNC0zLTE4LjctOC45LTIyLjJjLTUuOC0zLjQtMTUuMS01LjEtMjguMS01LjFoLTE5LjdWMzk1LjQiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiMzMjMyMkEiIGQ9Ik0xMzU2LDM1MS45YzEzLjUsMCwyNC4yLDMuMywzMi4yLDEwYzcuOSw2LjUsMTEuOSwxNS43LDExLjksMjcuNmMwLDcuOS0xLjcsMTUtNS4xLDIxLjEgICBjLTMuNCw1LjktNy43LDEwLjYtMTIuNywxNC4xYy01LDMuNC0xMS4yLDYuMi0xOC40LDguNGMtMTIuMSwzLjYtMjUuNyw1LjQtNDAuOCw1LjRjMC41LDkuNSwzLjUsMTcuMyw4LjksMjMuMiAgIGM1LjQsNS44LDEzLjcsOC42LDI0LjksOC42YzExLjIsMCwyMi4zLTQsMzMuNS0xMS45bDEwLjMsMjEuOWMtMy42LDMuMi05LjcsNi42LTE4LjQsMTBjLTguNSwzLjQtMTguMiw1LjEtMjkuMiw1LjEgICBjLTIyLDAtMzguMS02LTQ4LjQtMTguMWMtMTAuMy0xMi4zLTE1LjQtMjktMTUuNC01MC4zYzAtMjEuMyw1LjktMzkuMSwxNy42LTUzLjVDMTMxOC41LDM1OS4xLDEzMzQuOSwzNTEuOSwxMzU2LDM1MS45ICAgIE0xMzQzLjYsNDEzLjhjNi43LTEuMywxMi44LTMuOSwxOC40LTcuOGM1LjYtNC4xLDguNC05LDguNC0xNC42YzAtMTEtNS40LTE2LjUtMTYuMi0xNi41Yy0xMC4xLDAtMTcuOCw0LjEtMjMuMiwxMi4yICAgYy01LjQsNy45LTguNCwxNy41LTguOSwyOC42QzEzMjkuOSw0MTUuNSwxMzM3LjEsNDE0LjksMTM0My42LDQxMy44Ii8+Cgk8cGF0aCBzdHlsZT0iZmlsbDojMzIzMjJBIiBkPSJNMTUyOS42LDM2MS40djEwMC41YzAsMi45LDAuNSw0LjksMS40LDUuOWMxLjEsMS4xLDIuOSwxLjcsNS40LDEuOWw4LjYsMC41djIxLjZoLTQzdi0xNS43ICAgbC0wLjgtMC4zYy05LDEzLTIxLjQsMTkuNS0zNywxOS41Yy0xOC40LDAtMzItNS45LTQwLjgtMTcuNmMtOC44LTExLjctMTMuMi0yNy43LTEzLjItNDguMWMwLTI0LjUsNS45LTQzLjYsMTcuOC01Ny4zICAgYzExLjktMTMuNywyOS43LTIwLjUsNTMuNS0yMC41QzE0OTYuOCwzNTEuOSwxNTEyLjksMzU1LjEsMTUyOS42LDM2MS40IE0xNDk4LjMsNDQ4Ljl2LTcwYy01LTIuMy0xMi0zLjUtMjAuOC0zLjUgICBjLTEyLjEsMC0yMC44LDQuOS0yNi4yLDE0LjZjLTUuNCw5LjctOC4xLDIyLjYtOC4xLDM4LjdjMCwyOS4yLDkuNCw0My44LDI4LjEsNDMuOGM3LjksMCwxNC40LTIuMywxOS41LTcgICBDMTQ5NS43LDQ2MC42LDE0OTguMyw0NTUuMSwxNDk4LjMsNDQ4LjkiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiMzMjMyMkEiIGQ9Ik0xNjE2LjMsMzUxLjljNy43LDAsMTUuMSwxLjEsMjIuMiwzLjJ2LTI3LjNjMC00LTIuMy02LjEtNy02LjVsLTExLjYtMC44di0yMS40aDUwLjN2MTY0LjMgICBjMC4yLDQuMSwyLjQsNi4yLDYuOCw2LjJsOS41LDAuNXYyMS42aC00My44VjQ3NmwtMC44LTAuM2MtOC4xLDEzLjItMjAuNCwxOS43LTM2LjgsMTkuN2MtMjAuNSwwLTM1LTYuOC00My4yLTIwLjUgICBjLTcuNi0xMi40LTExLjQtMjcuNy0xMS40LTQ1LjdjMC0yMy40LDUuOC00Mi4yLDE3LjMtNTYuMkMxNTc5LjMsMzU4LjksMTU5NS41LDM1MS45LDE2MTYuMywzNTEuOSBNMTYzOC40LDQ0OS44di03MCAgIGMtNi41LTIuOS0xMy4zLTQuMy0yMC41LTQuM2MtMTEuOSwwLTIwLjYsNC44LTI2LjIsMTQuM2MtNS40LDkuNi04LjEsMjEuNy04LjEsMzYuNWMwLDMwLjMsOS43LDQ1LjQsMjkuMiw0NS40ICAgYzcuNCwwLDEzLjUtMi4xLDE4LjQtNi4yQzE2MzYsNDYxLjEsMTYzOC40LDQ1NS45LDE2MzguNCw0NDkuOCIvPgoJPHBhdGggc3R5bGU9ImZpbGw6IzMyMzIyQSIgZD0iTTE3OTEuNyw0NzAuNmMwLDAtMTIuNSw0LjctMTkuMiw0LjdzLTkuMi0zLjMtOS4yLTExLjhjMC0zLjgsMC41LTguOCwxLjQtMTQuOWwxMC4yLTYzLjFoMzIuNiAgIGwyLjgtMTcuN2gtMzIuNmw1LjctMzQuNUwxNzYwLDMzOGwtNC43LDI5LjhsLTIzLjYsMi40bC0yLjYsMTUuNGgyMy40TDE3NDIsNDUxYy0wLjksNS40LTEuNCwxMC42LTEuNCwxNS4xICAgYzAsMTguNyw3LjgsMjguMSwyMy45LDI4LjFjMTMuMiwwLDMxLTEwLjksMzEtMTAuOUwxNzkxLjcsNDcwLjYiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiMzMjMyMkEiIGQ9Ik0xODY1LDMwOS44bC00My4zLDEuMmwtMi4xLDEzbDE5LjksNC43bC0yNiwxNjMuMmgyMi41bDcuOC00Mi42YzAsMCwxOC43LTY1LDQ5LjQtNjUgICBjOS41LDAsMTIuMyw2LjksMTIuMywxNS42YzAsMy4zLTAuNSw2LjktMC45LDEwLjRsLTEzLjUsODEuNmw0My4zLTIuNGwyLjEtMTNsLTE5LjktMy41bDEwLjYtNjYuMmMwLjctNSwxLjItOS43LDEuMi0xNCAgIGMwLTE3LTYuOS0yOC42LTI1LjgtMjguNmMtMzUuOSwwLTU0LjksNDUuNi01NS44LDQ4LjJMMTg2NSwzMDkuOCIvPgoJPHBhdGggc3R5bGU9ImZpbGw6IzMyMzIyQSIgZD0iTTIwMzUsNDY0LjdjMCwwLTIxLjUsMTAuNi0zOC44LDEwLjZjLTE3LjcsMC0yNi03LjgtMjYtMjQuNmMwLTMuMSwwLjItNi42LDAuNy0xMC4yICAgYzQ5LDAsODMtMTguNCw4My00NS42YzAtMTguNy0xNS4xLTMwLjctMzktMzAuN2MtMzcuNiwwLTY4LjMsMzguNS02OC4zLDg3LjVjMCwyNiwxNi42LDQyLjYsNDIuNiw0Mi42YzI3LjksMCw1My0xNy41LDUzLTE3LjUgICBMMjAzNSw0NjQuNyBNMTk3Myw0MjRjNi4xLTI0LjgsMjMuNC00Mi4xLDQwLjctNDIuMWMxMi4xLDAsMTcuNyw1LDE3LjcsMTUuNEMyMDMxLjUsNDEyLjksMjAwNi42LDQyNCwxOTczLDQyNCIvPgoJPHBhdGggc3R5bGU9ImZpbGw6IzMyMzIyQSIgZD0iTTIwOTMuNyw0OTEuOVY0NzBsOC45LTAuOGM1LjItMC41LDcuOC0zLjEsNy44LTcuNlYzMzZsLTE1LjQtMC44di0yM2g3NC4xICAgYzI2LjUsMCw0Ny4xLDcsNjEuOSwyMS4xYzE1LDE0LjEsMjIuNCwzNC45LDIyLjQsNjIuNGMwLDE3LjEtMi4zLDMyLjEtNi44LDQ0LjljLTQuNSwxMi42LTEwLjYsMjIuNS0xOC40LDI5LjcgICBjLTE1LjUsMTQuNC0zNC44LDIxLjYtNTcuOCwyMS42TDIwOTMuNyw0OTEuOSBNMjE0My40LDMzOC40VjQ2NmgyNy42YzE1LjUsMCwyNy42LTUuNiwzNi4yLTE2LjhjOC42LTExLjIsMTMtMjcuNCwxMy00OC43ICAgYzAtNDEuNC0xNy42LTYyLjItNTIuNy02Mi4ySDIxNDMuNCIvPgoJPHBhdGggc3R5bGU9ImZpbGw6IzMyMzIyQSIgZD0iTTIzMzAsNDcyLjJjMTkuNiwwLDI5LjUtMTUuOSwyOS41LTQ3LjZjMC0xNi0yLjMtMjguMi02LjgtMzYuNWMtNC4zLTguMy0xMS43LTEyLjQtMjIuMi0xMi40ICAgYy0xMC4zLDAtMTcuOCw0LTIyLjcsMTEuOWMtNC45LDcuOS03LjMsMTguNy03LjMsMzIuNGMwLDI1LjQsNC43LDQxLjQsMTQuMSw0Ny44QzIzMTguOCw0NzAuNywyMzIzLjksNDcyLjIsMjMzMCw0NzIuMiAgICBNMjI2Ny45LDQyMy44YzAtMTMuMywyLTI0LjksNS45LTM0LjZjNC05LjksOS4zLTE3LjUsMTUuOS0yMi43YzEyLjgtOS43LDI2LjktMTQuNiw0Mi40LTE0LjZjMTAuOCwwLDE5LjksMS44LDI3LjMsNS40ICAgYzcuNiwzLjQsMTMuNCw3LjUsMTcuNiwxMi4yYzQuMyw0LjUsNy45LDExLjIsMTAuOCwyMGMzLjEsOC42LDQuNiwxOC45LDQuNiwzMC44YzAsMjQuOS02LDQzLjctMTguMSw1Ni41ICAgYy0xMi4xLDEyLjgtMjcuNiwxOS4yLTQ2LjUsMTkuMmMtMTguNywwLTMzLjQtNi00NC4xLTE4LjFDMjI3My4yLDQ2NS42LDIyNjcuOSw0NDcuNiwyMjY3LjksNDIzLjgiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiMzMjMyMkEiIGQ9Ik0yNDM4LjIsNDIyLjVjMCwxNS4zLDIuOSwyNy4yLDguNiwzNS43YzUuOCw4LjUsMTQuMSwxMi43LDI0LjksMTIuN2MxMSwwLDIxLjgtMy45LDMyLjQtMTEuNiAgIGwxMS42LDIwLjhjLTEyLjgsMTAuNS0yOC44LDE1LjctNDguMSwxNS43Yy0xOS4zLDAtMzQuNS02LTQ1LjctMTguMWMtMTEtMTIuMy0xNi41LTMwLjMtMTYuNS01NC4xczYuMy00MS42LDE4LjktNTMuNSAgIGMxMi44LTEyLjEsMjcuMS0xOC4xLDQzLTE4LjFjMTYsMCwzMC45LDMuNyw0NC42LDExLjF2MzUuMWwtMjQuOSwxLjl2LTEzYzAtNC45LTEuOC03LjgtNS40LTguOWMtMy40LTEuMy03LTEuOS0xMC44LTEuOSAgIEMyNDQ5LjEsMzc2LjIsMjQzOC4yLDM5MS42LDI0MzguMiw0MjIuNSIvPgoJPHBhdGggc3R5bGU9ImZpbGw6IzMyMzIyQSIgZD0iTTI1OTIuOSwzNzYuNWMtNC4zLTEuNi05LjYtMi40LTE1LjctMi40Yy02LjEsMC0xMS4xLDEuNC0xNC45LDQuM2MtMy42LDIuNy01LjQsNi4xLTUuNCwxMC4zICAgYzAsNCwwLjYsNy4xLDEuOSw5LjVjMS40LDIuMiwzLjYsNC4xLDYuNSw1LjdjNC41LDIuMyw5LjksNC40LDE2LjIsNi4yYzYuMywxLjYsMTEsMywxNC4xLDQuMWMzLjEsMC45LDYuOCwyLjUsMTEuNCw0LjkgICBjNC43LDIuMyw4LjIsNC45LDEwLjUsNy42YzYuMyw2LjcsOS41LDE1LjIsOS41LDI1LjdjMCwxMy41LTUsMjQuMS0xNC45LDMxLjljLTkuNyw3LjYtMjIuMiwxMS40LTM3LjMsMTEuNCAgIGMtMjIsMC0zOC42LTIuOC00OS43LTguNHYtMzcuNmwyNC4zLTEuOXYxM2MwLDcuOSw3LjYsMTEuOSwyMi43LDExLjlzMjIuNy01LjUsMjIuNy0xNi41YzAtNC0xLjQtNy4yLTQuMS05LjcgICBjLTIuNS0yLjUtNS00LjItNy42LTUuMWMtMi41LTAuOS01LjYtMS44LTkuMi0yLjdjLTMuNC0wLjktNi44LTEuOC0xMC4zLTIuN2MtMy4yLTAuOS02LjgtMi4xLTEwLjgtMy41Yy0zLjgtMS42LTgtMy45LTEyLjctNi44ICAgYy05LjItNS45LTEzLjgtMTUuOS0xMy44LTI5LjdjMC0xNC4xLDUtMjQuOSwxNC45LTMyLjRjOS45LTcuNiwyMi4zLTExLjQsMzcuMy0xMS40YzE1LjEsMCwzMC4xLDMuNiw0NC45LDEwLjh2MzIuNGwtMjQuMywxLjkgICB2LTExLjRDMjU5OS4xLDM4MS4yLDI1OTcsMzc4LjEsMjU5Mi45LDM3Ni41Ii8+CjwvZz4KPGRpdiB4bWxucz0iIiBpZD0ic2FrYS1ndWktcm9vdCI+PGRpdj48ZGl2PjxzdHlsZS8+PC9kaXY+PC9kaXY+PC9kaXY+PC9zdmc+">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template></readthedocs-search><readthedocs-hotkeys><template shadowrootmode="open"><!----></template></readthedocs-hotkeys>
+  
+
+  
+
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+   
+
+
+</body></html>
